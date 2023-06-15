@@ -1,2 +1,2 @@
 # CGPP
-Data processing code for the Competition, Generics, and Pharmaceutical Pricing paper. 
+Code for the data processing and statistical analyses used for the Competition, Generics, and Pharmaceutical Pricing paper. 

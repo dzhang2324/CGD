@@ -1,5 +1,5 @@
 # CGPP
-Code for the data processing and statistical analyses used for the Competition, Generics, and Pharmaceutical Pricing paper. 
+Code for the data processing and statistical analyses used for the Competition, Generics, and Pharmaceutical Pricing paper utilizing various packages in Python.
 
 Paper subject to change slightly depending on when you see this, will submit for publication to undergraduate journals.
 

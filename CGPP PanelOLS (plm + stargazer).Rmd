@@ -1,0 +1,121 @@
+---
+title: "CGPP PanelOLS"
+output: html_document
+date: "2023-08-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(plm)
+library(stargazer)
+library(AER)
+```
+
+```{r}
+med_panel_agg <- read.csv("C:/Users/ttrap/Desktop/ECON 191/med_panel_agg.csv")
+```
+
+```{r}
+med_panel = pdata.frame(med_panel_agg, index = c('Brnd_Name', 'Year'))
+med_panel = unique(med_panel, by = c('Brnd_Name', 'Year'))
+```
+
+```{r}
+med_panel = med_panel %>% mutate(ln_Tot_Spndng = log(Tot_Spndng))
+med_panel = med_panel %>% mutate(ln_Avg_Spnd_Per_Dsg_Unt = log(Avg_Spnd_Per_Dsg_Unt_Wghtd))
+med_panel = med_panel %>% mutate(ln_Avg_Spnd_Per_Clm = log(Avg_Spnd_Per_Clm))
+med_panel = med_panel %>% mutate(ln_Tot_Clms = log(Tot_Clms))
+```
+
+```{r}
+tot_spndng = plm(ln_Tot_Spndng ~ Tot_Mftr + ln_Tot_Clms, 
+                    data = med_panel,
+                    index = c("Brnd_Name", "Year"), 
+                    model = "within", 
+                    effect = "twoways")
+
+cov = vcovHC(tot_spndng,type="HC4",cluster=c("group", "time"))
+clust_se = sqrt(diag(cov))
+summary(tot_spndng, vcovHC(tot_spndng,type="HC4",cluster=c("group", "time")))
+```
+
+```{r}
+tot_spnd_naive = lm(ln_Tot_Spndng ~ Tot_Mftr, data = med_panel)
+
+stargazer(tot_spnd_naive, tot_spndng, tot_spndng, se = list(NULL, NULL, clust_se), 
+          column.labels = c("Naive", "Default", "Entity and Time Cluster"), align = TRUE)
+```
+
+```{r}
+avg_spnd_dsg = plm(ln_Avg_Spnd_Per_Dsg_Unt ~ Tot_Mftr + ln_Tot_Clms, 
+                    data = med_panel,
+                    index = c("Brnd_Name", "Year"), 
+                    model = "within", 
+                    effect = "twoways")
+
+summary(avg_spnd_dsg, vcovHC(avg_spnd_dsg,type="HC4",cluster=c("group", "time")))
+```
+
+```{r}
+cov_asd = vcovHC(avg_spnd_dsg,type="HC4",cluster=c("group", "time"))
+clust_se_asd = sqrt(diag(cov_asd))
+
+asd_naive = lm(ln_Avg_Spnd_Per_Dsg_Unt ~ Tot_Mftr, data = med_panel)
+
+stargazer(asd_naive, avg_spnd_dsg, avg_spnd_dsg, se = list(NULL, NULL, clust_se_asd), 
+          column.labels = c("Naive", "Default", "Cluster"), align = TRUE, column.sep.width = "120pt")
+```
+
+```{r}
+avg_spnd_clm = plm(ln_Avg_Spnd_Per_Clm ~ Tot_Mftr + ln_Tot_Clms, 
+                    data = med_panel,
+                    index = c("Brnd_Name", "Year"), 
+                    model = "within", 
+                    effect = "twoways")
+
+summary(avg_spnd_clm, vcovHC(avg_spnd_clm,type="HC4",cluster=c("group", "time")))
+```
+
+```{r}
+cov_asc = vcovHC(avg_spnd_clm,type="HC4",cluster=c("group", "time"))
+clust_se_asc = sqrt(diag(cov_asc))
+
+asc_naive = lm(ln_Avg_Spnd_Per_Clm ~ Tot_Mftr, data = med_panel)
+
+stargazer(asc_naive, avg_spnd_clm, avg_spnd_clm, se = list(NULL, NULL, clust_se_asc), 
+          column.labels = c("Naive", "Default", "Cluster"), align = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

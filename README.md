@@ -1,4 +1,4 @@
-# CGPP
+# CGD
 Code for the data processing and statistical analyses used for the Competition and Generic Drugs paper utilizing various packages in Python.
 
 Paper subject to change slightly depending on when you see this, will submit for publication to undergraduate journals.

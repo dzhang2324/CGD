@@ -1,0 +1,242 @@
+{
+  "checks": {
+    "all_medicaid_log_columns_correct": true,
+    "all_years_match_source": true,
+    "costplus_calculations_valid": true,
+    "drug_group_identifiers_consistent": true,
+    "drug_group_year_keys_unique": true,
+    "legacy_panel_matches_missing_to_zero_transformation": true,
+    "manufacturer_count_constant_within_drug_group": true,
+    "panel_rows_equal_source_rows_times_years": true,
+    "panel_years_expected": true,
+    "sample_matches_documented_filters": true,
+    "source_identifiers_unique": true
+  },
+  "costplus": {
+    "calculations": {
+      "finite_values_and_logs": true,
+      "log_manuf_cost": true,
+      "log_markup": true,
+      "log_retail_price": true,
+      "manufacturing_cost_formula": true,
+      "markup_formula": true,
+      "positive_log_inputs": true
+    },
+    "duplicate_medication_excess_rows": 0,
+    "duplicate_medication_form_excess_rows": 0,
+    "observations": 442
+  },
+  "environment": {
+    "packages": {
+      "matplotlib": "3.11.2",
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "scipy": "1.18.1",
+      "statsmodels": "0.15.0"
+    },
+    "python": "3.13.5"
+  },
+  "input_sha256": {
+    "Medicaid_Spending_by_Drug_2021.csv": "87a69da9416a68c93d940500050aa6c5f8f15999e010f65c02362fd89dda942c",
+    "costplus.csv": "193bab605cfe459cc3d8dd1f0c7900c59f965d6613a72a64bd37112ad86dbba3",
+    "med_panel.csv": "8e47689a16e7f77c90e6ca23c78963b68120b0b2b0d793ba09a9474c200844cb"
+  },
+  "medicaid": {
+    "additional_nonpositive_or_nonfinite_exclusions": 0,
+    "brand_names": 3184,
+    "brand_names_with_multiple_manufacturer_counts": 30,
+    "drug_groups": 3244,
+    "drug_groups_with_multiple_manufacturer_counts": 0,
+    "duplicate_brand_year_excess_rows": 206,
+    "duplicate_brand_year_keys": 162,
+    "duplicate_drug_group_year_excess_rows": 0,
+    "historical_filter_observations": 12740,
+    "log_checks": {
+      "log_claim_spend": true,
+      "log_claims": true,
+      "log_unit_spend": true
+    },
+    "manufacturer_count_interpretation": "One source column is repeated across years. Apparent within-brand variation comes from grouping different brand/generic pairs, not annual manufacturer entry.",
+    "observations": 12740,
+    "observations_by_year": {
+      "2017": 2323,
+      "2018": 2362,
+      "2019": 2601,
+      "2020": 2729,
+      "2021": 2725
+    },
+    "sample_comparison": {
+      "matches": true,
+      "mismatched_cells_by_column": {
+        "Avg_Spnd_Per_Clm": 0,
+        "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+        "Brnd_Name": 0,
+        "Gnrc_Name": 0,
+        "Mftr_Name": 0,
+        "Outlier_Flag": 0,
+        "Tot_Clms": 0,
+        "Tot_Dsg_Unts": 0,
+        "Tot_Mftr": 0,
+        "Tot_Spndng": 0,
+        "Year": 0
+      },
+      "numeric_absolute_tolerance": 1e-12,
+      "numeric_relative_tolerance": 1e-12,
+      "rows_compared": 12740
+    },
+    "spending_per_claim_identity_max_absolute_error": 4.4827465899288654e-06,
+    "years_observed_per_drug_group": {
+      "1": 346,
+      "2": 331,
+      "3": 347,
+      "4": 409,
+      "5": 1811
+    }
+  },
+  "panel": {
+    "current_missing_value_policy": "Source missing values are preserved.",
+    "legacy_comparison": {
+      "matches": true,
+      "mismatched_cells_by_column": {
+        "Avg_Spnd_Per_Clm": 0,
+        "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+        "Brnd_Name": 0,
+        "Gnrc_Name": 0,
+        "Mftr_Name": 0,
+        "Outlier_Flag": 0,
+        "Tot_Clms": 0,
+        "Tot_Dsg_Unts": 0,
+        "Tot_Mftr": 0,
+        "Tot_Spndng": 0,
+        "Year": 0
+      },
+      "numeric_absolute_tolerance": 1e-12,
+      "numeric_relative_tolerance": 1e-12,
+      "rows_compared": 80730
+    },
+    "legacy_missing_value_policy": "Missing yearly metrics were replaced with zero.",
+    "missing_values_by_metric": {
+      "Avg_Spnd_Per_Clm": 12923,
+      "Avg_Spnd_Per_Dsg_Unt_Wghtd": 12923,
+      "Outlier_Flag": 12923,
+      "Tot_Clms": 12923,
+      "Tot_Dsg_Unts": 12923,
+      "Tot_Spndng": 12923
+    },
+    "rows": 80730
+  },
+  "passed": true,
+  "reference_snapshot": {
+    "expected_costplus_observations": 442,
+    "expected_medicaid_drug_groups": 3244,
+    "expected_medicaid_observations": 12740,
+    "matches": true
+  },
+  "source": {
+    "rows": 16146,
+    "source_year_checks": {
+      "2017": {
+        "matches": true,
+        "mismatched_cells_by_column": {
+          "Avg_Spnd_Per_Clm": 0,
+          "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+          "Brnd_Name": 0,
+          "Gnrc_Name": 0,
+          "Mftr_Name": 0,
+          "Outlier_Flag": 0,
+          "Tot_Clms": 0,
+          "Tot_Dsg_Unts": 0,
+          "Tot_Mftr": 0,
+          "Tot_Spndng": 0,
+          "Year": 0
+        },
+        "numeric_absolute_tolerance": 1e-12,
+        "numeric_relative_tolerance": 1e-12,
+        "rows_compared": 16146
+      },
+      "2018": {
+        "matches": true,
+        "mismatched_cells_by_column": {
+          "Avg_Spnd_Per_Clm": 0,
+          "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+          "Brnd_Name": 0,
+          "Gnrc_Name": 0,
+          "Mftr_Name": 0,
+          "Outlier_Flag": 0,
+          "Tot_Clms": 0,
+          "Tot_Dsg_Unts": 0,
+          "Tot_Mftr": 0,
+          "Tot_Spndng": 0,
+          "Year": 0
+        },
+        "numeric_absolute_tolerance": 1e-12,
+        "numeric_relative_tolerance": 1e-12,
+        "rows_compared": 16146
+      },
+      "2019": {
+        "matches": true,
+        "mismatched_cells_by_column": {
+          "Avg_Spnd_Per_Clm": 0,
+          "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+          "Brnd_Name": 0,
+          "Gnrc_Name": 0,
+          "Mftr_Name": 0,
+          "Outlier_Flag": 0,
+          "Tot_Clms": 0,
+          "Tot_Dsg_Unts": 0,
+          "Tot_Mftr": 0,
+          "Tot_Spndng": 0,
+          "Year": 0
+        },
+        "numeric_absolute_tolerance": 1e-12,
+        "numeric_relative_tolerance": 1e-12,
+        "rows_compared": 16146
+      },
+      "2020": {
+        "matches": true,
+        "mismatched_cells_by_column": {
+          "Avg_Spnd_Per_Clm": 0,
+          "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+          "Brnd_Name": 0,
+          "Gnrc_Name": 0,
+          "Mftr_Name": 0,
+          "Outlier_Flag": 0,
+          "Tot_Clms": 0,
+          "Tot_Dsg_Unts": 0,
+          "Tot_Mftr": 0,
+          "Tot_Spndng": 0,
+          "Year": 0
+        },
+        "numeric_absolute_tolerance": 1e-12,
+        "numeric_relative_tolerance": 1e-12,
+        "rows_compared": 16146
+      },
+      "2021": {
+        "matches": true,
+        "mismatched_cells_by_column": {
+          "Avg_Spnd_Per_Clm": 0,
+          "Avg_Spnd_Per_Dsg_Unt_Wghtd": 0,
+          "Brnd_Name": 0,
+          "Gnrc_Name": 0,
+          "Mftr_Name": 0,
+          "Outlier_Flag": 0,
+          "Tot_Clms": 0,
+          "Tot_Dsg_Unts": 0,
+          "Tot_Mftr": 0,
+          "Tot_Spndng": 0,
+          "Year": 0
+        },
+        "numeric_absolute_tolerance": 1e-12,
+        "numeric_relative_tolerance": 1e-12,
+        "rows_compared": 16146
+      }
+    },
+    "years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021
+    ]
+  }
+}

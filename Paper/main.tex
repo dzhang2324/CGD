@@ -8,6 +8,7 @@
 \usepackage[colorlinks]{hyperref}
 \usepackage{placeins}
 \usepackage{dcolumn}
+\usepackage{booktabs}
 \doublespace 
 
 \begin{document}
@@ -51,7 +52,7 @@ Building on this literature, I examine pharmaceutical costs using three compleme
 The first data source that I will discuss is Medicaid - Spending by Drug. This data contains Medicaid spending by drug from 2017 to 2021, along with other covariates. It represents national-level drug spending for Medicaid covered outpatient drugs, which are paid for by state Medicaid agencies. Over-the-counter drugs in the Medicaid State Drug Utilization data are not included, and drugs with fewer than 11 claims in the most recent year are also not included. This includes 16,146 observations across 5 time periods, each of which is a particular drug/compound, with some duplicates in the case of drugs with different dosage forms, strengths, and methods of administration. For each drug, there is an entry which calculates the same features (when applicable) for all of the manufactures of that drug. In total, there are 80,730 observations when accounting for time.
 
 In addition to the 16,146 total observations, each observation has a total of 36 features.
-Four of the features are the brand name of the drug, the generic equivalent of that drug, the number of manufacturers for the drug, and the name of the manufacturer of the drug: these features are time-invariant during this period. 30 of the features can be divided into 6 distinct spending/financial/counting features for each year in 2017-2021, inclusive. After transforming the data, the data consists of 10 features. For the analyses in this paper, the data is filtered to consider only the entries where the statistics are calculated by aggregating all of the manufacturers for a particular drug, the outlier flag is 0, and all the other statistics are greater than 0. The 10 distinct features are described in \autoref{table:table6}; summary statistics are given in Table 7, and Table 8 for the filtered data.
+Four of the features are the brand name of the drug, the generic equivalent of that drug, the number of manufacturers for the drug, and the name of the manufacturer of the drug: these features are time-invariant during this period. 30 of the features can be divided into 6 distinct spending/financial/counting features for each year in 2017-2021, inclusive. After transforming the data, the data consists of 10 features. For the analyses in this paper, the data is filtered to consider only the entries where the statistics are calculated by aggregating all of the manufacturers for a particular drug, the outlier flag is 0, and all the other statistics are greater than 0. The 10 distinct features are described in \autoref{table:table6}; summary statistics are given in \autoref{summary:medicaid-all}, and \autoref{summary:medicaid-filtered} for the filtered data.
 
 Outlier\_Flag is an indicator variable which represents if the drug is an outlier or not. A drug is labeled an outlier by the standard definition using the IQR, in addition to if it meets two other conditions. First, if there are fewer than 30 records associated with the drug from the initial data source, then it is flagged as an outlier. Second, average spending per dosage unit is calculated with and without outlier records. If these calculated amounts differ by 10 percent and \$1, then it is flagged as an outlier. The data used in this paper only includes observations for which Outlier\_Flag is 0 i.e. the observations are not outliers.
 
@@ -69,98 +70,7 @@ $$ CP\_price = 1.15(manuf\_cost) + 3$$
 where 3 is the pharmacy labor cost. Tax and shipping costs are not included. Features are describe in \autoref{table:table9}.
 
 \subsection{NADAC}
-The third data source is the NADAC data, which stands for the National Average Drug Acquisition Cost. This data contains 1,298,197 observations with 12 features. For the sake of avoiding the difficulties of interpreting the data during and soon after the COVID-19 pandemic, I specifically choose to use the NADAC data from 2019. Two of the features uniquely identify the drug: these are the National Drug Code description, which includes the drug name, strength, and dosage form; and the NDC, which is an 11 digit code. The features are summarized in \autoref{table:table11}, and summary statistics in Table 12.
-
-\section{Manufacturing Costs: Mark Cuban's Cost Plus Drugs}
-I will first investigate the relationship between manufacturing costs and pricing by looking at the Cost Plus data. 
-
-I begin by attempting to isolate an estimate of the manufacturing cost from the CP\_price. As alluded to earlier, this is given by
-
-$$ManufacturingCosts = \frac{CP\_price - 3}{1.15}$$.
-
-Referring back to the literature review, I assume that this calculation of manufacturing costs accounts for the costs reflected in the manufacturing cells (colored blue) in \autoref{figure:figure1}.
-
-One place to start with regards to looking at the relationship between manufacturing costs and pricing is to look at the extent of a linear relationship between the manufacturing costs and the retail price given in the data. We can first start by looking at a scatterplot of the data: 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=10cm]{Screenshot (96).png}
-    \caption{Jointplot of manufacturing costs (x-axis) and retail price (y-axis). Both variables are highly right-skewed.}
-\end{figure}
-
-The highly right skewed nature of both of the variables suggests that taking the natural logarithm of both of the variables may better reveal a linear relationship\footnote{Almost all of the variables in this paper have this relationship, so similar plots for other variables are omitted for brevity.}:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=10cm]{Screenshot (97).png}
-    \caption{Jointplot of manufacturing costs (x-axis) and retail price (y-axis) after taking the natural logarithm.}
-\end{figure}
-
-Running an OLS regression on the variables above, we get
-
-\begin{table}[!htbp] \centering
-\begin{tabular}{@{\extracolsep{5pt}}lc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
-& \multicolumn{1}{c}{\textit{Dependent variable: log(retail\_price)}} \
-\cr \cline{1-2}
-\\[-1.8ex] & (1) \\
-\hline \\[-1.8ex]
- const & 3.068$^{***}$ \\
-  & (0.066) \\
- log(manuf\_cost) & 0.721$^{***}$ \\
-  & (0.034) \\
-\hline \\[-1.8ex]
- Observations & 442 \\
- $R^2$ & 0.483 \\
- Adjusted $R^2$ & 0.482 \\
- Residual Std. Error & 0.974(df = 440)  \\
- F Statistic & 446.666$^{***}$ (df = 1.0; 440.0) \\
-\hline
-\hline \\[-1.8ex]
-\textit{Note: Standard Errors are heteroscedasticity robust (HC3).} & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
-\end{tabular}
-\end{table}
-
-With an R-squared value of .483 and highly significant coefficients, it appears that manufacturing costs explain a significant proportion of the variance of retail prices of the drugs in Cost Plus. However, one thing to note is that if medicine was priced with a lot of the costs in mind, then we should expect a coefficient that is greater than or equal to 1. However, this is not the case, and the 95\% confidence interval is far from it as well. Since the coefficient is less than 1, we can characterize this relationship as quite inelastic. In other words, the retail price doesn't change much with a change in manufacturing cost. Also, while the manufacturing costs account for almost half of the variance of the retail price, there are other highly relevant factors other than manufacturing-related costs which account for the final retail price. 
-
-In an attempt to generalize this, let's assume that the price of every drug can be decomposed into manufacturing costs, a percentage markup from those manufacturing costs, and a fixed labor cost. In the case of Cost Plus, we know the associated manufacturing costs and the labor cost, and so we can estimate the percent markup to the retail price for each drug. I assume that the labor cost is also \$3 for the retail pricing. This is calculated as 
-
-$$ markup = 100(\frac{retail\_price - 3}{manuf\_cost} - 1)$$.
-
-Due to right-skewness, the next regression  will be log(markup) on log(manuf\_cost):
-
-\begin{table}[!htbp] \centering
-\begin{tabular}{@{\extracolsep{5pt}}lc}
-\\[-1.8ex]\hline
-\hline \\[-1.8ex]
-& \multicolumn{1}{c}{\textit{Dependent variable: log(markup)}} \
-\cr \cline{1-2}
-\\[-1.8ex] & (1) \\
-\hline \\[-1.8ex]
- const & 7.411$^{***}$ \\
-  & (0.083) \\
- log(manuf\_cost) & -0.275$^{***}$ \\
-  & (0.044) \\
-\hline \\[-1.8ex]
- Observations & 442 \\
- $R^2$ & 0.084 \\
- Adjusted $R^2$ & 0.082 \\
- Residual Std. Error & 1.186(df = 440)  \\
- F Statistic & 39.883$^{***}$ (df = 1.0; 440.0) \\
-\hline
-\hline \\[-1.8ex]
-\textit{Note: Standard Errors are heteroscedasticity robust (HC3).} & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
-\end{tabular}
-\end{table}
-\FloatBarrier
-
-Interestingly, the coefficient on log(manuf\_cost) is negative. In particular, this indicates that for a 1\% change in manuf\_cost, markup decreases by .275\%, on average. Similarly to the first regression, the markup is quite inelastic to changes in manufacturing cost, to an even higher degree compared to the retail price. On first glance, the sign on the coefficient doesn't make sense, since we would expect that an increase in manufacturing cost should increase the markup, since the manufacturer would want to recoup more of the manufacturing cost. 
-
-However, the first regression suggests that as the manufacturing cost increases, the retail price increases as well, although not as much as the manufacturing cost. Therefore, the manufacturing cost increases faster than the retail price on average, and so an increase in the manufacturing costs results in a decrease the markup. However, the $R^2$ is quite low for the second regression, which indicates that manufacturing costs explain little of the variance in the markup. 
-
-Overall, these results suggest that manufacturing costs have a small effect on the high retail prices. In particular, manufacturing costs explain very little of the variance in the markup. For the markup and retail prices, they are both relatively unresponsive to changes in the manufacturing cost. One weakness of this approach is that it does not account for the costs incurred to discover the chemical formula for the drug, which are a real part of the manufacturing costs, especially for the companies which discover and charge the retail prices. One way to interpret the markup is the extra price charged for the intellectual property rights in discovering the drug, and this is not captured solely by the costs to produce the medicine, which are significantly lower once the drug has been discovered. This is far more likely to explain the markup, but this data is unavailable.
-
+The third data source is the NADAC data, which stands for the National Average Drug Acquisition Cost. This data contains 1,298,197 observations with 12 features. For the sake of avoiding the difficulties of interpreting the data during and soon after the COVID-19 pandemic, I specifically choose to use the NADAC data from 2019. Two of the features uniquely identify the drug: these are the National Drug Code description, which includes the drug name, strength, and dosage form; and the NDC, which is an 11 digit code. The features are summarized in \autoref{table:table11}, and summary statistics in \autoref{summary:nadac}.
 
 \section{Competition and Costs}
 As alluded to in the literature review, several scientists have suggested that monopoly power is a primary cause of high pharmaceutical costs. In this section, I outline the results of empirically investigating these claims from looking at the Medicaid - Spending by Drug data. 
@@ -192,7 +102,7 @@ We can first look at some preliminary results. If we group the data by the numbe
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=10cm]{meanScatter.png}
+    \includegraphics[width=13cm]{../analysis/output/figures/medicaid_mean_spending.pdf}
     \caption{Scatterplot of the mean average spending per dosage unit of drugs (y-axis), grouped by number of manufacturers (x-axis).}
 \end{figure}
 
@@ -206,112 +116,13 @@ $$ Y_{it} = \beta X_{it} + \alpha_i + \lambda_t + u_{it}$$
 
 where $\alpha_i$ represents the individual fixed effects, and $\lambda_t$ represents the time fixed effects. This is equivalent to the within estimator, which is used for the computations.
 
-\begin{table}[!htbp] \centering 
-  \caption{log(Avg\_Spnd\_Per\_Dsg\_Unt) on Tot\_Mftr} 
-  \label{table:table1} 
-\begin{tabular}{@{\extracolsep{-10pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{3}{c}{\textit{Dependent variable: log(Avg\_Spnd\_Per\_Dsg\_Unt)}} \\ 
-\cline{2-4} 
-\\[-1.8ex] & \multicolumn{3}{c}{} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{\textit{OLS}} & \multicolumn{2}{c}{\textit{Fixed Effects}} \\ 
- & \multicolumn{1}{c}{\textit{}} & \multicolumn{2}{c}{\textit{(Panel)}} \\ 
- & \multicolumn{1}{c}{Naive} & \multicolumn{1}{c}{Default} & \multicolumn{1}{c}{Clustered S.E.} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)}\\ 
-\hline \\[-1.8ex] 
- Tot\_Mftr & -0.186^{***} & -0.084^{***} & -0.084 \\ 
-  & (0.005) & (0.007) & (0.064) \\ 
-  & & & \\ 
- log(Tot\_Clms) &  & -0.036^{***} & -0.036^{***} \\ 
-  &  & (0.005) & (0.014) \\ 
-  & & & \\ 
- Constant & 2.332^{***} &  &  \\ 
-  & (0.028) &  &  \\ 
-  & & & \\ 
-\hline \\[-1.8ex] 
-Observations & \multicolumn{1}{c}{12,740} & \multicolumn{1}{c}{12,740} & \multicolumn{1}{c}{12,740} \\ 
-R$^{2}$ & \multicolumn{1}{c}{0.109} & \multicolumn{1}{c}{0.031} & \multicolumn{1}{c}{0.031} \\ 
-Adjusted R$^{2}$ & \multicolumn{1}{c}{0.108} & \multicolumn{1}{c}{-0.292} & \multicolumn{1}{c}{-0.292} \\ 
-Residual Std. Error & \multicolumn{1}{c}{2.553 (df = 12738)} &  &  \\ 
-F Statistic & \multicolumn{1}{c}{1,551$^{***}$ (df = 1; 12738)} & \multicolumn{1}{c}{153$^{***}$ (df = 2; 9550)} & \multicolumn{1}{c}{153$^{***}$ (df = 2; 9550)} \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note: Entity/Time Cluster}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table}
+\input{../analysis/output/tables/medicaid_unit.tex}
 \FloatBarrier
 
-\begin{table}[!htbp] \centering 
-  \caption{log(Tot\_Spndng) on Tot\_Mftr} 
-  \label{table:table2} 
-\begin{tabular}{@{\extracolsep{-10pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{3}{c}{\textit{Dependent variable: log(Tot\_Spndng)}} \\ 
-\cline{2-4} 
-\\[-1.8ex] & \multicolumn{3}{c}{} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{\textit{OLS}} & \multicolumn{2}{c}{\textit{Fixed Effects}} \\ 
- & \multicolumn{1}{c}{\textit{}} & \multicolumn{2}{c}{\textit{(Panel)}} \\ 
- & \multicolumn{1}{c}{Naive} & \multicolumn{1}{c}{Default} & \multicolumn{1}{c}{Clustered S.E.} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)}\\ 
-\hline \\[-1.8ex] 
- Tot\_Mftr & 0.150^{***} & -0.124^{***} & -0.124^{***} \\ 
-  & (0.005) & (0.006) & (0.043) \\ 
-  & & & \\ 
- log(Tot\_Clms) &  & 0.973^{***} & 0.973^{***} \\ 
-  &  & (0.004) & (0.011) \\ 
-  & & & \\ 
- Constant & 14.047^{***} &  &  \\ 
-  & (0.027) &  &  \\ 
-  & & & \\ 
-\hline \\[-1.8ex] 
-Observations & \multicolumn{1}{c}{12,740} & \multicolumn{1}{c}{12,740} & \multicolumn{1}{c}{12,740} \\ 
-R$^{2}$ & \multicolumn{1}{c}{0.079} & \multicolumn{1}{c}{0.884} & \multicolumn{1}{c}{0.884} \\ 
-Adjusted R$^{2}$ & \multicolumn{1}{c}{0.079} & \multicolumn{1}{c}{0.845} & \multicolumn{1}{c}{0.845} \\ 
-Residual Std. Error & \multicolumn{1}{c}{2.455 (df = 12738)} &  &  \\ 
-F Statistic & \multicolumn{1}{c}{1,095$^{***}$ (df = 1; 12738)} & \multicolumn{1}{c}{36,449$^{***}$ (df = 2; 9550)} & \multicolumn{1}{c}{36,449$^{***}$ (df = 2; 9550)} \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note: Entity/Time Cluster}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table} 
+% Redundant total-spending table removed; associated prose awaits manual revision. 
 \FloatBarrier
 
-\begin{table}[!htbp] \centering 
-  \caption{log(Avg\_Spnd\_Per\_Clm) on Tot\_Mftr} 
-  \label{table:table3} 
-\begin{tabular}{@{\extracolsep{-10pt}}lD{.}{.}{-3} D{.}{.}{-3} D{.}{.}{-3} } 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
- & \multicolumn{3}{c}{\textit{Dependent variable: log(Avg\_Spnd\_Per\_Clm)}} \\ 
-\cline{2-4} 
-\\[-1.8ex] & \multicolumn{3}{c}{} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{\textit{OLS}} & \multicolumn{2}{c}{\textit{Fixed Effects}} \\ 
- & \multicolumn{1}{c}{\textit{}} & \multicolumn{2}{c}{\textit{(Panel)}} \\ 
- & \multicolumn{1}{c}{Naive} & \multicolumn{1}{c}{Default} & \multicolumn{1}{c}{Clustered S.E.} \\ 
-\\[-1.8ex] & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)}\\ 
-\hline \\[-1.8ex] 
- Tot\_Mftr & -0.170^{***} & -0.124^{***} & -0.124^{***} \\ 
-  & (0.004) & (0.006) & (0.043) \\ 
-  & & & \\ 
- log(Tot\_Clms) &  & -0.027^{***} & -0.027^{**} \\ 
-  &  & (0.004) & (0.011) \\ 
-  & & & \\ 
- Constant & 5.875^{***} &  &  \\ 
-  & (0.021) &  &  \\ 
-  & & & \\ 
-\hline \\[-1.8ex] 
-Observations & \multicolumn{1}{c}{12,740} & \multicolumn{1}{c}{12,740} & \multicolumn{1}{c}{12,740} \\ 
-R$^{2}$ & \multicolumn{1}{c}{0.146} & \multicolumn{1}{c}{0.070} & \multicolumn{1}{c}{0.070} \\ 
-Adjusted R$^{2}$ & \multicolumn{1}{c}{0.145} & \multicolumn{1}{c}{-0.240} & \multicolumn{1}{c}{-0.240} \\ 
-Residual Std. Error & \multicolumn{1}{c}{1.974 (df = 12738)} &  &  \\ 
-F Statistic & \multicolumn{1}{c}{2,169$^{***}$ (df = 1; 12738)} & \multicolumn{1}{c}{362$^{***}$ (df = 2; 9550)} & \multicolumn{1}{c}{362$^{***}$ (df = 2; 9550)} \\ 
-\hline 
-\hline \\[-1.8ex] 
-\textit{Note: Entity/Time Cluster}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
-\end{tabular} 
-\end{table}
+\input{../analysis/output/tables/medicaid_claim.tex}
 \FloatBarrier
 
 
@@ -336,7 +147,7 @@ This final section will investigate differences between the NADAC of brand name 
     \centering
     \includegraphics[width=13cm]{Screenshot (90).png}
     \caption{Histograms of log(NADAC Per Unit) of strictly brand name and generic drugs.}
-    \label{fig:my_label}
+    \label{fig:nadac-distributions}
 \end{figure}
 \FloatBarrier
 
@@ -346,18 +157,21 @@ Now we consider brand name drugs which have had a corresponding generic introduc
 
 \begin{table}[!htbp] \centering 
   \caption{Summary Statistics - Brand Name with Generic} 
-  \label{} 
+  \label{summary:nadac-paired} 
+\begin{singlespace}
+\small
 \begin{tabular}{@{\extracolsep{5pt}}lccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
 Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
 \hline \\[-1.8ex]  
-NADAC\_Per\_Unit & 1,286 & 16.173 & 41.481 & 0.005 & 471.559 \\ 
-Corresponding\_Generic\_Drug\_NADAC\_Per\_Unit & 1,286 & 4.514 & 19.310 & 0.003 & 330.858 \\ 
+NADAC per unit & 1,286 & 16.173 & 41.481 & 0.005 & 471.559 \\ 
+Corresponding generic NADAC per unit & 1,286 & 4.514 & 19.310 & 0.003 & 330.858 \\ 
 nadac\_diff & 1,286 & $-$11.659 & 28.786 & $-$324.811 & 2.277 \\ 
 nadac\_percent\_change & 1,286 & $-$0.696 & 0.292 & $-$0.999 & 1.679 \\ 
 \hline \\[-1.8ex] 
-\end{tabular} 
+\end{tabular}
+\end{singlespace} 
 \end{table} 
 \FloatBarrier
 
@@ -365,18 +179,21 @@ The nadac\_diff is calculated by taking the difference between the corresponding
 
 \begin{table}[!htbp] \centering 
   \caption{Summary Statistics - Generic is More Expensive} 
-  \label{} 
+  \label{summary:nadac-positive} 
+\begin{singlespace}
+\small
 \begin{tabular}{@{\extracolsep{5pt}}lccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
 Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
 \hline \\[-1.8ex]  
-NADAC\_Per\_Unit & 16 & 2.018 & 2.150 & 0.081 & 7.245 \\ 
-Corresponding\_Generic\_Drug\_NADAC\_Per\_Unit & 16 & 2.493 & 2.257 & 0.116 & 7.686 \\ 
+NADAC per unit & 16 & 2.018 & 2.150 & 0.081 & 7.245 \\ 
+Corresponding generic NADAC per unit & 16 & 2.493 & 2.257 & 0.116 & 7.686 \\ 
 nadac\_diff & 16 & 0.474 & 0.656 & $-$0.027 & 2.277 \\ 
 nadac\_percent\_change & 16 & 0.457 & 0.452 & 0.057 & 1.679 \\ 
 \hline \\[-1.8ex] 
-\end{tabular} 
+\end{tabular}
+\end{singlespace} 
 \end{table}
 \FloatBarrier
 
@@ -388,7 +205,7 @@ In any case, we can take a look at the distribution of the percent change:
     \centering
     \includegraphics[width=13cm]{Screenshot (88).png}
     \caption{Density histogram of the percent change in NADAC}
-    \label{fig:my_label}
+    \label{fig:nadac-gap}
 \end{figure}
 
 We can see that a significant proportion of drugs experience an approximately 90\% decrease in NADAC per unit, comparing the brand name NADAC to the generic counterpart. This is a drastic decrease, and indicates that there is a high degree of “unnecessary” pricing when it comes to certain brand name drugs, in that the brand name drug pricing is significantly higher than what is needed to make non-zero profit. These are telltale signs of monopoly pricing, as discussed in the theoretical background section. 
@@ -402,81 +219,103 @@ The regressions from the Medicaid data do confirm Rajkumar and Kesselheim et al 
 
 Based on a qualitative analysis of the NADAC data, we can see that brand name drugs tend to cost significantly more on average compared to strictly generic drugs. When looking at brand name drugs which have had a generic counterpart released at some point, the cost significantly decreases for the vast majority of these drugs. However, more work is needed to verify that these results hold over time.
 
+\clearpage
+\appendix
+\section{Manufacturing Costs:\\ Mark Cuban's Cost Plus Drugs}
+I will first investigate the relationship between manufacturing costs and pricing by looking at the Cost Plus data. 
+
+I begin by attempting to isolate an estimate of the manufacturing cost from the CP\_price. As alluded to earlier, this is given by
+
+$$ManufacturingCosts = \frac{CP\_price - 3}{1.15}$$.
+
+Referring back to the literature review, I assume that this calculation of manufacturing costs accounts for the costs reflected in the manufacturing cells (colored blue) in \autoref{figure:figure1}.
+
+One place to start with regards to looking at the relationship between manufacturing costs and pricing is to look at the extent of a linear relationship between the manufacturing costs and the retail price given in the data. We can first start by looking at a scatterplot of the data: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{../analysis/output/figures/costplus_levels.pdf}
+    \caption{Estimated manufacturing cost and reported retail price in the saved Cost Plus data.}
+\end{figure}
+
+The highly right skewed nature of both of the variables suggests that taking the natural logarithm of both of the variables may better reveal a linear relationship\footnote{Almost all of the variables in this paper have this relationship, so similar plots for other variables are omitted for brevity.}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{../analysis/output/figures/costplus_logs.pdf}
+    \caption{Log reported retail price (left) and log constructed markup (right), plotted against log estimated manufacturing cost.}
+\end{figure}
+
+Running an OLS regression on the variables above, we get
+
+\input{../analysis/output/tables/costplus_retail.tex}
+
+With an R-squared value of .483 and highly significant coefficients, it appears that manufacturing costs explain a significant proportion of the variance of retail prices of the drugs in Cost Plus. However, one thing to note is that if medicine was priced with a lot of the costs in mind, then we should expect a coefficient that is greater than or equal to 1. However, this is not the case, and the 95\% confidence interval is far from it as well. Since the coefficient is less than 1, we can characterize this relationship as quite inelastic. In other words, the retail price doesn't change much with a change in manufacturing cost. Also, while the manufacturing costs account for almost half of the variance of the retail price, there are other highly relevant factors other than manufacturing-related costs which account for the final retail price. 
+
+In an attempt to generalize this, let's assume that the price of every drug can be decomposed into manufacturing costs, a percentage markup from those manufacturing costs, and a fixed labor cost. In the case of Cost Plus, we know the associated manufacturing costs and the labor cost, and so we can estimate the percent markup to the retail price for each drug. I assume that the labor cost is also \$3 for the retail pricing. This is calculated as 
+
+$$ markup = 100(\frac{retail\_price - 3}{manuf\_cost} - 1)$$.
+
+Due to right-skewness, the next regression  will be log(markup) on log(manuf\_cost):
+
+\input{../analysis/output/tables/costplus_markup.tex}
+\FloatBarrier
+
+Interestingly, the coefficient on log(manuf\_cost) is negative. In particular, this indicates that for a 1\% change in manuf\_cost, markup decreases by .275\%, on average. Similarly to the first regression, the markup is quite inelastic to changes in manufacturing cost, to an even higher degree compared to the retail price. On first glance, the sign on the coefficient doesn't make sense, since we would expect that an increase in manufacturing cost should increase the markup, since the manufacturer would want to recoup more of the manufacturing cost. 
+
+However, the first regression suggests that as the manufacturing cost increases, the retail price increases as well, although not as much as the manufacturing cost. Therefore, the manufacturing cost increases faster than the retail price on average, and so an increase in the manufacturing costs results in a decrease the markup. However, the $R^2$ is quite low for the second regression, which indicates that manufacturing costs explain little of the variance in the markup. 
+
+Overall, these results suggest that manufacturing costs have a small effect on the high retail prices. In particular, manufacturing costs explain very little of the variance in the markup. For the markup and retail prices, they are both relatively unresponsive to changes in the manufacturing cost. One weakness of this approach is that it does not account for the costs incurred to discover the chemical formula for the drug, which are a real part of the manufacturing costs, especially for the companies which discover and charge the retail prices. One way to interpret the markup is the extra price charged for the intellectual property rights in discovering the drug, and this is not captured solely by the costs to produce the medicine, which are significantly lower once the drug has been discovered. This is far more likely to explain the markup, but this data is unavailable.
+
+
+
 \section{Data Overview Tables}
 
 \begin{table}[H]
 \centering
-\begin{tabularx}{\linewidth}{|l|X|}
+\begin{singlespace}
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.34\linewidth}X@{}}
 
 \multicolumn{1}{c}{\textit{{Features}}} & \multicolumn{1}{c}{\textit{{Description}}} \tabularnewline 
 
 \hline
 
-Brnd\_Name & The brand name of the drug, if there is a brand name (trademarked name). Otherwise, the generic name is listed. \tabularnewline \hline
+Brnd\_\allowbreak{}Name & The brand name of the drug, if there is a brand name (trademarked name). Otherwise, the generic name is listed. \tabularnewline \hline
 
-Gnrc\_Name & The name of the chemical compound which makes up the drug. \tabularnewline \hline
+Gnrc\_\allowbreak{}Name & The name of the chemical compound which makes up the drug. \tabularnewline \hline
 
-Tot\_Mftr & The total number of manufacturers for each drug. \tabularnewline \hline
+Tot\_\allowbreak{}Mftr & The total number of manufacturers for each drug. \tabularnewline \hline
 
-Mftr\_Name & Name of the manufacturer of the drug. \tabularnewline \hline
+Mftr\_\allowbreak{}Name & Name of the manufacturer of the drug. \tabularnewline \hline
 
 Year & Year of the particular observation. \tabularnewline \hline
 
-Tot\_Spndng & Total Medicaid spending for the corresponding drug and year. \tabularnewline \hline
+Tot\_\allowbreak{}Spndng & Total Medicaid spending for the corresponding drug and year. \tabularnewline \hline
 
-Tot\_Dsg\_Unts & Total dosage units of the drug which are dispensed in the corresponding year. The dosage unit refers to the lowest dispensable amount for the corresponding drug. \tabularnewline \hline
+Tot\_\allowbreak{}Dsg\_\allowbreak{}Unts & Total dosage units of the drug which are dispensed in the corresponding year. The dosage unit refers to the lowest dispensable amount for the corresponding drug. \tabularnewline \hline
 
-Tot\_Clms & The total number of prescription fills for the drug, consisting of original prescriptions and refills. \tabularnewline \hline
+Tot\_\allowbreak{}Clms & The total number of prescription fills for the drug, consisting of original prescriptions and refills. \tabularnewline \hline
 
-Avg\_Spnd\_Per\_Dsg\_Unt\_Wghtd & This is the Medicaid spending divided by the total number of dosage units. This is weighted by the proportion of total claims with respect to different forms of the drug, such as different dosage strengths, forms, etc.\tabularnewline \hline
+Avg\_\allowbreak{}Spnd\_\allowbreak{}Per\_\allowbreak{}Dsg\_\allowbreak{}Unt\_\allowbreak{}Wghtd & This is the Medicaid spending divided by the total number of dosage units. This is weighted by the proportion of total claims with respect to different forms of the drug, such as different dosage strengths, forms, etc.\tabularnewline \hline
 
-Outlier\_Flag & An indicator variable which equals 1 if the drug's statistics are affected by some form of outlier circumstances. Further details can be found below. \tabularnewline \hline
+Outlier\_\allowbreak{}Flag & An indicator variable which equals 1 if the drug's statistics are affected by some form of outlier circumstances. Further details can be found below. \tabularnewline \hline
 
 \end{tabularx}
+\end{singlespace}
 \caption{Description of the features in the Medicaid data.}
 \label{table:table6}
 \end{table}
 
-\begin{table}[!htbp] \centering 
-  \caption{Summary Statistics (Medicaid, Unfiltered)} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{4pt}}lccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex] 
-Tot\_Mftr & 80,730 & 1.462 & 2.289 & 1 & 44 \\ 
-Tot\_Spndng & 80,730 & 9,105,021 & 55,096,357 & 0 & 2,730,141,376 \\ 
-Tot\_Dsg\_Unts & 80,730 & 7,056,597 & 283,508,476 & 0 & 56,150,332,658 \\ 
-Tot\_Clms & 80,730 & 83,800.920 & 478,348.500 & 0 & 15,084,149 \\ 
-Avg\_Spnd\_Per\_Dsg\_Unt\_Wghtd & 80,730 & 279.376 & 14,558.810 & 0 & 1,898,689 \\ 
-Avg\_Spnd\_Per\_Clm & 80,730 & 1,152.983 & 14,688.430 & 0 & 1,717,862 \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+\input{../analysis/output/tables/medicaid_all.tex}
 
-\begin{table}[!htbp] \centering 
-\addtolength{\tabcolsep}{-1pt}
-  \caption{Summary Statistics (Medicaid, Filtered)} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex] 
-Tot\_Mftr & 12,740 & 3.338 & 4.789 & 1 & 44 \\ 
-Tot\_Spndng & 12,740 & 26,330,881 & 94,373,353 & 216.710 & 2,730,141,376 \\ 
-Tot\_Dsg\_Unts & 12,740 & 22,030,741 & 529,482,180 & 57.273 & 56,150,332,658 \\ 
-Tot\_Clms & 12,740 & 251,271.300 & 1,039,414 & 36 & 15,084,149 \\ 
-Avg\_Spnd\_Per\_Dsg\_Unt\_Wghtd & 12,740 & 283.404 & 1,699.071 & 0.0003 & 39,359.910 \\ 
-Avg\_Spnd\_Per\_Clm & 12,740 & 2,097.988 & 7,255.865 & 0.895 & 187,153.900 \\  
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+\input{../analysis/output/tables/medicaid_filtered.tex}
 
 \begin{table}
 \centering
-\begin{tabularx}{\linewidth}{|l|X|}
+\begin{singlespace}
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.34\linewidth}X@{}}
 
 \multicolumn{1}{c}{\textit{{Features}}} & \multicolumn{1}{c}{\textit{{Description}}} \tabularnewline 
 
@@ -484,41 +323,31 @@ Avg\_Spnd\_Per\_Clm & 12,740 & 2,097.988 & 7,255.865 & 0.895 & 187,153.900 \\
 
 medication & The generic name of the corresponding drug. Also notes the brand name counterpart. \tabularnewline \hline
 
-brand\_name & The brand (trademarked) name of the corresponding drug. \tabularnewline \hline
+brand\_\allowbreak{}name & The brand (trademarked) name of the corresponding drug. \tabularnewline \hline
 
 form & The dosage form of the drug when purchased from the website. \tabularnewline \hline
 
-retail\_price & The brand name price as reported by Cost Plus Drugs. According to the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." \tabularnewline \hline
+retail\_\allowbreak{}price & The brand name price as reported by Cost Plus Drugs. According to the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." \tabularnewline \hline
 
-CP\_price & The sale price of the medication when purchasing from Cost Plus. \tabularnewline \hline
+CP\_\allowbreak{}price & The sale price of the medication when purchasing from Cost Plus. \tabularnewline \hline
 
-manuf\_cost & Estimate of the manufacturing costs of the drug. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \hline
+manuf\_\allowbreak{}cost & Estimate of the manufacturing costs of the drug. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \hline
 
 markup & Percentage markup from the CP\_price to the retail\_price. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \hline
 
 \end{tabularx}
+\end{singlespace}
 \caption{Description of the features in the Cost Plus Drugs data.}
 \label{table:table9}
 \end{table}
 
-\begin{table}[!htbp] \centering   
-\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex] 
-retail\_price & 442 & 229.526 & 838.190 & 4.500 & 13,067.140 \\ 
-CP\_price & 442 & 22.543 & 98.288 & 3.600 & 1,900.500 \\ 
-manuf\_cost & 442 & 16.994 & 85.468 & 0.522 & 1,650.000 \\ 
-markup & 442 & 2,426.230 & 3,730.934 & 26.099 & 31,876.390 \\ 
-\hline \\[-1.8ex] 
-\end{tabular}
-\caption{Summary Statistics (Cost Plus)}
-\end{table}
+\input{../analysis/output/tables/costplus_summary.tex}
 
 \begin{table}
 \centering
-\begin{tabularx}{\linewidth}{|l|X|}
+\begin{singlespace}
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.34\linewidth}X@{}}
 
 \multicolumn{1}{c}{\textit{{Features}}} & \multicolumn{1}{c}{\textit{{Description}}} \tabularnewline 
 
@@ -547,6 +376,7 @@ Corresponding Generic Drug NADAC Per Unit & NADAC for the corresponding generic 
 Corresponding Generic Drug Effective Date & The effective date of when the Corresponding Generic Drug NADAC Per Unit is assigned to a drug. This date may not correspond to the NADAC effective date for the generic drug. \tabularnewline \hline
 
 \end{tabularx}
+\end{singlespace}
 \caption{Description of the features in the NADAC data.}
 \label{table:table11}
 \end{table}
@@ -554,16 +384,19 @@ Corresponding Generic Drug Effective Date & The effective date of when the Corre
 \begin{table}[!htbp] \centering 
 \addtolength{\tabcolsep}{-2pt}
   \caption{Summary Statistics (NADAC)} 
-  \label{} 
+  \label{summary:nadac} 
+\begin{singlespace}
+\small
 \begin{tabular}{@{\extracolsep{3pt}}lccccc}
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
 Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
 \hline \\[-1.8ex] 
-NADAC\_Per\_Unit & 1,298,197 & 10.529 & 240.682 & 0.001 & 21,513.920 \\ 
-Corresponding\_Generic\_Drug\_NADAC\_Per\_Unit & 50,251 & 4.502 & 20.375 & 0.003 & 372.074 \\ 
+NADAC per unit & 1,298,197 & 10.529 & 240.682 & 0.001 & 21,513.920 \\ 
+Corresponding generic NADAC per unit & 50,251 & 4.502 & 20.375 & 0.003 & 372.074 \\ 
 \hline \\[-1.8ex] 
-\end{tabular} 
+\end{tabular}
+\end{singlespace} 
 \end{table} 
 
 

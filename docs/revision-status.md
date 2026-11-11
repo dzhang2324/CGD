@@ -1,0 +1,52 @@
+# Revision status
+
+## Implemented and verified
+
+- Python pipeline, pinned environment, immutable historical inputs.
+- Source-panel audit: 16,146 source rows, 80,730 panel rows.
+- Regression sample: 12,740 observations, 3,244 brand/generic groups; no duplicate group-years.
+- Manufacturer count is invariant within each corrected group; the old brand-only grouping confounded different groups.
+- Four Medicaid specifications with year indicators and drug-group clustered uncertainty; no drug fixed effects.
+- Two original Cost Plus specifications reproduced with HC3 uncertainty.
+- Exact percentage transformations, seven generated tables, three regenerated figures.
+- Standalone total-spending results table removed; Cost Plus analysis moved to Appendix A without rewriting its prose.
+- Nine meaningful tests passed. All 18 generated artifacts reproduced byte-for-byte in a separate output directory.
+- All 29 proposed Find/Replace edits were checked for unique matches and compiled in a temporary copy with the proposed bibliography; no undefined references or overfull boxes remained. The active manuscript prose was not changed.
+- Working PDF compiled and new regression/descriptive tables visually inspected.
+
+## Main results
+
+| Outcome | Controls | Manufacturer coefficient | Clustered SE | Percentage association (95% CI) |
+|---|---|---:|---:|---|
+| Spending per dosage unit | Year | -0.1855 | 0.0085 | -16.9% (-18.3%, -15.5%) |
+| Spending per dosage unit | Year + log claims | -0.1302 | 0.0108 | -12.2% (-14.1%, -10.3%) |
+| Spending per claim | Year | -0.1697 | 0.0074 | -15.6% (-16.8%, -14.4%) |
+| Spending per claim | Year + log claims | -0.0913 | 0.0081 | -8.7% (-10.2%, -7.3%) |
+
+These are associations across drug groups, not causal effects of entry. Results are unweighted pooled OLS. Full precision and model metadata are in `analysis/output/estimates.csv`.
+
+## Requires the author's manual prose edits
+
+The new tables are deliberately not accompanied by automatic interpretation changes. **The current PDF is an intermediate working draft, not a submission-ready paper.**
+
+- Abstract still cites the removed total-spending result and old drug fixed effects.
+- Methods still describe the within estimator, three outcomes, and the wrong grouping.
+- Results paragraphs still describe old coefficients, column numbers, significance, fit, and total spending.
+- Two references to the removed `table:table2` are unresolved; deleting/replacing the obsolete paragraphs will resolve both. No labels are duplicated or empty.
+- One long raw variable name overflows its line in the obsolete methods paragraph; its proposed prose replacement removes that issue.
+- Conclusion and theoretical/literature claims need the revisions in `manual-revisions.md`.
+- NADAC remains unrecomputed; its descriptive section and table claims need manual shortening. In particular, the manuscript's 16-row positive-gap table disagrees with saved notebook output (15 rows), and 67% disagrees with its displayed maximum (1.679 as a proportion). Do not present those values as freshly verified.
+- Cost Plus prose still needs the construction caveat; the saved CSV has no duplicate medication names despite the old description.
+- Bibliography entries are proposed for manual addition, not silently added to the paper.
+- FTC source verification remains pending: both FTC homepages and attempted document addresses returned HTTP 404 in this environment. FDA and Brookings source PDFs were read directly; the guide does not insert unverified FTC findings.
+
+## Version checkpoints
+
+- `baseline-before-rewrite` / `c399770`: original source and PDF.
+- `cb8bf88`: Python code, tests, and pinned environment.
+- `analysis-verified` / `d401a19`: generated results, integrated tables, and the PDF checkpoint `Paper/checkpoints/analysis-updated-pending-prose.pdf`.
+- The revision guides are committed separately from code and numerical changes.
+
+## Next checkpoints
+
+Apply one Find/Replace batch from `manual-revisions.md`, save the source, check the rebuilt PDF, and commit the approved prose. After all required edits, repeat reference/numerical checks and save/tag the completed full-paper revision. The shorter writing sample remains deferred.

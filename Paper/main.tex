@@ -106,15 +106,25 @@ We can first look at some preliminary results. If we group the data by the numbe
     \caption{Scatterplot of the mean average spending per dosage unit of drugs (y-axis), grouped by number of manufacturers (x-axis).}
 \end{figure}
 
-The plot shows an exponentially decreasing mean average spending per dosage unit as the number of manufacturers increases. Two manufacturers have a drastic decrease in cost. The increase from 2 to 3 manufacturers results in another significant decrease, and the decrease resulting from an increase in the number of manufacturers is at best marginal for greater than 3 manufacturers. This observation could likely be explained by many other factors not related to the number of manufacturers, but is worthy to note. At face value, it illustrates a fast convergence to competitive prices with respect to the number of manufacturers: this plot suggests only more than 3 manufacturers are needed.
+The plot shows an exponentially decreasing mean average spending per dosage unit as the number of manufacturers increases. Two manufacturers have a drastic decrease in cost. The increase from 2 to 3 manufacturers results in another significant decrease, and the decrease resulting from an increase in the number of manufacturers is at best marginal for greater than 3 manufacturers. This observation could likely be explained by many other factors not related to the number of manufacturers, but is worthy to note. At face value, it illustrates a fast convergence to competitive prices with respect to the number of manufacturers: this plot suggests only more than 3 manufacturers are needed. 
 
-For the regression analyses, the cost metrics we will investigate are Avg\_Spnd\_Per\_Dsg\_Unt\_Wghtd, Avg\_Spnd\_Per\_Clm, and Tot\_Spndng (average spending per dosage unit, average spending per claim, and total spending, respectively). For all of these analyses, I work with the natural logarithm of each of these variables. The total manufacturers for the drug is referred to as Tot\_Mftr. 
+\newpage
 
-In general for the fixed effects regressions, I estimate the equation 
+\subsubsection{Regression Analysis}
 
-$$ Y_{it} = \beta X_{it} + \alpha_i + \lambda_t + u_{it}$$
+For our regression specification, the outcomes are average spending per dosage unit and average spending per claim. For each outcome, I estimate
 
-where $\alpha_i$ represents the individual fixed effects, and $\lambda_t$ represents the time fixed effects. This is equivalent to the within estimator, which is used for the computations.
+\[
+Y_{it}=\alpha+\beta M_i+\gamma\log C_{it}+\lambda_t+u_{it},
+\]
+
+where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $Y_{it}$ is the natural logarithm of the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims.
+
+Drugs with larger markets based on the number of prescription claims may attract more manufacturers and have different spending patterns. I include log prescription claims to adjust for differences in utilization across drug groups.
+
+I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group.
+
+The reported manufacturer count does not vary over time within a drug group in these data. Drug-group fixed effects would therefore absorb the manufacturer-count variable, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
 
 \input{../analysis/output/tables/medicaid_unit.tex}
 \FloatBarrier

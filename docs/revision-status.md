@@ -5,7 +5,8 @@
 Updated November 12, 2026. Follow the author's manual Find → Replace → explanation → check workflow. Mark an item complete only after verifying the corresponding manuscript edits.
 
 - [ ] **1. Align the methods and equation with the analysis — in progress.**
-  - [ ] Replace the outcomes/equation block and explain why manufacturer counts cannot be estimated alongside drug-group fixed effects.
+  - [x] Replace the outcomes/equation block and explain why manufacturer counts cannot be estimated alongside drug-group fixed effects.
+  - [ ] Refine paragraph breaks in the new methods text.
   - [ ] Clarify the source data, sample construction, and brand-name/generic-name group definition.
   - [ ] Align the empirical introduction with year controls and specifications with and without log claims.
 - [ ] **2. Update the interpretation of the results.** Address significance, model fit, coefficient changes, percentage units, and causal limitations.
@@ -14,7 +15,7 @@ Updated November 12, 2026. Follow the author's manual Find → Replace → expla
 - [ ] **5. Tighten the supplementary analyses.** Clarify Cost Plus assumptions and shorten NADAC to a supported descriptive discussion.
 - [ ] **6. Finish consistency and presentation checks.** Reconcile the abstract and conclusion, complete references, check equations and figures, compile, and save the completed checkpoint.
 
-The shorter writing sample remains deferred. The equation edit currently removes the drug fixed-effect term, but its explanation and the rest of the methods still need revision. No full wording item above has been verified as complete.
+The shorter writing sample remains deferred. The author has applied the new outcomes, equation, claims motivation, and explanation of why drug-group fixed effects absorb manufacturer counts. This content has been verified; paragraph flow, the data description, and the empirical introduction remain open within item 1.
 
 ## Implemented and verified
 
@@ -27,7 +28,7 @@ The shorter writing sample remains deferred. The equation edit currently removes
 - Exact percentage transformations, seven generated tables, three regenerated figures.
 - Standalone total-spending results table removed; Cost Plus analysis moved to Appendix A without rewriting its prose.
 - Nine meaningful tests passed. All 18 generated artifacts reproduced byte-for-byte in a separate output directory.
-- All 29 proposed Find/Replace edits were checked for unique matches and compiled in a temporary copy with the proposed bibliography; no undefined references or overfull boxes remained. The active manuscript prose was not changed.
+- Before the manual editing round, all 29 proposed Find/Replace edits were checked for unique matches and compiled in a temporary copy with the proposed bibliography; no undefined references or overfull boxes remained in that preview.
 - Working PDF compiled and new regression/descriptive tables visually inspected.
 - Sixteen numerical references were updated in commit `0f62365`, without changing manuscript wording; the PDF was rebuilt. The two claims-volume statements lacking percentage units remain for manual revision.
 
@@ -47,7 +48,7 @@ These are associations across drug groups, not causal effects of entry. Results 
 The new tables are deliberately not accompanied by automatic interpretation changes. **The current PDF is an intermediate working draft, not a submission-ready paper.**
 
 - Abstract still cites the removed total-spending result and old drug fixed effects.
-- Methods still describe the within estimator, three outcomes, and the wrong grouping.
+- The equation block now defines the two retained outcomes, pooled OLS, claims and year controls, clustering, and the reason for omitting drug-group fixed effects. The earlier empirical introduction and source/sample descriptions still need alignment.
 - Results paragraphs still contain outdated interpretations of significance, fit, and total spending. The verified numerical references and retained column numbers have been refreshed.
 - Two references to the removed `table:table2` are unresolved; deleting/replacing the obsolete paragraphs will resolve both. No labels are duplicated or empty.
 - One long raw variable name overflows its line in the obsolete methods paragraph; its proposed prose replacement removes that issue.

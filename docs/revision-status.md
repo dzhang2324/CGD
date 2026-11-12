@@ -6,7 +6,7 @@ Updated November 12, 2026. Follow the author's manual Find → Replace → expla
 
 - [ ] **1. Align the methods and equation with the analysis — in progress.**
   - [x] Replace the outcomes/equation block and explain why manufacturer counts cannot be estimated alongside drug-group fixed effects.
-  - [ ] Refine paragraph breaks in the new methods text.
+  - [x] Refine paragraph breaks in the new methods text.
   - [ ] Clarify the source data, sample construction, and brand-name/generic-name group definition.
   - [ ] Align the empirical introduction with year controls and specifications with and without log claims.
 - [ ] **2. Update the interpretation of the results.** Address significance, model fit, coefficient changes, percentage units, and causal limitations.
@@ -15,7 +15,7 @@ Updated November 12, 2026. Follow the author's manual Find → Replace → expla
 - [ ] **5. Tighten the supplementary analyses.** Clarify Cost Plus assumptions and shorten NADAC to a supported descriptive discussion.
 - [ ] **6. Finish consistency and presentation checks.** Reconcile the abstract and conclusion, complete references, check equations and figures, compile, and save the completed checkpoint.
 
-The shorter writing sample remains deferred. The author has applied the new outcomes, equation, claims motivation, and explanation of why drug-group fixed effects absorb manufacturer counts. This content has been verified; paragraph flow, the data description, and the empirical introduction remain open within item 1.
+The shorter writing sample remains deferred. The author has applied the new outcomes, equation, claims motivation, explanation of why drug-group fixed effects absorb manufacturer counts, and the paragraph consolidation. These edits have been verified; the data description and the empirical introduction remain open within item 1.
 
 ## Implemented and verified
 

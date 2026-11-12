@@ -103,7 +103,7 @@ The plot summarizes mean spending per dosage unit for each manufacturer count. I
 
 ## 7. Outcomes and equation: replace the obsolete fixed-effects specification
 
-**Status:** Applied by the author and content verified November 12, 2026. Paragraph breaks are still being refined. The Find passage below records the earlier text.
+**Status:** Applied by the author and verified November 12, 2026, including the paragraph consolidation. The Find passage below records the earlier text.
 
 **Find:**
 
@@ -125,14 +125,9 @@ For our regression specification, the outcomes are average spending per dosage u
 \[
 Y_{it}=\alpha+\beta M_i+\gamma\log C_{it}+\lambda_t+u_{it},
 \]
+where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $Y_{it}$ is the natural logarithm of the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims. Drugs with larger markets based on the number of prescription claims may attract more manufacturers and have different spending patterns. I include log prescription claims to adjust for differences in utilization across drug groups.
 
-where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $Y_{it}$ is the natural logarithm of the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims.
-
-Drugs with larger markets based on the number of prescription claims may attract more manufacturers and have different spending patterns. I include log prescription claims to adjust for differences in utilization across drug groups.
-
-I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group.
-
-The reported manufacturer count does not vary over time within a drug group in these data. Drug-group fixed effects would therefore absorb the manufacturer-count variable, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
+I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group. The reported manufacturer count does not vary over time within a drug group in these data. Drug-group fixed effects would therefore absorb the manufacturer-count variable, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
 ```
 
 **Why:** Specifies the four actual models, their controls, and their uncertainty estimates. The outcome is defined as log spending, and the common intercept is distinct from a drug fixed effect. A static manufacturer-count variable cannot be separately estimated alongside a full set of drug-group fixed effects.

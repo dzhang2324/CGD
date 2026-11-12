@@ -117,14 +117,9 @@ For our regression specification, the outcomes are average spending per dosage u
 \[
 Y_{it}=\alpha+\beta M_i+\gamma\log C_{it}+\lambda_t+u_{it},
 \]
+where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $Y_{it}$ is the natural logarithm of the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims. Drugs with larger markets based on the number of prescription claims may attract more manufacturers and have different spending patterns. I include log prescription claims to adjust for differences in utilization across drug groups.
 
-where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $Y_{it}$ is the natural logarithm of the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims.
-
-Drugs with larger markets based on the number of prescription claims may attract more manufacturers and have different spending patterns. I include log prescription claims to adjust for differences in utilization across drug groups.
-
-I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group.
-
-The reported manufacturer count does not vary over time within a drug group in these data. Drug-group fixed effects would therefore absorb the manufacturer-count variable, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
+I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group. The reported manufacturer count does not vary over time within a drug group in these data. Drug-group fixed effects would therefore absorb the manufacturer-count variable, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
 
 \input{../analysis/output/tables/medicaid_unit.tex}
 \FloatBarrier

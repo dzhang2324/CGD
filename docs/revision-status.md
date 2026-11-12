@@ -14,6 +14,7 @@ Updated November 12, 2026. Follow the author's manual Find → Replace → expla
 - [ ] **4. Strengthen and correct the literature review.** Address foundational generic-entry studies, FDA attribution, citation accuracy, and the remaining FTC source check.
 - [ ] **5. Tighten the supplementary analyses.** Clarify Cost Plus assumptions and shorten NADAC to a supported descriptive discussion.
 - [ ] **6. Finish consistency and presentation checks.** Reconcile the abstract and conclusion, complete references, check equations and figures, compile, and save the completed checkpoint.
+  - [x] Add concise, explicit dependent-variable headers to all four regression tables.
 
 The shorter writing sample remains deferred. The author has applied the new outcomes, equation, claims motivation, explanation of why drug-group fixed effects absorb manufacturer counts, and the paragraph consolidation. These edits have been verified; the data description and the empirical introduction remain open within item 1.
 
@@ -31,6 +32,7 @@ The shorter writing sample remains deferred. The author has applied the new outc
 - Before the manual editing round, all 29 proposed Find/Replace edits were checked for unique matches and compiled in a temporary copy with the proposed bibliography; no undefined references or overfull boxes remained in that preview.
 - Working PDF compiled and new regression/descriptive tables visually inspected.
 - Sixteen numerical references were updated in commit `0f62365`, without changing manuscript wording; the PDF was rebuilt. The two claims-volume statements lacking percentage units remain for manual revision.
+- All four regression tables identify the dependent variable above the numbered columns: Log spending per unit, Log spending per claim, Log retail price, and Log markup. Notes specify natural logarithms and clarify the weighted per-unit measure. The PDF was rebuilt and all four headers were visually checked; the existing numerical outputs and table results are unchanged.
 
 ## Main results
 
@@ -51,7 +53,6 @@ The new tables are deliberately not accompanied by automatic interpretation chan
 - The equation block now defines the two retained outcomes, pooled OLS, claims and year controls, clustering, and the reason for omitting drug-group fixed effects. The earlier empirical introduction and source/sample descriptions still need alignment.
 - Results paragraphs still contain outdated interpretations of significance, fit, and total spending. The verified numerical references and retained column numbers have been refreshed.
 - Two references to the removed `table:table2` are unresolved; deleting/replacing the obsolete paragraphs will resolve both. No labels are duplicated or empty.
-- One long raw variable name overflows its line in the obsolete methods paragraph; its proposed prose replacement removes that issue.
 - Conclusion and theoretical/literature claims need the revisions in `manual-revisions.md`.
 - NADAC remains unrecomputed; its descriptive section and table claims need manual shortening. In particular, the manuscript's 16-row positive-gap table disagrees with saved notebook output (15 rows), and 67% disagrees with its displayed maximum (1.679 as a proportion). Do not present those values as freshly verified.
 - Cost Plus prose still needs the construction caveat; the saved CSV has no duplicate medication names despite the old description.
@@ -64,6 +65,8 @@ The new tables are deliberately not accompanied by automatic interpretation chan
 - `cb8bf88`: Python code, tests, and pinned environment.
 - `analysis-verified` / `d401a19`: generated results, integrated tables, and the PDF checkpoint `Paper/checkpoints/analysis-updated-pending-prose.pdf`.
 - `0f62365`: numerical references refreshed without changing wording; full provenance is in `docs/numerical-updates.json`.
+- `37c302b` and `0722748`: approved methods/equation revision and paragraph consolidation.
+- `bdb9fcf`: reproducible dependent-variable header generation; regenerated tables are committed separately.
 - The revision guides are committed separately from code and numerical changes.
 
 ## Next checkpoints

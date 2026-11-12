@@ -110,24 +110,26 @@ For the regression analyses, the cost metrics we will investigate are Avg\_Spnd\
 
 In general for the fixed effects regressions, I estimate the equation 
 
-$$ Y_{it} = \beta X_{it} + \alpha_i + \lambda_t + u_{it}$$
+$$ Y_{it} = \beta X_{it} + \lambda_t + u_{it}$$
 
-where $\alpha_i$ represents the individual fixed effects, and $\lambda_t$ represents the time fixed effects. This is equivalent to the within estimator, which is used for the computations.
+where $\lambda_t$ represents the time fixed effects. This is equivalent to the within estimator, which is used for the computations.
 ```
 
 **Replace with:**
 
 ```text
-The outcomes are the natural logarithm of average spending per dosage unit and the natural logarithm of average spending per claim. For each outcome, I estimate
+The outcomes are average spending per dosage unit and average spending per claim. For each outcome, I estimate
 
 \[
 \log S_{it}=\alpha+\beta M_i+\lambda_t+\gamma\log C_{it}+u_{it},
 \]
 
-where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $S_{it}$ is the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is prescription claims. I report each model both without and with the claims term. Year effects $\lambda_t$ account for changes common to all drug groups. Drug-group fixed effects are omitted because manufacturer counts are constant within correctly defined groups and their association cannot be estimated with those fixed effects. Standard errors are clustered by drug group to allow the errors for a group to be correlated across years.
+where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $S_{it}$ is the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims. I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group.
+
+The reported manufacturer count does not vary over time within a drug group in these data. Drug-group fixed effects would therefore absorb the manufacturer-count variable, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
 ```
 
-**Why:** Specifies the four actual models and their uncertainty estimates. A static regressor cannot be separately estimated alongside a full set of group fixed effects.
+**Why:** Specifies the four actual models, their controls, and their uncertainty estimates. The logarithm is explicit in the equation, and the common intercept is distinct from a drug fixed effect. A static manufacturer-count variable cannot be separately estimated alongside a full set of drug-group fixed effects.
 
 ## 8. Explain why total spending was dropped
 

@@ -1,5 +1,21 @@
 # Revision status
 
+## Ordered revision checklist
+
+Updated November 12, 2026. Follow the author's manual Find → Replace → explanation → check workflow. Mark an item complete only after verifying the corresponding manuscript edits.
+
+- [ ] **1. Align the methods and equation with the analysis — in progress.**
+  - [ ] Replace the outcomes/equation block and explain why manufacturer counts cannot be estimated alongside drug-group fixed effects.
+  - [ ] Clarify the source data, sample construction, and brand-name/generic-name group definition.
+  - [ ] Align the empirical introduction with year controls and specifications with and without log claims.
+- [ ] **2. Update the interpretation of the results.** Address significance, model fit, coefficient changes, percentage units, and causal limitations.
+- [ ] **3. Remove the obsolete total-spending discussion.** Reconcile the abstract, remove the redundant results paragraph, and resolve the two references to the removed table.
+- [ ] **4. Strengthen and correct the literature review.** Address foundational generic-entry studies, FDA attribution, citation accuracy, and the remaining FTC source check.
+- [ ] **5. Tighten the supplementary analyses.** Clarify Cost Plus assumptions and shorten NADAC to a supported descriptive discussion.
+- [ ] **6. Finish consistency and presentation checks.** Reconcile the abstract and conclusion, complete references, check equations and figures, compile, and save the completed checkpoint.
+
+The shorter writing sample remains deferred. The equation edit currently removes the drug fixed-effect term, but its explanation and the rest of the methods still need revision. No full wording item above has been verified as complete.
+
 ## Implemented and verified
 
 - Python pipeline, pinned environment, immutable historical inputs.
@@ -13,6 +29,7 @@
 - Nine meaningful tests passed. All 18 generated artifacts reproduced byte-for-byte in a separate output directory.
 - All 29 proposed Find/Replace edits were checked for unique matches and compiled in a temporary copy with the proposed bibliography; no undefined references or overfull boxes remained. The active manuscript prose was not changed.
 - Working PDF compiled and new regression/descriptive tables visually inspected.
+- Sixteen numerical references were updated in commit `0f62365`, without changing manuscript wording; the PDF was rebuilt. The two claims-volume statements lacking percentage units remain for manual revision.
 
 ## Main results
 
@@ -31,7 +48,7 @@ The new tables are deliberately not accompanied by automatic interpretation chan
 
 - Abstract still cites the removed total-spending result and old drug fixed effects.
 - Methods still describe the within estimator, three outcomes, and the wrong grouping.
-- Results paragraphs still describe old coefficients, column numbers, significance, fit, and total spending.
+- Results paragraphs still contain outdated interpretations of significance, fit, and total spending. The verified numerical references and retained column numbers have been refreshed.
 - Two references to the removed `table:table2` are unresolved; deleting/replacing the obsolete paragraphs will resolve both. No labels are duplicated or empty.
 - One long raw variable name overflows its line in the obsolete methods paragraph; its proposed prose replacement removes that issue.
 - Conclusion and theoretical/literature claims need the revisions in `manual-revisions.md`.
@@ -45,6 +62,7 @@ The new tables are deliberately not accompanied by automatic interpretation chan
 - `baseline-before-rewrite` / `c399770`: original source and PDF.
 - `cb8bf88`: Python code, tests, and pinned environment.
 - `analysis-verified` / `d401a19`: generated results, integrated tables, and the PDF checkpoint `Paper/checkpoints/analysis-updated-pending-prose.pdf`.
+- `0f62365`: numerical references refreshed without changing wording; full provenance is in `docs/numerical-updates.json`.
 - The revision guides are committed separately from code and numerical changes.
 
 ## Next checkpoints

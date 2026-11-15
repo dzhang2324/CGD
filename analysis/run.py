@@ -29,16 +29,21 @@ def main() -> None:
     args = parser.parse_args()
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)
-    data = ROOT / "CGPP Data"
-    raw, panel, filtered = load_medicaid(data)
-    costplus = load_costplus(data)
+    data = ROOT / "data"
+    raw, panel, filtered = load_medicaid(data / "raw")
+    costplus = load_costplus(data / "raw")
+    inputs = {
+        "Medicaid_Spending_by_Drug_2021.csv": data / "raw" / "Medicaid_Spending_by_Drug_2021.csv",
+        "med_panel.csv": data / "reference" / "med_panel.csv",
+        "costplus.csv": data / "raw" / "costplus.csv",
+    }
     audit = run_audit(
         raw, panel, filtered, costplus,
-        legacy_panel=pd.read_csv(data / "med_panel.csv"),
+        legacy_panel=pd.read_csv(inputs["med_panel.csv"]),
     )
     audit["input_sha256"] = {
-        name: hashlib.sha256((data / name).read_bytes()).hexdigest()
-        for name in ["Medicaid_Spending_by_Drug_2021.csv", "med_panel.csv", "costplus.csv"]
+        name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for name, path in inputs.items()
     }
     audit["environment"] = {
         "python": platform.python_version(),

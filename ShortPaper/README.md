@@ -48,22 +48,22 @@ refresh that version. Saves in `references.tex` or `appendix.tex` target
 `with-supplement.pdf`.
 
 Open the working PDFs in this directory for live updates. PDF files under
-`checkpoints/` are saved snapshots and do not update.
+`pdf/`, `checkpoints/`, or `archive/` are saved snapshots and do not update.
 
-The full paper is preserved at Git tag `before-short-version`. Its freshly
-compiled PDF and source/PDF hashes are in `checkpoints/`. `provenance.json`
+The full paper is preserved at Git tag `before-short-version`. Its original
+checkpoint PDF and source/PDF hashes are in `archive/checkpoints/`. `provenance.json`
 records the initial deletions and copied assets. Later author edits are
 preserved in Git. The initial 10-page layout checkpoint is `short-ten-pages`,
-with its source and PDF checks recorded in `checkpoints/ten-page-validation.json`.
+with its source and PDF checks recorded in `archive/checkpoints/ten-page-validation.json`.
 The current layout checkpoint is `short-figures-anchored`, with its checks in
 `checkpoints/figure-placement-validation.json`.
 
 The working PDFs and LaTeX build files are ignored by Git. Named PDF checkpoints,
 source files, figures, and tables are tracked.
 
-The first-pass PDFs are saved in `checkpoints/first-pass-main-12-pages.pdf` and
-`checkpoints/first-pass-with-supplement-15-pages.pdf`.
-`checkpoints/first-pass-validation.json` records source, asset, reference,
+The first-pass PDFs are saved in `archive/checkpoints/first-pass-main-12-pages.pdf` and
+`archive/checkpoints/first-pass-with-supplement-15-pages.pdf`.
+`archive/checkpoints/first-pass-validation.json` records source, asset, reference,
 page-count, and rendering checks.
 
 The current PDF checkpoints are `checkpoints/figures-anchored-main.pdf` and
@@ -71,3 +71,9 @@ The current PDF checkpoints are `checkpoints/figures-anchored-main.pdf` and
 `before-short-whitespace` preserves the author-edited 12-page version immediately
 before the layout change; `before-short-figure-placement` preserves the initial
 10-page layout before the figures were anchored.
+
+The tracked PDFs for sharing are `pdf/short-paper.pdf` and
+`pdf/short-paper-with-supplement.pdf`. Refresh these copies after editing and
+building the working PDFs. Historical paths in `provenance.json` and archived
+validation records are retained as originally recorded; the repository's
+`archive/relocation-manifest.json` maps relocated files to their new locations.

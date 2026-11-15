@@ -1,0 +1,58 @@
+{
+  "baseline_tag": "before-repository-cleanup",
+  "baseline_commit": "9266eb230371ddc9f0bc633c12fddba8c84445e3",
+  "relocated_files": 51,
+  "all_relocated_bytes_preserved": true,
+  "all_relocated_staged_blobs_match_original_git_blobs": true,
+  "git_attributes_preserve_original_input_and_archive_line_endings": true,
+  "all_other_original_files_preserved_except": [
+    ".gitignore",
+    "README.md",
+    "ShortPaper/README.md",
+    "analysis/run.py"
+  ],
+  "manuscripts_unchanged": true,
+  "tests_passed": 9,
+  "reproduced_output_files": 19,
+  "all_outputs_byte_identical": true,
+  "saved_pdfs": {
+    "Paper/pdf/full-paper.pdf": "4ccca87d0d4b48d86ed6f7e401dc15f0a14ae84e9bc4159ac709847d71c1f540",
+    "ShortPaper/pdf/short-paper.pdf": "1ff00f4f692485d22d4754dc2e86651b7935a7b142ef0398f5a740c424ed8f54",
+    "ShortPaper/pdf/short-paper-with-supplement.pdf": "13d97c62b3b0eee9f13d640ba7332fa8db029bcaa80df00da13154df4d408893"
+  },
+  "pdf_validation": {
+    "full": {
+      "baseline_comparison": {
+        "identical_render": true,
+        "identical_text": true,
+        "pages_compared": 24
+      },
+      "pages": 24
+    },
+    "shared_main_text": {
+      "identical_render": true,
+      "identical_text": true,
+      "pages_compared": 10
+    },
+    "short": {
+      "baseline_comparison": {
+        "identical_render": true,
+        "identical_text": true,
+        "pages_compared": 10
+      },
+      "pages": 10
+    },
+    "supplement": {
+      "baseline_comparison": {
+        "identical_render": true,
+        "identical_text": true,
+        "pages_compared": 13
+      },
+      "pages": 13
+    }
+  },
+  "all_current_documentation_links_resolve": true,
+  "latex_logs_clean": true,
+  "independent_audit": "Passed: relocated file hashes, active sources, TeX dependencies, input routing, and current documentation.",
+  "publication": "Prepared locally; no remote push performed."
+}

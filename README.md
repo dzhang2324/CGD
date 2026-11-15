@@ -1,91 +1,86 @@
 # Competition and Generic Drugs
 
-The active manuscript is `Paper/main.tex`. The annotated Git tag
-`baseline-before-rewrite` preserves the manuscript and PDF before the analysis
-revision. The original ZIP, notebooks, R script, CSV inputs, and historical PDFs
-are retained unchanged.
+Research on manufacturer competition and Medicaid drug spending, with a full
+paper, a separate short writing sample, and reproducible Python analysis.
+
+## Read or edit the papers
+
+| Version | LaTeX source | Saved PDF |
+| --- | --- | --- |
+| Full paper | [Paper/main.tex](Paper/main.tex) | [Full paper](Paper/pdf/full-paper.pdf) |
+| Short paper: 10 pages | [ShortPaper/body.tex](ShortPaper/body.tex) | [Short paper](ShortPaper/pdf/short-paper.pdf) |
+| Short paper with references and appendices: 13 pages | [ShortPaper/with-supplement.tex](ShortPaper/with-supplement.tex) | [Short paper with supplement](ShortPaper/pdf/short-paper-with-supplement.pdf) |
+
+The two short versions share the same main text. `ShortPaper/` contains its own
+figures, tables, and editor settings; editing it does not change the full paper.
+See [the short-paper guide](ShortPaper/README.md) for live PDF updates.
+
+## Repository layout
+
+| Directory | Contents |
+| --- | --- |
+| `Paper/` | Current full-paper source, figures, and saved PDF |
+| `ShortPaper/` | Standalone short-paper source, assets, saved PDFs, and local history |
+| `analysis/` | Current Python pipeline and reproducible results |
+| `data/` | Preserved source data, historical validation panel, and data notes |
+| `tests/` | Data-construction and statistical-inference checks |
+| `docs/` | Current analysis and reproduction documentation |
+| `archive/` | Original notebooks, R code, drafts, revision records, and older full-paper checkpoints |
 
 ## Reproduce the analysis
 
-Use Python 3.13 and the pinned environment:
+Use Python 3.13 and the pinned dependencies. Run from the repository root:
 
 ```sh
-python3 -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m analysis.run
 python -m pytest -q
 ```
 
-Run commands from the repository root. The pipeline reads the three existing
-CSV files under `CGPP Data/`; it does not download data or modify those inputs.
-It writes `analysis/output/`, including:
+The pipeline reads the saved files in `data/`; it does not download data or
+modify inputs. It writes results, audit records, tables, and figures to
+`analysis/output/`. The full paper includes its generated tables and figures
+from that directory.
 
-- `audit.json`: source/panel comparisons, missingness, filters, identifiers,
-  sample counts, dependency versions, and input SHA-256 hashes.
-- `estimates.csv` and `estimates.json`: full-precision coefficients, robust
-  standard errors, p-values, 95% intervals, sample sizes, and exact percentage
-  changes for manufacturer-count coefficients.
-- `tables/`: generated LaTeX regression and descriptive tables.
-- `figures/`: reproducible plots, with their plotted means in a separate CSV.
-- `drug_groups.csv`: the mapping from numeric group IDs to source names.
-
-`python -m analysis.run --output-dir /private/tmp/cgd-reproduction` writes a
-separate reproduction for comparison. Generated numerical files should be
-identical under the pinned environment; PDF metadata excludes creation dates.
-
-## Specifications and data decisions
-
-Medicaid observations are national drug-group/year records, not patients,
-manufacturers, states, or claims. A drug group is the source pair
-`(Brnd_Name, Gnrc_Name)`, which is not a precise product-strength identifier.
-The source has one manufacturer-count column repeated across 2017–2021.
-Accordingly, the models estimate descriptive associations across drug groups;
-they do not estimate within-drug manufacturer entry.
-
-Both Medicaid log outcomes (weighted spending per dosage unit and spending per
-prescription claim) use the same sample: `Mftr_Name == "Overall"`,
-`Outlier_Flag == 0`, and finite, positive manufacturer counts, spending,
-dosage units, prescription claims, and both spending averages. Missing values
-are preserved when reshaping. The old panel is checked separately against the
-historical missing-to-zero transformation. The saved sample has 12,740
-observations and 3,244 drug groups.
-
-Each outcome is regressed on manufacturer count and year indicators, first
-without and then with log prescription claims. OLS is unweighted. There are no
-drug fixed effects. Covariances are clustered by the brand/generic pair, with
-the CR1 factor `G/(G-1) * (N-1)/(N-K)`; tests and intervals use `t(G-1)`.
-The omitted year is 2017. The percentage association for one additional
-manufacturer is `100 * expm1(beta)`, with confidence limits transformed in the
-same way. Manufacturer entry, product mix, and prescription volume are not
-exogenous, so causal interpretations are not warranted.
-
-Cost Plus reproduces the two historical log-log regressions with HC3 standard
-errors and normal-reference inference, as in the original notebook. Estimated
-cost is `(CP_price - 3) / 1.15`; markup is
-`100 * ((retail_price - 3) / estimated_cost - 1)`. Cost is inferred from a
-pricing rule rather than independently observed, and its appearance in the
-markup denominator creates a mechanical relationship. The saved 442-row
-snapshot is used without re-scraping current prices.
-
-The missing `nadac_2019.csv` was used for descriptive comparisons, not these
-regressions. No NADAC statistics are newly estimated by this pipeline.
-Historical source: https://data.medicaid.gov/dataset/76a1984a-6d69-5e4d-86c8-65eb31f0506d
-
-## Build and revise the paper
-
-LaTeX Workshop uses the existing Tectonic recipe on save. From a terminal:
+For a separate reproduction without overwriting the saved results:
 
 ```sh
-cd Paper
-/opt/homebrew/bin/tectonic --synctex --keep-logs main.tex
+python -m analysis.run --output-dir /tmp/cgd-reproduction
 ```
 
-Tables are included from `analysis/output/tables/`; edit their generator rather
-than the generated files. The current working PDF is ignored by Git; named PDF
-checkpoints under `Paper/checkpoints/` are tracked.
+See [analysis details](docs/analysis.md) and [data provenance](data/README.md).
+The short paper uses independent copies of its tables and figures; rerunning
+the analysis does not overwrite those copies.
 
-Numerical tables and unambiguously matching numbers may be updated
-automatically. Changes to prose wording or interpretation are proposed in
-`docs/manual-revisions.md` for the author's manual review. Do not call an
-analysis-updated PDF final while those revisions remain outstanding.
+## Compile the papers
+
+With Tectonic installed and available on `PATH`:
+
+```sh
+(cd Paper && tectonic --synctex --keep-logs main.tex)
+(cd ShortPaper && tectonic --synctex --keep-logs main.tex)
+(cd ShortPaper && tectonic --synctex --keep-logs with-supplement.tex)
+```
+
+On the author's Mac, Tectonic is at `/opt/homebrew/bin/tectonic`. The existing
+LaTeX Workshop settings use that path and rebuild on save. Other machines may
+need to change the executable path in `.vscode/settings.json` and
+`ShortPaper/.vscode/settings.json`.
+
+The working PDFs beside the LaTeX source update when built and are ignored by
+Git. PDFs under each paper's `pdf/` directory are tracked snapshots for reading;
+they must be refreshed after manuscript edits.
+
+## History
+
+The [archive guide](archive/README.md) identifies historical material. Archived
+code and revision proposals are preserved for reference and are not the current
+analysis or editing instructions. The original data and relocated historical
+files are unchanged; [the relocation manifest](archive/relocation-manifest.json)
+records their former paths and SHA-256 hashes.
+
+Git tag `before-repository-cleanup` preserves the layout before this
+reorganization. Earlier manuscript checkpoints and tags remain available.
+The archive is tracked in Git and is included when this repository is pushed.

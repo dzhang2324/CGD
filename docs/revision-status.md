@@ -8,6 +8,12 @@ Rimi's forwarded email. The exact comments and updated working order are in
 abstract and introduction first, then align identification, supplementary
 material, and presentation. Rimi's remaining corrections still apply.
 
+The author subsequently authorized the assistant to apply the eight final
+terminology replacements after first saving and committing a checkpoint.
+That checkpoint is `before-terminology-cleanup` (`5cfadb0`). The replacements
+are complete and verified; this specific authorization does not change the
+manual workflow for other prose revisions.
+
 The author's November 13 instruction is to preserve existing prose and make
 minimal corrections tied to Rimi's actual comments. An accurate existing
 description does not need expansion merely because a coding error was fixed.
@@ -82,15 +88,15 @@ Updated November 15, 2026. Follow the author's manual Find → Replace → expla
 - [x] **4. Complete the agreed substantive abstract/introduction revisions.** Center the Medicaid question, motivate innovation and affordability, explain the dataset contribution, and integrate the generic-entry literature. Do not reopen this as a general rewrite.
 - [x] **5. Finish the agreed supplementary-analysis revisions.** The NADAC comparisons are framed descriptively, and the author explicitly retains the subgroup table's count of 16. The Cost Plus markup regression, figure panel, discussion, summary-statistics row, and dictionary entry are removed; the retail-price analysis remains in the appendix. Historical inputs, code, and regression outputs are preserved. The separate final data-description checks below remain open.
 - [x] **6. Complete references.** The FTC source check is resolved, the formal reference list is included, and the PDF compiles without unresolved-reference warnings.
-- [ ] **7. Finish consistency and presentation checks.** Check the competition-section opening, data descriptions, readable variable names, equations, figures, numerical claims, and PDF layout; save the completed checkpoint.
+- [x] **7. Finish the agreed consistency and presentation checks.** The competition-section opening, data descriptions, covariate names, equations, figures, numerical references, and PDF layout have been checked; the completed terminology revision has a saved PDF checkpoint.
   - [x] Add concise, explicit dependent-variable headers to all four regression tables.
   - [x] Verify the author's added definition that Medicaid spending includes dispensing fees and is not reduced by manufacturer rebates.
   - [x] Include `Paper/references.tex` after the conclusion. The list covers the retained citations and credited course-note/figure sources; the author's insertion is verified.
   - [x] Apply the approved table format after securing the checkpoint. Tag `before-econometrica-formatting` at `1ae3c08` preserves the exact manuscript, references, generated tables, and saved PDF before formatting. The approved Econometrica-style layout now applies to regression, summary, and covariate-description tables; readable labels replace raw codes inside tables. Captions and rules are consistent, definitions and values are unchanged, and the PDF has been visually checked.
   - [x] Replace raw manufacturer-count, claims, and NADAC codes in the results, and align the Cost Plus equations with the table labels. The author's saved edits are verified.
-  - [ ] Finish the remaining terminology cleanup: the two `Outlier\_Flag` references and residual uses of features/variables for covariates.
+  - [x] Finish the remaining terminology cleanup: the two `Outlier\_Flag` references and residual uses of features/variables for covariates. All eight authorized replacement rules were applied, covering 18 occurrences.
   - [x] Complete four focused Cost Plus corrections: the unsupported duplicate-row claim, the contradictory shipping reference, the assumed equivalence to the supply-chain figure's cost components, and the obsolete appendix-title reference. The author's four saved replacements are verified.
-  - [ ] Finish the PDF layout/page-count check and save the completed revision checkpoint.
+  - [x] Finish the PDF layout/page-count check and save the completed revision checkpoint. The PDF compiles without LaTeX warnings and remains 24 pages, with References on page 17 and Appendix A on page 18. The appendix heading overflow is fixed, and the updated PDF is saved as `Paper/checkpoints/terminology-cleanup-complete.pdf`.
 
 The shorter writing sample, manufacturer bins, event study, and additional analyses remain deferred. Medicaid-centered ordering of the overall conclusion would support Yunus's focus request, but is our suggested implementation rather than a specific instruction from him.
 
@@ -135,6 +141,7 @@ The new tables are deliberately not accompanied by automatic interpretation chan
 - NADAC remains unrecomputed. The author explicitly instructs retaining 16 in the subgroup table; do not reopen that count as a required edit. The saved notebook's 15-row result remains a historical discrepancy, not an independently verified reconciliation. The NADAC gap and proportional-gap definitions now match the table labels and the saved formulas.
 - The author removed the constructed-markup covariate from the Cost Plus description and dictionary. Its generated summary row and note have also been removed through the report generator. A fresh analysis run passed the audit; all retained summary values and all other analysis outputs were unchanged. The two Cost Plus equations now use matching readable labels.
 - The four focused Cost Plus corrections are saved and verified. The retained regression already explains that manufacturing cost is inferred from the pricing rule; no new interpretation paragraph is needed.
+- The final terminology edit is an exact match to the eight authorized replacements applied to the pre-edit checkpoint. All numerical text and all scientific code, data, and result files remain unchanged by that edit. The compiled PDF and representative edited pages have been checked.
 - `Paper/references.tex` contains twelve alphabetized references matching the retained citations, course-note attribution, and textbook figure source. The author has included it between the conclusion and appendices. The working manuscript rebuilt successfully: the reference list fits on page 16, Appendix A starts on page 17, and there are no unresolved-reference warnings.
 - The FTC source check is resolved for Reiffen and Ward's directly relevant paper: the official FTC record and full working paper identify the 2002 working-paper version of the published 2005 study already cited. The prepared reference list retains the published version; no extra literature paragraph is needed. The unrelated authorized-generics report is not treated as verified.
 

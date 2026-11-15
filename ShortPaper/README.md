@@ -1,8 +1,13 @@
 # Short Medicaid manuscript
 
-The first deletion pass is **12 pages of main text** and **15 pages with
-references and appendices**. It does not yet meet the 10-page maximum. The
-author chose to review this draft before authorizing additional cuts.
+The current version is **10 pages of main text** and **13 pages with
+references and appendices**. It meets the 10-page maximum through layout
+changes alone after the first deletion pass; no additional prose was cut.
+
+The forced page break before the regression analysis and the table barriers
+were removed. Figures and regression tables can sit within text pages, without
+requesting separate float-only pages. Font sizes, margins, line spacing, figure
+sizes, captions, and table contents are unchanged.
 
 Edit `body.tex` for the shared manuscript. The two root documents use the same
 body and formatting:
@@ -46,8 +51,9 @@ Open the working PDFs in this directory for live updates. PDF files under
 
 The full paper is preserved at Git tag `before-short-version`. Its freshly
 compiled PDF and source/PDF hashes are in `checkpoints/`. `provenance.json`
-records the exact deletions and copied assets. No manuscript wording, results,
-table layout, font size, margins, or line spacing were changed.
+records the initial deletions and copied assets. Later author edits are
+preserved in Git. The layout-only checkpoint is `short-ten-pages`, with its
+source and PDF checks recorded in `checkpoints/ten-page-validation.json`.
 
 The working PDFs and LaTeX build files are ignored by Git. Named PDF checkpoints,
 source files, figures, and tables are tracked.
@@ -56,3 +62,7 @@ The first-pass PDFs are saved in `checkpoints/first-pass-main-12-pages.pdf` and
 `checkpoints/first-pass-with-supplement-15-pages.pdf`.
 `checkpoints/first-pass-validation.json` records source, asset, reference,
 page-count, and rendering checks.
+
+The current PDF checkpoints are `checkpoints/ten-page-main.pdf` and
+`checkpoints/ten-page-with-supplement.pdf`. Git tag `before-short-whitespace`
+preserves the author-edited 12-page version immediately before the layout change.

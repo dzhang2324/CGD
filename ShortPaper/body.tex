@@ -61,7 +61,7 @@ Note that the marginal revenue curve is significantly different than the margina
 
 One thing to note is that the marginal revenue curve lies below the demand curve. Also, marginal revenue is a function of the quantity: in perfect competition, the price is given and is treated as a constant. The monopoly chooses the quantity which is at the intersection of the marginal revenue and marginal cost curve, but since the marginal revenue curve lies below the demand curve, the monopoly charges a price which is higher than the price in perfect competition, where the price in perfect competition is given by the intersection of marginal cost (the supply curve in perfect competition) and demand. This comparison suggests that greater competition can place downward pressure on prices, providing a theoretical motivation for examining the relationship between manufacturer counts and Medicaid drug spending.
 
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=16cm]{figures/Screenshot (98).png}
     \caption{The monopoly chooses the price on the demand curve which correponds to the quantity at the intersection of MR = MC (LibreTexts).}
@@ -72,15 +72,13 @@ Using the filtered Medicaid data, I examine associations between the reported nu
 
 We can first look at some preliminary results. If we group the data by the number of total manufacturers and average the spending per dosage unit, we can see an interesting relationship: 
 
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=13cm]{figures/medicaid_mean_spending.pdf}
     \caption{Scatterplot of the mean average spending per dosage unit of drugs (y-axis), grouped by number of manufacturers (x-axis).}
 \end{figure}
 
 The plot shows that mean spending per dosage unit is substantially lower for drugs with two or three manufacturers than for drugs with one manufacturer. Mean spending remains comparatively low at higher manufacturer counts, although it does not fall consistently as the count increases. These descriptive comparisons across drug groups provide suggestive evidence of a negative association between manufacturer counts and drug spending, but may reflect factors other than manufacturer counts.
-
-\newpage
 
 \subsubsection{Regression Analysis}
 
@@ -94,13 +92,10 @@ where $i$ denotes a drug group defined by brand name and generic name, $t$ denot
 I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group. The reported manufacturer count does not vary over time within a drug group in these data, so drug-group fixed effects would therefore absorb the manufacturer-count covariate, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
 
 \input{tables/medicaid_unit.tex}
-\FloatBarrier
 
 % Redundant total-spending table removed; associated prose awaits manual revision. 
-\FloatBarrier
 
 \input{tables/medicaid_claim.tex}
-\FloatBarrier
 
 The regressions in column (1) of each table have a negative sign on the manufacturer-count coefficient, which is what we expect based on economic theory. In particular, an increase in one manufacturer is associated with a 16.9\% decrease in the average spend per dosage unit and a 15.6\% decrease in the average spend per claim, controlling for year effects.
 

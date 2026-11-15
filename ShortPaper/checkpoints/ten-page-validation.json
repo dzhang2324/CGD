@@ -1,0 +1,95 @@
+{
+  "main_page_limit": 10,
+  "main_page_limit_met": true,
+  "main_pages": 10,
+  "main_pages_identical_render": true,
+  "main_pages_identical_text": true,
+  "pages": [
+    {
+      "opening_lines": "Competition and Generic Drugs | Evidence on Pharmaceutical Costs and Competition from Public Data",
+      "page": 1,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "billion after rebates (MACPAC, 2024). This paper examines how reported manufacturer | counts are associated with Medicaid spending per dosage unit.",
+      "page": 2,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "2 Data Overview | 2.1 Medicaid - Spending By Drug",
+      "page": 3,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "per dosage unit is calculated with and without outlier records. If these calculated amounts | differ by 10 percent and $1, then it is flagged as an outlier. The data used in this paper only",
+      "page": 4,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "words, the maximizing y is at the intersection of the marginal revenue and marginal cost. | Note that the marginal revenue curve is significantly different than the marginal revenue",
+      "page": 5,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "Figure 1: The monopoly chooses the price on the demand curve which correponds to the | quantity at the intersection of MR = MC (LibreTexts).",
+      "page": 6,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "the count increases. These descriptive comparisons across drug groups provide suggestive | evidence of a negative association between manufacturer counts and drug spending, but may",
+      "page": 7,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "TABLE 1 | MANUFACTURER COUNTS AND LOG SPENDING PER DOSAGE UNIT",
+      "page": 8,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "TABLE 2 | MANUFACTURER COUNTS AND LOG SPENDING PER PRESCRIPTION CLAIM",
+      "page": 9,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "4 Conclusion | The Medicaid regressions show a negative association between manufacturer counts and",
+      "page": 10,
+      "same_render": true,
+      "same_text": true
+    }
+  ],
+  "supplemented_pages": 13,
+  "checkpoint_tag": "short-ten-pages",
+  "baseline_tag": "before-short-whitespace",
+  "change_type": "layout only",
+  "body_change": "Remove the forced page break and three float barriers; change figure placement from H to !ht.",
+  "table_change": "Change the two regression-table placement options from !htbp to !ht.",
+  "new_or_deleted_prose": false,
+  "author_edits_preserved": true,
+  "table_values_and_notes_unchanged": true,
+  "figure_files_and_sizes_unchanged": true,
+  "font_sizes_margins_line_spacing_unchanged": true,
+  "title_and_heading_spacing_unchanged": true,
+  "full_paper_unchanged": true,
+  "latex_warnings": [],
+  "visual_review": "Both figures, both regression tables, and the conclusion checked for readability and layout; no clipping or overlap.",
+  "independent_review": "passed",
+  "pdf_checkpoints": [
+    {
+      "path": "checkpoints/ten-page-main.pdf",
+      "sha256": "0e49ee97175bbe4a37583cf2e7b31390f750129cdb3845e6e33c8b1a1744a980"
+    },
+    {
+      "path": "checkpoints/ten-page-with-supplement.pdf",
+      "sha256": "e10c57e6d1f9d7364f98a3972610ba212fb0faa7c6533e2a3a14e3531982355b"
+    }
+  ]
+}

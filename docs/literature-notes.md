@@ -1,6 +1,54 @@
 # Literature verification and citation corrections
 
-Checked November 11, 2026. This file records source verification and proposed bibliography text; it does **not** change the manuscript. The manual wording queue is in `docs/manual-revisions.md`.
+Updated November 15, 2026. This file records source verification and proposed reference material; it does **not** change the manuscript. The prepared reference list is in `Paper/references.tex` and awaits the author's manual inclusion. Older wording proposals in `docs/manual-revisions.md` must be checked against the current manuscript.
+
+## Framing update following Yunus's review
+
+The author wants a broader motivation around market competition and
+Medicaid drug spending, while retaining a descriptive empirical contribution.
+These additional source checks support that framing; no manuscript text
+has been changed.
+
+- **Caves, Whinston, and Hurwitz (1991):** pages 1–3 explicitly frame
+  pharmaceutical competition in terms of innovation incentives and
+  competitive outcomes after patent expiration. Pages 44–46 discuss the
+  stronger response of generic than branded prices and the role of brand
+  differentiation. Page 26 treats entry as endogenous. This is useful
+  context, not evidence that the current paper estimates innovation,
+  welfare, or causal entry effects.
+- **Reiffen and Ward (2005):** the indexed published abstract is now
+  verified. It reports lower generic prices with more competitors and
+  emphasizes expected market size in shaping revenues, rents, and the
+  number of firms. The eight-competitor result is specific to their model
+  and sample; it is not a threshold to impose on this paper.
+  Publisher PDF: https://direct.mit.edu/rest/article-pdf/87/1/37/1613958/0034653053327694.pdf
+  The FTC working-paper abstract is also accessible through the agency's
+  indexed report page: https://www.ftc.gov/reports/generic-drug-industry-dynamics
+  These updates supersede the earlier access limitation for that abstract,
+  but do not verify the separate 2011 authorized-generics report.
+- **MACPAC (February 2024), High-Cost Drugs and the Medicaid Program:**
+  page 1 reports FY 2021 outpatient drug spending of $80.6 billion before
+  $42.5 billion in rebates, leaving $38.1 billion net. These are historical
+  policy-context totals, not sums reproduced from this paper's filtered
+  sample. The brief also emphasizes specialty-drug spending; competition
+  should not be presented as a complete explanation of spending growth.
+  https://macpac.gov/wp-content/uploads/2024/02/Policy-in-Brief-High-Cost-Drugs-FINAL-2.pdf
+- **FTC (September 15, 2016):** its final Teva/Allergan order required
+  divestiture of rights and assets for 79 pharmaceutical products to
+  11 firms. This supplies a concrete competition-policy example, not
+  evidence for the paper's coefficient.
+  https://search.ftc.gov/news-events/news/press-releases/2016/09/ftc-approves-final-order-preserving-competition-markets-79-pharmaceutical-products
+- **CMS, Medicaid Spending by Drug Methodology (January 2022):** drug
+  spending includes federal and state reimbursement and dispensing fees
+  and is not reduced by manufacturer rebates. The paper should not equate
+  its outcome with net government spending or patients' out-of-pocket costs.
+  https://data.cms.gov/sites/default/files/2022-01/DSD_MCD_R21_20220118_Methodology_WDDSE.pdf
+
+Suggested introduction progression: public-finance and affordability stakes;
+relevant competition literature; the constructed Medicaid panel and precise
+descriptive question; principal association and identification limits.
+Use manufacturer counts as an observed indicator of market structure,
+without claiming to measure market power directly.
 
 ## Verified core sources
 
@@ -8,7 +56,7 @@ Checked November 11, 2026. This file records source verification and proposed bi
 
 Primary source: https://www.brookings.edu/wp-content/uploads/1991/01/1991_bpeamicro_caves.pdf
 
-**Reiffen and Ward (2005).** *Generic Drug Industry Dynamics.* Review of Economics and Statistics, 87(1), 37–49. Authors, title, year, journal, and pages were verified against the publisher-deposited Crossref record. The limited proposed sentence says the paper examines generic-industry entry and pricing; no numerical finding from the paper is inserted. Full-text FTC working-paper URLs tried during this pass returned 404, so a full-text empirical finding is not claimed as newly verified here.
+**Reiffen and Ward (2005).** *Generic Drug Industry Dynamics.* Review of Economics and Statistics, 87(1), 37–49. Authors, title, year, journal, and pages were verified against the publisher-deposited Crossref record and publisher record. The official FTC record and full working paper were subsequently accessible on November 15, 2026: the earlier version is Working Paper 248, February 2002. Its abstract supports the current discussion of lower generic prices with more competitors and of expected market size in entry decisions. Retain the published 2005 citation rather than adding a duplicate entry for the working paper.
 
 Publisher DOI: https://doi.org/10.1162/0034653053327694
 
@@ -26,8 +74,19 @@ Primary source: https://www.fda.gov/media/133509/download
 
 Publisher DOI: https://doi.org/10.1136/bmjopen-2020-046917
 Author manuscript record: https://europepmc.org/article/MED/34266841
+Full text checked November 15, 2026: https://pmc.ncbi.nlm.nih.gov/articles/PMC8287090/
+Of 31 included articles, 30 examined retail prices and one examined net
+prices. The review reports unexplained retail-price variation and
+associations involving generic and originator market shares, central
+government purchasing, regulation, and markups. Its particularly limited
+evidence on net prices does not imply that all pharmaceutical-pricing
+research is insufficient to draw conclusions.
+The author applied the corrected surname/year and revised summary; the
+saved passage was checked on November 15, 2026.
 
 **Keyhani, Diener-West, and Powe (2006).** *Are Development Times for Pharmaceuticals Increasing or Decreasing?* Health Affairs, 25(2), 461–468. Publisher-deposited metadata and the authors' abstract were checked. The study examines development times, not a broad correlation between R&D expenditure and prices. Its findings concern clinical-trial and regulatory-review periods among 168 drugs; the proposed replacement limits the attribution accordingly.
+The author instead deleted the unsupported cost–price correlation sentence;
+its removal was verified in the saved manuscript on November 15, 2026.
 
 Publisher DOI: https://doi.org/10.1377/hlthaff.25.2.461
 Author abstract: https://europepmc.org/article/MED/16522587
@@ -41,6 +100,14 @@ Author abstract: https://europepmc.org/article/MED/27552619
 
 Publisher DOI: https://doi.org/10.1001/jamainternmed.2018.3931
 Author article record: https://europepmc.org/article/MED/30264133
+Full text checked November 15, 2026:
+https://www4.courts.ca.gov/opinions/links/S283862-LINK9.PDF
+(A reproduction of the JAMA article; the PMC endpoint was unavailable.)
+The Results section gives the lowest estimated per-trial cost as
+$2.1 million and the highest as $346.8 million. The 138 pivotal trials
+supported 59 therapeutic agents. These are not estimates of the entire
+development or approval process; the article explicitly distinguishes
+its scope from overall development costs.
 
 **DiMasi, Grabowski, and Hansen (2016).** *Innovation in the Pharmaceutical Industry: New Estimates of R&D Costs.* Journal of Health Economics, 47, 20–33. Publisher-deposited metadata and the authors' abstract were checked. The reported average out-of-pocket estimate is $1,395 million; capitalized **pre-approval** cost is $2,558 million; adding post-approval R&D yields $2,870 million, all in 2013 dollars. Capitalized and cash costs are distinct concepts. The manuscript's narrower $1,098 million pre-human estimate was not checked against the full article during this pass; omit that detail or verify the full table before retaining it.
 
@@ -59,77 +126,63 @@ Author article record: https://europepmc.org/article/MED/32576816
 
 ## FTC evidence and remaining source checks
 
-Rimi's request for FTC evidence remains a source-verification task. The likely relevant agency report is *Authorized Generic Drugs: Short-Term Effects and Long-Term Impact* (2011). Both FTC homepages (`www.ftc.gov` and `ftc.gov`) returned HTTP 404 in this environment, as did the attempted report, press-release, and working-paper addresses. This is an access limitation; it does not establish that the documents are missing or their addresses incorrect. **Do not insert an unverified numerical result or claim this report was successfully read.** The directly read FDA report and Brookings article provide verified primary evidence in the meantime. An authorized-generics report also needs careful interpretation because its market setting differs from the thesis's general manufacturer-count comparisons.
+The earlier FTC access limitation is resolved for the directly relevant
+Reiffen and Ward working paper. The official record identifies *Generic
+Drug Industry Dynamics* as Working Paper 248, February 2002:
+https://www.ftc.gov/reports/generic-drug-industry-dynamics
+Full paper:
+https://www.ftc.gov/sites/default/files/documents/reports/generic-drug-industry-dynamics/industrydynamicsreiffenwp_0.pdf
+
+This establishes the FTC working-paper connection for the published paper
+already cited in the introduction. It does not require another literature
+paragraph or a duplicate bibliography entry. Attribute findings to the
+authors, not to the Commission: the working paper expressly distinguishes
+their views from those of the FTC. The separate 2011 authorized-generics
+report is not needed to document this connection and is not represented as
+verified.
 
 Other remaining checks before final submission:
 
 - Manual edit 27 removes the unverified Lipsky and Sharp approval-duration claim and the unchecked pre-human-cost detail.
-- Cite the exact source of the existing LibreTexts figure and confirm figure provenance; the bare caption currently does not identify a particular page.
+- The existing monopoly figure's caption matches the Boundless textbook section
+  "Monopoly Production and Pricing Decisions and Profit Outcome," hosted by
+  Social Sci LibreTexts. Its reference and link are now in the prepared list.
+  The page's original figure is sourced from Wikimedia; the prepared entry
+  identifies the textbook page used by the manuscript, not an invented author
+  or publication date.
+- The Gaubert entry describes the course notes already credited by the author.
+  Berkeley's official Fall 2021 course listing confirms the instructor,
+  course number, and course title. The lecture-note text itself has not
+  been independently located or checked.
 - The CMS and historical Cost Plus source descriptions should be tied to the downloaded files and the analysis audit. A current Cost Plus fee schedule does not verify the historical pricing formula.
 - The unavailable NADAC raw data prevent a fresh check of its numerical results. The manual replacement intentionally avoids the disputed small-subgroup count and percentages.
 
-## Ready-to-paste bibliography for the verified entries
+## Prepared reference list for the current manuscript
 
-These entries are suitable for the existing author-year prose and require no new bibliography package. Insert the block immediately before `\clearpage` followed by `\appendix`, after applying the corresponding citation edits. This places references before the appendices. They do not resolve the remaining source checks above.
+`Paper/references.tex` contains twelve alphabetized entries: the ten
+retained scholarly/institutional citations, the credited Gaubert course
+notes, and the LibreTexts figure source. Sources removed from the
+introduction (DiMasi, Keyhani, and Moore) are not included. The references
+use an unnumbered hanging-indent list and clickable source titles, with no
+new LaTeX package.
+
+The author should make this single replacement in `Paper/main.tex`.
+Find:
 
 ```text
-\begin{thebibliography}{99}
-
-\bibitem{caves1991}
-Caves, Richard E., Michael D. Whinston, and Mark A. Hurwitz. 1991.
-``Patent Expiration, Entry, and Competition in the U.S. Pharmaceutical Industry.''
-\textit{Brookings Papers on Economic Activity: Microeconomics} 1991: 1--66.
-
-\bibitem{conrad2019}
-Conrad, Ryan, and Randall Lutter. 2019.
-\textit{Generic Competition and Drug Prices: New Evidence Linking Greater Generic Competition and Lower Generic Drug Prices}.
-U.S. Food and Drug Administration, December.
-
-\bibitem{dimasi2016}
-DiMasi, Joseph A., Henry G. Grabowski, and Ronald W. Hansen. 2016.
-``Innovation in the Pharmaceutical Industry: New Estimates of R\&D Costs.''
-\textit{Journal of Health Economics} 47: 20--33.
-
-\bibitem{grabowski1992}
-Grabowski, Henry G., and John M. Vernon. 1992.
-``Brand Loyalty, Entry, and Price Competition in Pharmaceuticals after the 1984 Drug Act.''
-\textit{Journal of Law and Economics} 35(2): 331--350.
-
-\bibitem{janssendaalen2021}
-Janssen Daalen, Jules M., Anouk den Ambtman, Mark van Houdenhoven,
-and Bart J. F. van den Bemt. 2021.
-``Determinants of Drug Prices: A Systematic Review of Comparison Studies.''
-\textit{BMJ Open} 11(7): e046917.
-
-\bibitem{kesselheim2016}
-Kesselheim, Aaron S., Jerry Avorn, and Ameet Sarpatwari. 2016.
-``The High Cost of Prescription Drugs in the United States: Origins and Prospects for Reform.''
-\textit{JAMA} 316(8): 858--871.
-
-\bibitem{keyhani2006}
-Keyhani, Salomeh, Marie Diener-West, and Neil Powe. 2006.
-``Are Development Times for Pharmaceuticals Increasing or Decreasing?''
-\textit{Health Affairs} 25(2): 461--468.
-
-\bibitem{moore2018}
-Moore, Thomas J., Hanzhe Zhang, Gerard Anderson, and G. Caleb Alexander. 2018.
-``Estimated Costs of Pivotal Trials for Novel Therapeutic Agents Approved by the US Food and Drug Administration, 2015--2016.''
-\textit{JAMA Internal Medicine} 178(11): 1451--1457.
-
-\bibitem{mulcahy2022}
-Mulcahy, Andrew W., and Vishnupriya Kareddy. 2022.
-``Prescription Drug Supply Chains: An Overview of Stakeholders and Relationships.''
-\textit{RAND Health Quarterly} 9(3): 7.
-
-\bibitem{rajkumar2020}
-Rajkumar, S. Vincent. 2020.
-``The High Cost of Prescription Drugs: Causes and Solutions.''
-\textit{Blood Cancer Journal} 10: 71.
-
-\bibitem{reiffen2005}
-Reiffen, David, and Michael R. Ward. 2005.
-``Generic Drug Industry Dynamics.''
-\textit{Review of Economics and Statistics} 87(1): 37--49.
-
-\end{thebibliography}
+\clearpage
+\appendix
 ```
+
+Replace:
+
+```text
+\clearpage
+\input{references}
+
+\clearpage
+\appendix
+```
+
+This places references after the conclusion and before Appendix A without
+changing the prose or adding to the main-text page count.

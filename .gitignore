@@ -17,3 +17,5 @@ Paper/*.synctex.gz
 Paper/*.toc
 Paper/*.xdv
 Paper/main.pdf
+
+docs/table-style-preview/*.log

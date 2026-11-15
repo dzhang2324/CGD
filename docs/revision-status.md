@@ -1,22 +1,94 @@
 # Revision status
 
+## Current editing scope
+
+The author now prioritizes Yunus's November 13 feedback, retrieved from
+Rimi's forwarded email. The exact comments and updated working order are in
+`yunus-feedback.md`: center one Medicaid research question, address the
+abstract and introduction first, then align identification, supplementary
+material, and presentation. Rimi's remaining corrections still apply.
+
+The author's November 13 instruction is to preserve existing prose and make
+minimal corrections tied to Rimi's actual comments. An accurate existing
+description does not need expansion merely because a coding error was fixed.
+Check surrounding passages, then propose only necessary, focused edits.
+The exact seven must-fix comments and their current status are recorded in
+`rimi-feedback.md`. Yunus's priority overlay now governs the next edits.
+
+On November 15, the author emphasized staying focused on the agreed
+big-picture items: NADAC interpretation, Cost Plus interpretation, the
+paper's Medicaid-centered focus, references, and necessary consistency
+and presentation checks. Do not drift into minor stylistic polishing or
+reopen settled wording. Within those priorities, propose focused manual
+edits and explain the substantive issue they resolve.
+
+The author subsequently requested stronger interpretation in the Cost Plus
+discussion and the conclusion. A numerical recap followed only by caveats
+is insufficient: explain the economic meaning and potential implications
+first, then discuss the concrete reasons the interpretation may be
+incomplete. Present untested mechanisms and policy implications as tentative
+interpretations, while preserving the distinction between the observed
+associations and causal effects. This is an authorized substantive revision
+of the recently reviewed conclusion, not a request for general polishing.
+The author clarified that the additional interpretation should focus on the
+NADAC and Cost Plus conclusion summaries. Preserve the existing closing
+paragraph, especially its final two sentences. Add concrete examples of
+demand and production characteristics with a focused insertion rather than
+replacing that paragraph. The next proposed edits are three single-sentence
+insertions, not another full conclusion rewrite.
+The saved conclusion now includes the acquisition-cost implication, a
+possible demand/competing-products explanation, and a conditional policy
+interpretation. These author-edited passages are reviewed and acceptable.
+The illustrative list of entry factors was not inserted; it is optional,
+not an outstanding required correction. Do not reopen the conclusion now.
+
+The author subsequently specified a minimum of **15 pages of main text**,
+excluding references and appendices. Preserve useful material and avoid
+unnecessary shortening. If expansion is needed, develop the substantive
+Medicaid argument and methods rather than adding padding or inflating layout.
+Proposed additions remain subject to the manual editing workflow.
+
+The author wants the Cost Plus appendix identified by a clickable reference
+in the introduction, with a brief summary of its retained retail-price
+finding at the end of the conclusion. Keep the detailed interpretation in
+the appendix. The appendix label, introduction reference, obsolete
+conclusion paragraph deletion, and closing summary are now verified in the
+saved manuscript. The author revised the proposed numerical recap to a
+higher-level takeaway about the cost-price relationship. The reference
+syntax was previously compiled in a temporary preview and resolves to A.
+The author now requests broader concluding commentary: connect the Medicaid
+findings to affordability, public spending, and the contribution of the
+constructed panel. That addition is now saved and reviewed, including the
+author's point that understanding entry selection can inform causal research
+designs. The conclusion preserves the descriptive interpretation of the
+current estimates. Its existing wording is acceptable; do not reopen it
+for minor stylistic or repetition edits. The PDF rebuilt successfully and
+the Cost Plus appendix link resolves to Appendix A on page 16.
+
+The current PDF has 23 pages, with References on page 16 and Appendix A
+starting on page 17. Pages 1--15 precede the references, but page 1 includes
+the title and abstract and page 15 is only partly filled. Check the author's
+15-page main-text requirement separately from the references and appendices.
+If additional depth is needed, prioritize useful explanation of Medicaid
+sample construction, measurement, and the existing results.
+
 ## Ordered revision checklist
 
-Updated November 12, 2026. Follow the author's manual Find → Replace → explanation → check workflow. Mark an item complete only after verifying the corresponding manuscript edits.
+Updated November 15, 2026. Follow the author's manual Find → Replace → explanation → check workflow. Mark an item complete only after verifying the corresponding manuscript edits.
 
-- [ ] **1. Align the methods and equation with the analysis — in progress.**
-  - [x] Replace the outcomes/equation block and explain why manufacturer counts cannot be estimated alongside drug-group fixed effects.
-  - [x] Refine paragraph breaks in the new methods text.
-  - [ ] Clarify the source data, sample construction, and brand-name/generic-name group definition.
-  - [ ] Align the empirical introduction with year controls and specifications with and without log claims.
-- [ ] **2. Update the interpretation of the results.** Address significance, model fit, coefficient changes, percentage units, and causal limitations.
-- [ ] **3. Remove the obsolete total-spending discussion.** Reconcile the abstract, remove the redundant results paragraph, and resolve the two references to the removed table.
-- [ ] **4. Strengthen and correct the literature review.** Address foundational generic-entry studies, FDA attribution, citation accuracy, and the remaining FTC source check.
-- [ ] **5. Tighten the supplementary analyses.** Clarify Cost Plus assumptions and shorten NADAC to a supported descriptive discussion.
-- [ ] **6. Finish consistency and presentation checks.** Reconcile the abstract and conclusion, complete references, check equations and figures, compile, and save the completed checkpoint.
+- [x] **1. Align the methods and equation with the analysis.** The outcomes, year controls, claims motivation, drug-group clustering, time-invariant manufacturer counts, and absence of drug fixed effects are explained. The empirical introduction and group definition are corrected.
+- [x] **2. Correct the main Medicaid results interpretation.** The retained outcome paragraphs, percentage conversions, significance and model-fit descriptions, entry-selection limitation, and Medicaid conclusion are aligned with the current models.
+- [x] **3. Remove the obsolete total-spending result.** The redundant table, associated discussion, and references are gone.
+- [x] **4. Complete the agreed substantive abstract/introduction revisions.** Center the Medicaid question, motivate innovation and affordability, explain the dataset contribution, and integrate the generic-entry literature. Do not reopen this as a general rewrite.
+- [ ] **5. Finish supplementary-analysis interpretation.** Keep the NADAC subgroup table for now, as explicitly requested; its discrepancy remains flagged. The main NADAC gap/summary/conclusion wording is corrected. The author now requests removal of the Cost Plus markup regression, including its figure panel and related interpretation, while retaining the retail-price analysis for now. Supply manual deletion blocks and preserve historical code/data/results.
+- [x] **6. Complete references.** The FTC source check is resolved and the author has included the formal reference list. The PDF rebuild succeeded, with the references on page 16.
+- [ ] **7. Finish consistency and presentation checks.** Check the competition-section opening, data descriptions, readable variable names, equations, figures, numerical claims, and PDF layout; save the completed checkpoint.
   - [x] Add concise, explicit dependent-variable headers to all four regression tables.
+  - [x] Verify the author's added definition that Medicaid spending includes dispensing fees and is not reduced by manufacturer rebates.
+  - [x] Include `Paper/references.tex` after the conclusion. The list covers the retained citations and credited course-note/figure sources; the author's insertion is verified.
+  - [ ] Finish the table/covariate presentation pass. At the author's request, first show a published Econometrica example and a separate preview. `docs/table-style-preview/preview.pdf` illustrates the existing Medicaid estimates and a short covariate dictionary, using Brückner and Ciccone (2011), Tables I--III, as a reference. No manuscript or generated-table formatting has been changed in this preview step.
 
-The shorter writing sample remains deferred. The author has applied the new outcomes, equation, claims motivation, explanation of why drug-group fixed effects absorb manufacturer counts, and the paragraph consolidation. These edits have been verified; the data description and the empirical introduction remain open within item 1.
+The shorter writing sample, manufacturer bins, event study, and additional analyses remain deferred. Medicaid-centered ordering of the overall conclusion would support Yunus's focus request, but is our suggested implementation rather than a specific instruction from him.
 
 ## Implemented and verified
 
@@ -31,8 +103,9 @@ The shorter writing sample remains deferred. The author has applied the new outc
 - Nine meaningful tests passed. All 18 generated artifacts reproduced byte-for-byte in a separate output directory.
 - Before the manual editing round, all 29 proposed Find/Replace edits were checked for unique matches and compiled in a temporary copy with the proposed bibliography; no undefined references or overfull boxes remained in that preview.
 - Working PDF compiled and new regression/descriptive tables visually inspected.
-- Sixteen numerical references were updated in commit `0f62365`, without changing manuscript wording; the PDF was rebuilt. The two claims-volume statements lacking percentage units remain for manual revision.
+- Sixteen numerical references were updated in commit `0f62365`, without changing manuscript wording; the PDF was rebuilt. The two claims-volume statements and their percentage units have since been corrected manually and checked.
 - All four regression tables identify the dependent variable above the numbered columns: Log spending per unit, Log spending per claim, Log retail price, and Log markup. Notes specify natural logarithms and clarify the weighted per-unit measure. The PDF was rebuilt and all four headers were visually checked; the existing numerical outputs and table results are unchanged.
+- The author removed the Cost Plus markup-regression calculation, table, and discussion from the appendix. Historical code and outputs remain preserved. The author has substituted the generated, visually checked retail-only log scatterplot, `analysis/output/figures/costplus_retail_log.pdf`, for the two-panel figure; the saved source is verified and the PDF rebuilt. The retained retail-regression table note no longer describes the removed markup outcome. A fresh pipeline run passed its audit; all existing outputs except that table note were unchanged, and only the new figure was added.
 
 ## Main results
 
@@ -49,15 +122,15 @@ These are associations across drug groups, not causal effects of entry. Results 
 
 The new tables are deliberately not accompanied by automatic interpretation changes. **The current PDF is an intermediate working draft, not a submission-ready paper.**
 
-- Abstract still cites the removed total-spending result and old drug fixed effects.
-- The equation block now defines the two retained outcomes, pooled OLS, claims and year controls, clustering, and the reason for omitting drug-group fixed effects. The earlier empirical introduction and source/sample descriptions still need alignment.
-- Results paragraphs still contain outdated interpretations of significance, fit, and total spending. The verified numerical references and retained column numbers have been refreshed.
-- Two references to the removed `table:table2` are unresolved; deleting/replacing the obsolete paragraphs will resolve both. No labels are duplicated or empty.
-- Conclusion and theoretical/literature claims need the revisions in `manual-revisions.md`.
-- NADAC remains unrecomputed; its descriptive section and table claims need manual shortening. In particular, the manuscript's 16-row positive-gap table disagrees with saved notebook output (15 rows), and 67% disagrees with its displayed maximum (1.679 as a proportion). Do not present those values as freshly verified.
+- The abstract, agreed introduction, methods, main Medicaid results, and Medicaid conclusion are aligned. Remaining work concerns supplementary claims, data-description checks, references, and presentation.
+- The competition-section opening now correctly introduces theory and associations between reported manufacturer counts and both Medicaid spending outcomes. The saved edit is verified. The theory paragraph now treats the monopoly/perfect-competition comparison as motivation for the relationship rather than a universal rule; that saved edit is also verified.
+- No references to the removed `table:table2` remain. The obsolete discussion and model-control comparisons are corrected. No labels are duplicated or empty.
+- The overall conclusion now starts with Medicaid, includes the NADAC acquisition-cost implications and a short linked Cost Plus interpretation, and closes with a conditional policy implication, dataset contribution, and entry-selection research direction. The author's latest revisions are checked and the PDF rebuilt. The retained retail-regression paragraph now correctly reports the coefficient and model fit in log retail prices, removes the unsupported coefficient-at-least-one benchmark, and explains the inferred cost measure and limits of interpretation. The competition-and-costs opening and theory transition are also corrected. Proposed older Find blocks must be rechecked against current text before use.
+- The first Medicaid data paragraph is now corrected and the saved edit verified: 16,146 source records include individual-manufacturer and Overall records, rather than representing 16,146 distinct drugs. Reshaping yields 80,730 rows, including missing annual data; the filtered analysis has 12,740 observations across 3,244 groups. The source audit additionally confirms 11,802 manufacturer-specific records and 4,344 Overall records. The spending-per-claim dictionary entry and both references to eleven base-panel covariates are now saved and verified. The dictionary already includes Year; the summary-statistics tables intentionally report substantive numeric measures and need no additional Year row. Move on from counting and terminology details. The author has now added the verified definition that CMS spending includes dispensing fees and is not reduced by manufacturer rebates, citing CMS (2022). The next proposed step is the formal reference list.
+- NADAC remains unrecomputed. The 67% and 16-drug sentences after the gap definitions have been removed, and the adjacent comparison sentences are corrected. The author explicitly retains the subgroup table for now. Its 16 rows and associated statistics disagree with saved notebook output (15 rows); the table and following paragraph remain open for verification.
 - Cost Plus prose still needs the construction caveat; the saved CSV has no duplicate medication names despite the old description.
-- Bibliography entries are proposed for manual addition, not silently added to the paper.
-- FTC source verification remains pending: both FTC homepages and attempted document addresses returned HTTP 404 in this environment. FDA and Brookings source PDFs were read directly; the guide does not insert unverified FTC findings.
+- `Paper/references.tex` contains twelve alphabetized references matching the retained citations, course-note attribution, and textbook figure source. The author has included it between the conclusion and appendices. The working manuscript rebuilt successfully: the reference list fits on page 16, Appendix A starts on page 17, and there are no unresolved-reference warnings.
+- The FTC source check is resolved for Reiffen and Ward's directly relevant paper: the official FTC record and full working paper identify the 2002 working-paper version of the published 2005 study already cited. The prepared reference list retains the published version; no extra literature paragraph is needed. The unrelated authorized-generics report is not treated as verified.
 
 ## Version checkpoints
 

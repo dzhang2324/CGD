@@ -1,4 +1,7 @@
 {
+  "[latex]": {
+    "editor.wordWrap": "on"
+  },
   "latex-workshop.latex.recipes": [
     {
       "name": "Tectonic",

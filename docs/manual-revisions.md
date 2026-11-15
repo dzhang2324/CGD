@@ -1,5 +1,11 @@
 # Manual manuscript revisions
 
+**Historical proposals, subject to the author's narrower November 13 scope:**
+use minimal corrections tied to the comments in `rimi-feedback.md`, preserve
+accurate original text, and obtain each Find passage from the current source.
+Several blocks below no longer match the author's revised wording. Do not
+apply broad replacement paragraphs merely to add explanations of past bugs.
+
 These edits are prepared for David to apply manually. **This document does not change prose or interpretation in Paper/main.tex.** Numerical tables, figures, and reference labels may already have changed separately. Search for the complete Find passage; line numbers can shift. Deletions are explicit.
 
 Apply edits 1–14 and 24 first to reconcile the main paper with the verified analysis. The remaining edits address theory, literature, and supplementary analyses. Numbers come from `analysis/output/estimates.csv`; the headline effects use the specifications with claims.

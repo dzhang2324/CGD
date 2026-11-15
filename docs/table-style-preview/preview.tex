@@ -1,0 +1,88 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\begin{document}
+
+{\footnotesize\itshape
+Presentation preview using the existing Medicaid estimates.
+This file is separate from the manuscript.}
+
+\vspace{1.2em}
+
+\begin{center}
+{\small TABLE 1}\\[4pt]
+{\footnotesize\MakeUppercase{Manufacturer Counts and Medicaid Spending per Dosage Unit}}\\[9pt]
+
+\begin{minipage}{0.95\linewidth}
+\small
+\centering
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcc@{}}
+\toprule
+ & \multicolumn{2}{c}{Log spending per unit} \\
+\cmidrule(l){2-3}
+ & (1) & (2) \\
+\midrule
+Number of manufacturers & $-0.186^{***}$ & $-0.130^{***}$ \\
+ & $(0.008)$ & $(0.011)$ \\
+\addlinespace[5pt]
+Log prescription claims & & $-0.173^{***}$ \\
+ & & $(0.022)$ \\
+\addlinespace[5pt]
+Constant & $2.221^{***}$ & $3.655^{***}$ \\
+ & $(0.062)$ & $(0.185)$ \\
+\midrule
+Year fixed effects & Yes & Yes \\
+Drug fixed effects & No & No \\
+Observations & 12,740 & 12,740 \\
+Drug groups & 3,244 & 3,244 \\
+$R^2$ & 0.110 & 0.127 \\
+Adjusted $R^2$ & 0.110 & 0.127 \\
+\bottomrule
+\end{tabular*}
+
+\vspace{5pt}
+{\footnotesize\raggedright
+\textit{Notes:} Unweighted pooled OLS, 2017--2021. Drug groups are
+brand-name/generic-name pairs. Standard errors clustered by drug group
+appear in parentheses. Year indicators use 2017 as the reference year.
+Spending per unit is the reported weighted average. All logarithms are
+natural. $^{*}p<0.10$, $^{**}p<0.05$, $^{***}p<0.01$.
+\par}
+\end{minipage}
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+{\small TABLE 2}\\[4pt]
+{\footnotesize\MakeUppercase{Selected Covariates and Definitions}}\\[9pt]
+
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}X@{}}
+\toprule
+Covariate & Definition \\
+\midrule
+Number of manufacturers &
+Reported manufacturer count for the drug group. \\
+\addlinespace[6pt]
+Prescription claims &
+Number of prescription fills, including refills, for the drug group and year. \\
+\addlinespace[6pt]
+Spending per dosage unit &
+CMS-reported weighted average spending per dosage unit. \\
+\addlinespace[6pt]
+Spending per claim &
+Total spending divided by the number of prescription claims. \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{center}
+
+\end{document}

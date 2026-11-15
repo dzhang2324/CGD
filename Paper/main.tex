@@ -80,11 +80,14 @@ The last two features are percent change in average total spending per dosage un
 \subsection{Cost Plus Drugs}
 The second data source that I will discuss is the data from Mark Cuban’s Cost Plus Drugs. To obtain the data, I web scraped the website page (legally) containing a list of all medications, using Selenium and BeautifulSoup packages in Python. The features are summarized by the following tables: 
 
-This data has 442 observations, with two duplicate rows for two medications that each have two different dosage forms. This data has seven features: the medication name, brand name, dosage form, retail price, the Cost Plus price, the manufacturing cost, and the markup. Cost Plus sells only generic medication, so the medication name is the name for the generic. The retail price is the brand name price as reported by Cost Plus Drugs. According the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." Therefore, some of the interpretation of this retail price must be taken with a grain of salt, but I choose to give the benefit of the doubt in this paper. 
+This data has 442 observations. The six covariates reported here are the medication name, brand name, dosage form, reported retail price, Cost Plus price, and estimated manufacturing cost. Cost Plus sells only generic medication, so the medication name is the name for the generic. The retail price is the brand name price as reported by Cost Plus Drugs. According the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." Therefore, some of the interpretation of this retail price must be taken with a grain of salt, but I choose to give the benefit of the doubt in this paper. 
 
-The Cost Plus price is the price that Cost Plus is selling the medication for: it is calculated by factoring in manufacturing/labor/shipping costs in addition to a 15 percent markup. In particular, the Cost Plus price can be decomposed as 
+The Cost Plus price is the price that Cost Plus is selling the medication for: it is calculated by factoring in manufacturing/labor costs in addition to a 15 percent markup. In particular, the Cost Plus price can be decomposed as 
 
-$$ CP\_price = 1.15(manuf\_cost) + 3$$
+\[
+\mathrm{Cost\ Plus\ price}
+= 1.15(\mathrm{Estimated\ manufacturing\ cost}) + 3
+\]
 
 where 3 is the pharmacy labor cost. Tax and shipping costs are not included. Features are describe in \autoref{table:table9}.
 
@@ -153,9 +156,9 @@ The regressions in column (1) of each table have a negative sign on the manufact
 
 As seen in the regression tables, adding the natural logarithm of total claims reduces the magnitude of the manufacturer-count coefficients and increases $R^2$ for both outcomes.
 
-In regression (2) for average spend per dosage unit (\autoref{table:table1}), adding log(Tot\_Clms) increases $R^2$ from 0.110 to 0.127, and the adjusted $R^2$ is 0.127. Regression (2) indicates a negative association between the number of manufacturers and average spend per dosage unit. The coefficient on Tot\_Mftr is smaller in magnitude after adding log(Tot\_Clms), but remains statistically significant at the 1\% level using standard errors clustered by drug group. The coefficient indicates that one additional manufacturer is associated with a 12.2\% decrease in average spend per dosage unit, holding the included controls constant. Additionally, the coefficient on log(Tot\_Clms) is -0.173, indicating that a 1\% increase in total claims is associated with approximately a 0.173\% decrease in average spend per dosage unit, holding the other included variables constant. 
+In regression (2) for average spend per dosage unit (\autoref{table:table1}), adding log prescription claims increases $R^2$ from 0.110 to 0.127, and the adjusted $R^2$ is 0.127. Regression (2) indicates a negative association between the number of manufacturers and average spend per dosage unit. The coefficient on the number of manufacturers is smaller in magnitude after adding log prescription claims, but remains statistically significant at the 1\% level using standard errors clustered by drug group. The coefficient indicates that one additional manufacturer is associated with a 12.2\% decrease in average spend per dosage unit, holding the included controls constant. Additionally, the coefficient on log prescription claims is -0.173, indicating that a 1\% increase in total claims is associated with approximately a 0.173\% decrease in average spend per dosage unit, holding the other included variables constant. 
 
-Looking at regression (2) for average cost per claim (\autoref{table:table3}), we can see that adding log(Tot\_Clms) increases $R^2$ from 0.147 to 0.203, and the adjusted $R^2$ is 0.202. One additional manufacturer is associated with an 8.7\% decrease in average spend per claim, holding the included controls constant. The manufacturer-count coefficient is statistically significant at the 1\% level. The coefficient on log(Tot\_Clms) is -0.245, indicating that a 1\% increase in total claims is associated with approximately a 0.245\% decrease in average spend per claim, holding the other included variables constant. This is a similar result to \autoref{table:table1}.
+Looking at regression (2) for average cost per claim (\autoref{table:table3}), we can see that adding log prescription claims increases $R^2$ from 0.147 to 0.203, and the adjusted $R^2$ is 0.202. One additional manufacturer is associated with an 8.7\% decrease in average spend per claim, holding the included controls constant. The manufacturer-count coefficient is statistically significant at the 1\% level. The coefficient on log prescription claims is -0.245, indicating that a 1\% increase in total claims is associated with approximately a 0.245\% decrease in average spend per claim, holding the other included variables constant. This is a similar result to \autoref{table:table1}.
 
 In summary, manufacturer counts are negatively associated with both measures of Medicaid drug spending, consistent with the economic theory and generic-entry literature discussed above. Manufacturers choose which drug markets to enter, and these decisions may depend on characteristics that also affect spending. The estimates therefore describe conditional associations across drug groups rather than causal effects of additional manufacturers. 
 
@@ -197,7 +200,7 @@ Proportional gap & 1,286 & $-$0.696 & 0.292 & $-$0.999 & 1.679 \\
 \end{table}
 \FloatBarrier
 
-The nadac\_diff is calculated by taking the difference between the corresponding generic NADAC per unit and the regular NADAC per unit. nadac\_percent\_change is calculated by taking nadac\_diff and dividing it by the corresponding NADAC per unit. One thing we can immediately notice is that, for most drugs in this comparison, the generic has a lower NADAC per unit than its brand-name counterpart. However, we can also see that there are some drugs for which the generic has a higher NADAC per unit than the brand-name counterpart.
+The NADAC gap is calculated by subtracting the brand-name NADAC per unit from the corresponding generic NADAC per unit. The proportional gap is calculated by dividing the NADAC gap by the brand-name NADAC per unit. One thing we can immediately notice is that, for most drugs in this comparison, the generic has a lower NADAC per unit than its brand-name counterpart. However, we can also see that there are some drugs for which the generic has a higher NADAC per unit than the brand-name counterpart.
 
 \begin{table}[!htbp]
 \centering
@@ -249,13 +252,16 @@ The Medicaid findings point to competition as a potential means of improving dru
 
 \clearpage
 \appendix
-\section{Manufacturing Costs: Mark Cuban's Cost Plus Drugs}
+\section[Manufacturing Costs: Mark Cuban's Cost Plus Drugs]{Manufacturing Costs:\\Mark Cuban's Cost Plus Drugs}
 \label{app:costplus}
 I will first investigate the relationship between manufacturing costs and pricing by looking at the Cost Plus data. 
 
-I begin by attempting to isolate an estimate of the manufacturing cost from the CP\_price. As alluded to earlier, this is given by
+I begin by attempting to isolate an estimate of the manufacturing cost from the Cost Plus price. As alluded to earlier, this is given by
 
-$$ManufacturingCosts = \frac{CP\_price - 3}{1.15}$$.
+\[
+\mathrm{Estimated\ manufacturing\ cost}
+= \frac{\mathrm{Cost\ Plus\ price} - 3}{1.15}.
+\]
 
 Mulcahy and Kareddy (2022) also provide a brief outline of a general supply chain model for brand-name drugs at retail pharmacies:
 
@@ -266,7 +272,7 @@ Mulcahy and Kareddy (2022) also provide a brief outline of a general supply chai
     \label{figure:figure1}
 \end{figure}
 
-I assume that this calculation of manufacturing costs accounts for the costs reflected in the manufacturing cells (colored blue) in \autoref{figure:figure1}.
+The manufacturing-cost measure is inferred from the Cost Plus pricing rule; it is not a direct measurement of the costs shown in \autoref{figure:figure1}.
 
 One place to start with regards to looking at the relationship between manufacturing costs and pricing is to look at the extent of a linear relationship between the manufacturing costs and the retail price given in the data. We can first start by looking at a scatterplot of the data: 
 
@@ -360,9 +366,7 @@ Reported retail price & The brand name price as reported by Cost Plus Drugs. Acc
 
 Cost Plus price & The sale price of the medication when purchasing from Cost Plus. \tabularnewline \addlinespace[3pt]
 
-Estimated manufacturing cost & Estimate of the manufacturing costs of the drug. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \addlinespace[3pt]
-
-Markup & Percentage markup from the CP\_price to the retail\_price. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline
+Estimated manufacturing cost & Estimate of the manufacturing costs of the drug. The calculation is described in \autoref{app:costplus}. \tabularnewline \addlinespace[3pt]
 
 \bottomrule
 \end{tabularx}

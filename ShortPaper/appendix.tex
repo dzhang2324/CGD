@@ -1,0 +1,47 @@
+\section{Data Overview Tables}
+
+\begin{table}[H]
+\centering
+\caption{\MakeUppercase{Description of the covariates in the Medicaid data.}}
+\label{table:table6}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Brand name & The brand name of the drug, if there is a brand name (trademarked name). Otherwise, the generic name is listed. \tabularnewline \addlinespace[3pt]
+
+Generic name & The name of the chemical compound which makes up the drug. \tabularnewline \addlinespace[3pt]
+
+Number of manufacturers & The total number of manufacturers for each drug. \tabularnewline \addlinespace[3pt]
+
+Manufacturer name & Name of the manufacturer of the drug. \tabularnewline \addlinespace[3pt]
+
+Year & Year of the particular observation. \tabularnewline \addlinespace[3pt]
+
+Total spending & Total Medicaid spending for the corresponding drug and year. \tabularnewline \addlinespace[3pt]
+
+Dosage units & Total dosage units of the drug which are dispensed in the corresponding year. The dosage unit refers to the lowest dispensable amount for the corresponding drug. \tabularnewline \addlinespace[3pt]
+
+Prescription claims & The total number of prescription fills for the drug, consisting of original prescriptions and refills. \tabularnewline \addlinespace[3pt]
+
+Spending per dosage unit & This is the Medicaid spending divided by the total number of dosage units. This is weighted by the proportion of total claims with respect to different forms of the drug, such as different dosage strengths, forms, etc.\tabularnewline \addlinespace[3pt]
+
+Spending per claim & Total Medicaid spending divided by the total number of prescription claims for the corresponding drug and year. \tabularnewline \addlinespace[3pt]
+
+Outlier flag & An indicator covariate which equals 1 if the drug's statistics are affected by some form of outlier circumstances. Further details can be found below. \tabularnewline
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+
+\input{tables/medicaid_all.tex}
+
+\input{tables/medicaid_filtered.tex}
+

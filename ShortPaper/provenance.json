@@ -1,0 +1,90 @@
+{
+  "baseline_tag": "before-short-version",
+  "baseline_commit": "46cb8fd16779926bb2a5d815d2c929cb1e181d7a",
+  "source_path": "Paper/main.tex",
+  "source_sha256": "04631cd7ba1a8038c4778fe67cc9080100757135e425f3104af366405405c00b",
+  "body_sha256_at_creation": "235e141d19f5ac97c43333e9a704678a18a1c16f102d3f50c006c78192a14e08",
+  "deletions": [
+    {
+      "description": "Remove the two introduction sentences about omitted supplementary analyses",
+      "source_start_line": 67,
+      "source_start_offset": 4810,
+      "source_end_offset": 5023,
+      "deleted_text": " Data from Mark Cuban's Cost Plus Drugs and NADAC provide supplementary descriptive evidence on pharmaceutical pricing. The Cost Plus analysis is presented in \\hyperref[app:costplus]{Appendix~\\ref*{app:costplus}}."
+    },
+    {
+      "description": "Remove the main-text sentence referring to appendix tables omitted from the main-only PDF",
+      "source_start_line": 74,
+      "source_start_offset": 6973,
+      "source_end_offset": 7159,
+      "deleted_text": " The 11 covariates are described in \\autoref{table:table6}; summary statistics are given in \\autoref{summary:medicaid-all}, and \\autoref{summary:medicaid-filtered} for the filtered data."
+    },
+    {
+      "description": "Remove the Cost Plus and NADAC data descriptions",
+      "source_start_line": 80,
+      "source_start_offset": 8095,
+      "source_end_offset": 10285,
+      "deleted_text": "\\subsection{Cost Plus Drugs}\nThe second data source that I will discuss is the data from Mark Cuban’s Cost Plus Drugs. To obtain the data, I web scraped the website page (legally) containing a list of all medications, using Selenium and BeautifulSoup packages in Python. The covariates are summarized by the following tables: \n\nThis data has 442 observations. The six covariates reported here are the medication name, brand name, dosage form, reported retail price, Cost Plus price, and estimated manufacturing cost. Cost Plus sells only generic medication, so the medication name is the name for the generic. The retail price is the brand name price as reported by Cost Plus Drugs. According the website, this is calculated as \"an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices.\" Therefore, some of the interpretation of this retail price must be taken with a grain of salt, but I choose to give the benefit of the doubt in this paper. \n\nThe Cost Plus price is the price that Cost Plus is selling the medication for: it is calculated by factoring in manufacturing/labor costs in addition to a 15 percent markup. In particular, the Cost Plus price can be decomposed as \n\n\\[\n\\mathrm{Cost\\ Plus\\ price}\n= 1.15(\\mathrm{Estimated\\ manufacturing\\ cost}) + 3\n\\]\n\nwhere 3 is the pharmacy labor cost. Tax and shipping costs are not included. The covariates are described in \\autoref{table:table9}.\n\n\\subsection{NADAC}\nThe third data source is the NADAC data, which stands for the National Average Drug Acquisition Cost. This data contains 1,298,197 observations with 12 covariates. For the sake of avoiding the difficulties of interpreting the data during and soon after the COVID-19 pandemic, I specifically choose to use the NADAC data from 2019. Two of the covariates uniquely identify the drug: these are the National Drug Code description, which includes the drug name, strength, and dosage form; and the NDC, which is an 11 digit code. The covariates are summarized in \\autoref{table:table11}, and summary statistics in \\autoref{summary:nadac}.\n\n"
+    },
+    {
+      "description": "Remove the NADAC Brand to Generic analysis",
+      "source_start_line": 165,
+      "source_start_offset": 18879,
+      "source_end_offset": 23661,
+      "deleted_text": "\\section{Brand to Generic}\nThis final section will investigate differences between the NADAC of brand name drugs and their generic counterparts through a qualitative approach. I first separate the NADAC data into drugs with no generic counterpart, and the drugs where the rate is classified as generic in the NADAC. I then plot a density histogram of the natural logarithm of the NADAC Per Unit for both groups:\n\n\\begin{figure}[H]\n    \\centering\n    \\includegraphics[width=13cm]{Screenshot (90).png}\n    \\caption{Histograms of log(NADAC Per Unit) of strictly brand name and generic drugs.}\n    \\label{fig:nadac-distributions}\n\\end{figure}\n\\FloatBarrier\n\nNote that the brand name drugs distribution lies farther to the right along the x-axis, which indicates that brand name drugs are priced significantly higher on average compared to generics. The brand name density is also concentrated higher at a significantly higher NADAC per unit for brand name drugs: this tells us that brand name drugs are very consistently priced at a specific high “price range”. Additionally, we can also see that where most of the generic NADAC per unit values are, the brand name drugs are sparse in that same area. The lines drawn over the histograms are kernel density estimations (KDEs) of the respective distributions. Also note the fat tails of the brand name distribution, which indicates significantly high variance compared to the relatively symmetric and approximately normal distribution of the generic NADAC.\n\nNow we consider brand name drugs which have had a corresponding generic introduced at some point. In total, there are 1286 of these drugs after accounting for duplicates. \n\n\\begin{table}[!htbp]\n\\centering\n\\caption{\\MakeUppercase{Summary Statistics - Brand Name with Generic}}\n\\label{summary:nadac-paired}\n\\begin{singlespace}\n\\begin{minipage}{0.95\\linewidth}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}Xrrrrr@{}}\n\\toprule\nCovariate & $N$ & Mean & Std. dev. & Min. & Max. \\\\\n\\midrule\nNADAC per unit & 1,286 & 16.173 & 41.481 & 0.005 & 471.559 \\\\\nGeneric NADAC per unit & 1,286 & 4.514 & 19.310 & 0.003 & 330.858 \\\\\nNADAC gap & 1,286 & $-$11.659 & 28.786 & $-$324.811 & 2.277 \\\\\nProportional gap & 1,286 & $-$0.696 & 0.292 & $-$0.999 & 1.679 \\\\\n\\bottomrule\n\\end{tabularx}\n\\end{minipage}\n\\end{singlespace}\n\\end{table}\n\\FloatBarrier\n\nThe NADAC gap is calculated by subtracting the brand-name NADAC per unit from the corresponding generic NADAC per unit. The proportional gap is calculated by dividing the NADAC gap by the brand-name NADAC per unit. One thing we can immediately notice is that, for most drugs in this comparison, the generic has a lower NADAC per unit than its brand-name counterpart. However, we can also see that there are some drugs for which the generic has a higher NADAC per unit than the brand-name counterpart.\n\n\\begin{table}[!htbp]\n\\centering\n\\caption{\\MakeUppercase{Summary Statistics - Generic is More Expensive}}\n\\label{summary:nadac-positive}\n\\begin{singlespace}\n\\begin{minipage}{0.95\\linewidth}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabularx}{\\linewidth}{@{}>{\\raggedright\\arraybackslash}Xrrrrr@{}}\n\\toprule\nCovariate & $N$ & Mean & Std. dev. & Min. & Max. \\\\\n\\midrule\nNADAC per unit & 16 & 2.018 & 2.150 & 0.081 & 7.245 \\\\\nGeneric NADAC per unit & 16 & 2.493 & 2.257 & 0.116 & 7.686 \\\\\nNADAC gap & 16 & 0.474 & 0.656 & $-$0.027 & 2.277 \\\\\nProportional gap & 16 & 0.457 & 0.452 & 0.057 & 1.679 \\\\\n\\bottomrule\n\\end{tabularx}\n\\end{minipage}\n\\end{singlespace}\n\\end{table}\n\\FloatBarrier\n\nFor the drugs where the generic ends up more expensive, it is on average 45\\% more expensive. However, since there are only 16 drugs, an increase in price in the generic is the exception rather than the rule. \n\nWe can look at the distribution of the percent change:\n\n\\begin{figure}[H]\n    \\centering\n    \\includegraphics[width=13cm]{Screenshot (88).png}\n    \\caption{Density histogram of the percent change in NADAC}\n    \\label{fig:nadac-gap}\n\\end{figure}\n\nWe can see that, for a substantial proportion of drugs in this comparison, the generic NADAC per unit is approximately 90\\% lower than the brand-name NADAC per unit.\n\nIn summary, the NADAC per unit of generic drugs tend to be significantly lower than those which are strictly brand name drugs. Additionally, the NADAC per unit for strictly brand name drugs has very high variance, while the NADAC per unit for generic drugs has relatively smaller variance. In a substantial proportion of the paired comparisons, generic NADAC per unit is at least 80\\% lower than brand-name NADAC per unit, although some generics have higher acquisition costs. These comparisons describe acquisition-cost gaps in the 2019 data rather than changes following generic entry.\n\n"
+    },
+    {
+      "description": "Remove the conclusion paragraph about NADAC and Cost Plus",
+      "source_start_line": 246,
+      "source_start_offset": 24164,
+      "source_end_offset": 24964,
+      "deleted_text": "The 2019 NADAC comparisons show that generic drugs generally have lower acquisition costs than brand-name drugs. This pattern is also present among drugs with a recorded generic counterpart. These gaps point to potential savings in acquiring medicines where suitable generic alternatives are available, although the comparisons do not measure savings for patients or Medicaid. The supplementary Cost Plus analysis in \\hyperref[app:costplus]{Appendix~\\ref*{app:costplus}} offers a complementary perspective on pharmaceutical pricing. Estimated manufacturing costs are associated with reported retail prices, but provide only a partial account of the price differences across drugs, as things such as demand and characteristics of competing products can also contribute to variation in retail prices.\n\n"
+    }
+  ],
+  "latex_path_changes": {
+    "{Screenshot (98).png}": "{figures/Screenshot (98).png}",
+    "{../analysis/output/figures/medicaid_mean_spending.pdf}": "{figures/medicaid_mean_spending.pdf}",
+    "{../analysis/output/tables/medicaid_unit.tex}": "{tables/medicaid_unit.tex}",
+    "{../analysis/output/tables/medicaid_claim.tex}": "{tables/medicaid_claim.tex}"
+  },
+  "reference_deletion": "\\item\nMulcahy, Andrew W., and Vishnupriya Kareddy. 2022.\n\\href{https://www.rand.org/pubs/periodicals/health-quarterly/issues/v9/n3/07.html}{``Prescription Drug Supply Chains: An Overview of Stakeholders and Relationships.''}\n\\textit{RAND Health Quarterly} 9(3): 7.\n\n",
+  "copied_assets": [
+    {
+      "source_path": "Paper/Screenshot (98).png",
+      "local_path": "figures/Screenshot (98).png",
+      "sha256": "12f69d207e9726393febb15d404fa0fe0019eb1943118fd80b206b980beb71e8"
+    },
+    {
+      "source_path": "analysis/output/figures/medicaid_mean_spending.pdf",
+      "local_path": "figures/medicaid_mean_spending.pdf",
+      "sha256": "80a400edffb99ac27612f96f21c535007f154f0b5402dc08e186b2b35688f049"
+    },
+    {
+      "source_path": "analysis/output/tables/medicaid_unit.tex",
+      "local_path": "tables/medicaid_unit.tex",
+      "sha256": "5501b58197638f1dea5a765e80737670094274cd440edc3186e42d23962f20a4"
+    },
+    {
+      "source_path": "analysis/output/tables/medicaid_claim.tex",
+      "local_path": "tables/medicaid_claim.tex",
+      "sha256": "f5f2a4b97922e07d0e39b59085c4c5679d8115600afb5b6f4214f0158766f232"
+    },
+    {
+      "source_path": "analysis/output/tables/medicaid_all.tex",
+      "local_path": "tables/medicaid_all.tex",
+      "sha256": "6f9fff7e09dad7e48b2f958336a4ae81a80a9dcb1826b893eedbe4607456a2b9"
+    },
+    {
+      "source_path": "analysis/output/tables/medicaid_filtered.tex",
+      "local_path": "tables/medicaid_filtered.tex",
+      "sha256": "4d079995c98b672a8616b6feb533dac26d0a6207e1f635ca6882bdb822fde9ef"
+    }
+  ],
+  "constraints": {
+    "maximum_main_text_pages": 10,
+    "new_manuscript_prose": false,
+    "original_title_and_layout": true,
+    "original_two_regression_tables": true
+  },
+  "page_count_status": "12 main pages; 15 with supplements; author reviewing before further deletions"
+}

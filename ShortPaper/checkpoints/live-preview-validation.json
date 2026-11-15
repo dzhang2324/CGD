@@ -1,0 +1,31 @@
+{
+  "checkpoint_tag": "short-live-preview",
+  "baseline_tag": "before-short-live-preview",
+  "change": "LaTeX Workshop root-file detection and save-to-build configuration",
+  "root_targets": {
+    "body.tex": "main.tex",
+    "preamble.tex": "main.tex",
+    "references.tex": "with-supplement.tex",
+    "appendix.tex": "with-supplement.tex"
+  },
+  "latex_warnings": [],
+  "synctex_includes_body_for_both_outputs": true,
+  "user_prose_preserved": true,
+  "full_paper_unchanged": true,
+  "pdf_comparison": [
+    {
+      "file": "main.pdf",
+      "pages": 12,
+      "render_unchanged": true,
+      "text_unchanged": true
+    },
+    {
+      "file": "with-supplement.pdf",
+      "pages": 15,
+      "render_unchanged": true,
+      "text_unchanged": true
+    }
+  ],
+  "independent_source_audit": "passed",
+  "verification_limit": "Editor UI interaction was not automated; build targets, save-to-build settings, builds, SyncTeX, and rendered PDFs were checked."
+}

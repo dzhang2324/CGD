@@ -1,0 +1,8 @@
+{
+  "purpose": "Preserve the author's short-paper wording edit before refactoring live preview.",
+  "tag": "before-short-live-preview",
+  "body_sha256": "5a51e6ce5c6bfc50e3a9dfcacd100049800d777bdae8a2b97246a0d588623797",
+  "pdf_sha256": "a738b7100312b043c04bfb11fc1906b75594cd7f5054e3c5ba3a2c20d0b59221",
+  "full_paper_sha256": "04631cd7ba1a8038c4778fe67cc9080100757135e425f3104af366405405c00b",
+  "full_references_sha256": "e3fe693d94cd78521cff21082e5f4a3d7fc812ce364122c5d4793694e2e42b3d"
+}

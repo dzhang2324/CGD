@@ -163,14 +163,18 @@ def _regression_table(
                 "Per-unit spending is the reported weighted average per dosage unit."
             )
     else:
-        rows.append(
+        note = (
             r"\textit{Notes:} OLS using the saved Cost Plus snapshot. "
             r"HC3 heteroskedasticity-robust standard errors in parentheses; "
             r"tests use the asymptotic normal distribution. "
-            r"Estimated manufacturing cost is $(\mathrm{CP\ price}-3)/1.15$. "
-            r"The constructed markup is "
-            r"$100[(\mathrm{retail\ price}-3)/\mathrm{estimated\ cost}-1]$."
+            r"Estimated manufacturing cost is $(\mathrm{CP\ price}-3)/1.15$."
         )
+        if models[0].outcome == "log_markup":
+            note += (
+                r" The constructed markup is "
+                r"$100[(\mathrm{retail\ price}-3)/\mathrm{estimated\ cost}-1]$."
+            )
+        rows.append(note)
     rows.append("All logarithms are natural.")
     rows += [
         r"$^{*}p<0.10$; $^{**}p<0.05$; $^{***}p<0.01$.",
@@ -314,6 +318,22 @@ def _figures(
             ax.set_ylabel(ylabel)
             ax.grid(alpha=0.15)
         _save_figure(fig, figures / "costplus_logs.pdf")
+
+        # Retain the historical two-panel figure above; the revised manuscript
+        # presents only the retail-price relationship.
+        fig, ax = plt.subplots(figsize=(6.4, 4.1), layout="constrained")
+        ax.scatter(
+            costplus["log_manuf_cost"],
+            costplus["log_retail_price"],
+            color="#235789",
+            s=17,
+            alpha=0.6,
+            linewidths=0,
+        )
+        ax.set_xlabel("Log estimated manufacturing cost")
+        ax.set_ylabel("Log reported retail price")
+        ax.grid(alpha=0.15)
+        _save_figure(fig, figures / "costplus_retail_log.pdf")
 
 
 def write_reports(

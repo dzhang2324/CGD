@@ -1,0 +1,10 @@
+{
+  "tag": "before-short-version",
+  "source_path": "Paper/main.tex",
+  "source_sha256": "04631cd7ba1a8038c4778fe67cc9080100757135e425f3104af366405405c00b",
+  "pdf_path": "ShortPaper/checkpoints/full-before-short-version.pdf",
+  "pdf_sha256": "f8a6e18fb3ddc3f582ace136ab0d82271b75ce46a1e37774a3f679aee5d6a0d5",
+  "build_command": "/opt/homebrew/bin/tectonic --only-cached --synctex --keep-logs --outdir <temporary directory> main.tex",
+  "build_working_directory": "Paper",
+  "purpose": "Preserve the author-edited full paper before creating the separate cuts-only short version."
+}

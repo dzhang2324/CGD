@@ -28,7 +28,6 @@ COSTPLUS_LABELS = {
     "retail_price": "Reported retail price (\\$)",
     "CP_price": "Cost Plus price (\\$)",
     "manuf_cost": "Estimated manufacturing cost (\\$)",
-    "markup": "Constructed markup (\\%)",
 }
 REGRESSION_OUTCOME_LABELS = {
     "log_unit_spend": "Log spending per unit",
@@ -423,8 +422,8 @@ def write_reports(
             "costplus_summary",
             "Summary statistics: Cost Plus",
             "summary:costplus",
-            "Saved historical snapshot. Estimated manufacturing cost and markup "
-            "are constructed from reported prices.",
+            "Saved historical snapshot. Estimated manufacturing cost "
+            "is constructed from the Cost Plus price.",
         ),
     ]:
         text, statistics = _descriptive_table(

@@ -1,0 +1,14 @@
+{
+  "tag": "before-short-whitespace",
+  "purpose": "Preserve author edits before layout-only reduction from 12 to 10 pages.",
+  "main_pages": 12,
+  "source_hashes": {
+    "ShortPaper/body.tex": "7fde63f12fab521e893aec09c461be40fa59040c63230ca67a71a393f716920e",
+    "ShortPaper/preamble.tex": "6accced0b20266b54933b2b52affc08341fab1fd13ecde303b3f7158a8d26966",
+    "ShortPaper/tables/medicaid_unit.tex": "5501b58197638f1dea5a765e80737670094274cd440edc3186e42d23962f20a4",
+    "ShortPaper/tables/medicaid_claim.tex": "f5f2a4b97922e07d0e39b59085c4c5679d8115600afb5b6f4214f0158766f232",
+    "Paper/main.tex": "04631cd7ba1a8038c4778fe67cc9080100757135e425f3104af366405405c00b",
+    "Paper/references.tex": "e3fe693d94cd78521cff21082e5f4a3d7fc812ce364122c5d4793694e2e42b3d"
+  },
+  "pdf_sha256": "72cb894a6d59553c82b7c707109111adc533d113aab0c6c95e58a84e7da34be9"
+}

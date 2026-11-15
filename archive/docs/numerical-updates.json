@@ -1,0 +1,197 @@
+{
+  "base_commit": "0390f5ea2797e51f9e5b169dc713ae001b19f1a4",
+  "date": "2026-11-11",
+  "equation_unchanged": true,
+  "manual_guide_find_passages_synchronized": true,
+  "numeric_only_check_passed": true,
+  "primary_results": "analysis/output/estimates.csv",
+  "primary_results_sha256": "042399052f2e45350494dd48161916d777011c58dcdc9dce5bd43dbffaf5d06d",
+  "replacements": [
+    {
+      "find": "decrease of 12.4\\% on total spending",
+      "line": 30,
+      "replace": "decrease of 8.7\\% on total spending",
+      "source": "total_claims.percent_change"
+    },
+    {
+      "find": "an 18.6\\% decrease",
+      "line": 129,
+      "replace": "an 16.9\\% decrease",
+      "source": "medicaid_unit_year.percent_change"
+    },
+    {
+      "find": "a 17\\% decrease in the average spend per claim",
+      "line": 129,
+      "replace": "a 15.6\\% decrease in the average spend per claim",
+      "source": "medicaid_claim_year.percent_change"
+    },
+    {
+      "find": "a 15\\% increase in total spending",
+      "line": 129,
+      "replace": "a 16.2\\% increase in total spending",
+      "source": "total_year.percent_change"
+    },
+    {
+      "find": "In regression (3) for average spend per dosage unit",
+      "line": 135,
+      "replace": "In regression (2) for average spend per dosage unit",
+      "source": "medicaid_unit_claims.table_column"
+    },
+    {
+      "find": "the $R^2$ decreases to 0.031",
+      "line": 135,
+      "replace": "the $R^2$ decreases to 0.127",
+      "source": "medicaid_unit_claims.r_squared"
+    },
+    {
+      "find": "the adjusted $R^2$ is $-0.292$",
+      "line": 135,
+      "replace": "the adjusted $R^2$ is $0.127$",
+      "source": "medicaid_unit_claims.adjusted_r_squared"
+    },
+    {
+      "find": "Regression (3) seems to indicate",
+      "line": 135,
+      "replace": "Regression (2) seems to indicate",
+      "source": "medicaid_unit_claims.table_column"
+    },
+    {
+      "find": "decreases by 8\\% on average",
+      "line": 135,
+      "replace": "decreases by 12.2\\% on average",
+      "source": "medicaid_unit_claims.percent_change"
+    },
+    {
+      "find": "the $R^2$ increases to 0.884",
+      "line": 137,
+      "replace": "the $R^2$ increases to 0.444",
+      "source": "total_claims.r_squared"
+    },
+    {
+      "find": "the adjusted $R^2$ is 0.845",
+      "line": 137,
+      "replace": "the adjusted $R^2$ is 0.444",
+      "source": "total_claims.adjusted_r_squared"
+    },
+    {
+      "find": "a negative coefficient of -0.124",
+      "line": 137,
+      "replace": "a negative coefficient of -0.091",
+      "source": "total_claims.manufacturer_coefficient"
+    },
+    {
+      "find": "a 0.973\\% increase in total spending",
+      "line": 137,
+      "replace": "a 0.755\\% increase in total spending",
+      "source": "total_claims.log_claims_coefficient"
+    },
+    {
+      "find": "Looking at regression (3) for average cost per claim",
+      "line": 139,
+      "replace": "Looking at regression (2) for average cost per claim",
+      "source": "medicaid_claim_claims.table_column"
+    },
+    {
+      "find": "lowered the $R^2$ to 0.070",
+      "line": 139,
+      "replace": "lowered the $R^2$ to 0.203",
+      "source": "medicaid_claim_claims.r_squared"
+    },
+    {
+      "find": "the adjusted $R^2$ is -0.240",
+      "line": 139,
+      "replace": "the adjusted $R^2$ is 0.202",
+      "source": "medicaid_claim_claims.adjusted_r_squared"
+    }
+  ],
+  "scope": "Numeric tokens only; manuscript wording and equation unchanged.",
+  "source_sha256_after": "c9a9f98d1848bf64b870053fb6027ddd6217292296b648a4d9902df3a17dfc73",
+  "source_sha256_before": "9409dbc02f1027332453cb544d7a3caf8bf240a66ea1823c5eb003bd01b48f76",
+  "supplemental_total_spending_checks": {
+    "total_claims": {
+      "adjusted_r_squared": 0.44402040689891675,
+      "coefficients": {
+        "Tot_Mftr": -0.09129236639708381,
+        "const": 7.828605577721577,
+        "log_claims": 0.7549278536782856,
+        "year_2018": -0.06119806178008619,
+        "year_2019": 0.03363087436857706,
+        "year_2020": 0.08904854511637034,
+        "year_2021": 0.1577283105617947
+      },
+      "covariance": "cluster CR1",
+      "drug_fixed_effects": false,
+      "drug_groups": 3244,
+      "inference": "t(G-1)",
+      "log_claims": true,
+      "observations": 12740,
+      "outcome": "log(Tot_Spndng)",
+      "p_values": {
+        "Tot_Mftr": 3.5176136526805055e-29,
+        "const": 0.0,
+        "log_claims": 0.0,
+        "year_2018": 0.0018545255726516163,
+        "year_2019": 0.14511780456676793,
+        "year_2020": 0.0007148503893223058,
+        "year_2021": 4.487770405208999e-08
+      },
+      "percent_change": -8.724918578163187,
+      "r_squared": 0.44428227027583855,
+      "standard_errors": {
+        "Tot_Mftr": 0.008062183863352456,
+        "const": 0.14267821068146203,
+        "log_claims": 0.016260300807600638,
+        "year_2018": 0.01964525145963793,
+        "year_2019": 0.023076799747236806,
+        "year_2020": 0.026290732095129662,
+        "year_2021": 0.028763824364923425
+      },
+      "year_indicators": true
+    },
+    "total_year": {
+      "adjusted_r_squared": 0.07910194909925039,
+      "coefficients": {
+        "Tot_Mftr": 0.150295422332433,
+        "const": 14.093272346406089,
+        "year_2018": -0.09204757225289252,
+        "year_2019": -0.06809391902624329,
+        "year_2020": -0.08192627645908279,
+        "year_2021": 0.012498006751762047
+      },
+      "covariance": "cluster CR1",
+      "drug_fixed_effects": false,
+      "drug_groups": 3244,
+      "inference": "t(G-1)",
+      "log_claims": false,
+      "observations": 12740,
+      "outcome": "log(Tot_Spndng)",
+      "p_values": {
+        "Tot_Mftr": 5.747897140537789e-124,
+        "const": 0.0,
+        "year_2018": 0.001185944439037802,
+        "year_2019": 0.03954147940149113,
+        "year_2020": 0.027890766461192762,
+        "year_2021": 0.7606142773471259
+      },
+      "percent_change": 16.217752521433017,
+      "r_squared": 0.07946339742757325,
+      "standard_errors": {
+        "Tot_Mftr": 0.006074036176807644,
+        "const": 0.061798217668473564,
+        "year_2018": 0.028364930873038367,
+        "year_2019": 0.03306591752447949,
+        "year_2020": 0.037242452277057525,
+        "year_2021": 0.04101742975556939
+      },
+      "year_indicators": true
+    }
+  },
+  "unchanged_pending_manual_revision": [
+    "The 0.03 and 0.02 decrease statements omit percentage units and cannot be corrected by changing digits alone.",
+    "Drug fixed effects, the within-estimator equation, and the naive-regression wording describe the old specification.",
+    "The dosage-unit not-significant claim conflicts with the new result.",
+    "The statements that R-squared decreased conflict with the new results.",
+    "The total-spending table and its column (3) no longer exist.",
+    "NADAC numerical claims have not been reverified."
+  ]
+}

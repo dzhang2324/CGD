@@ -1,0 +1,261 @@
+{
+  "baseline_tag": "before-repository-cleanup",
+  "baseline_commit": "9266eb230371ddc9f0bc633c12fddba8c84445e3",
+  "paths": [
+    {
+      "original": "CGPP - Cleaning Medicaid Data.ipynb",
+      "current": "archive/code/CGPP - Cleaning Medicaid Data.ipynb",
+      "sha256": "99619e6c53bbcbbbd044b4594a6b6abfdb48d3eb50c210b83409d4a38d21d565"
+    },
+    {
+      "original": "CGPP Data/Medicaid_Spending_by_Drug_2021.csv",
+      "current": "data/raw/Medicaid_Spending_by_Drug_2021.csv",
+      "sha256": "87a69da9416a68c93d940500050aa6c5f8f15999e010f65c02362fd89dda942c"
+    },
+    {
+      "original": "CGPP Data/costplus.csv",
+      "current": "data/raw/costplus.csv",
+      "sha256": "193bab605cfe459cc3d8dd1f0c7900c59f965d6613a72a64bd37112ad86dbba3"
+    },
+    {
+      "original": "CGPP Data/med_panel.csv",
+      "current": "data/reference/med_panel.csv",
+      "sha256": "8e47689a16e7f77c90e6ca23c78963b68120b0b2b0d793ba09a9474c200844cb"
+    },
+    {
+      "original": "CGPP Data/nadacdatadefinitions.pdf",
+      "current": "data/documentation/nadacdatadefinitions.pdf",
+      "sha256": "1ebd80905ad77a855013c8dde5d770ab209d06216553d42880056d0bd667f3f0"
+    },
+    {
+      "original": "CGPP PanelOLS (plm + stargazer).Rmd",
+      "current": "archive/code/CGPP PanelOLS (plm + stargazer).Rmd",
+      "sha256": "187970cab18db8a28d069db05c9b9815d6c010bb8a217374385390aa26f67a95"
+    },
+    {
+      "original": "CGPP Statistical Analyses.ipynb",
+      "current": "archive/code/CGPP Statistical Analyses.ipynb",
+      "sha256": "79d3e4f5894de9ce3f2b8db54b00d973db6b62c46c3605f4f1fb4e743512288b"
+    },
+    {
+      "original": "Competition, Generics, and Pharmaceutical Pricing.pdf",
+      "current": "archive/manuscripts/Competition, Generics, and Pharmaceutical Pricing.pdf",
+      "sha256": "84e09749c8facea8b6b4e461b04441f73716ab473ddb95bda868d0e629131a92"
+    },
+    {
+      "original": "Competition_and_Generic_Drugs (2).pdf",
+      "current": "archive/manuscripts/Competition_and_Generic_Drugs (2).pdf",
+      "sha256": "2533c1b850b92589d3cf063ef252b824a8a3aadc591dd300a7be4a50c80164e5"
+    },
+    {
+      "original": "Competition_and_Generic_Drugs.pdf",
+      "current": "archive/manuscripts/Competition_and_Generic_Drugs.pdf",
+      "sha256": "9955798219ed6bbc184403e7976e4199b275a4577472fe61db39c76529015bc3"
+    },
+    {
+      "original": "Competition_and_Generic_Drugs.zip",
+      "current": "archive/source/Competition_and_Generic_Drugs.zip",
+      "sha256": "58fd01d6eae291e3eacf8471e8442fac7c1eb72b97e37ecf405ba1e64ad91251"
+    },
+    {
+      "original": "Paper/Screenshot (96).png",
+      "current": "archive/figures/Screenshot (96).png",
+      "sha256": "6344ee08ab95aa7fee2fb9cd9c39bfd09234ebc4f2fb219faf0f7c8479cc0cd2"
+    },
+    {
+      "original": "Paper/Screenshot (97).png",
+      "current": "archive/figures/Screenshot (97).png",
+      "sha256": "5ce84b5e72d615f30badbef32e91bcbb9dfc3661a62e4c45c9f3779fdc1f3738"
+    },
+    {
+      "original": "Paper/checkpoints/analysis-updated-pending-prose.pdf",
+      "current": "archive/checkpoints/full-paper/analysis-updated-pending-prose.pdf",
+      "sha256": "2e64f3748a59bf97fd1f111e1e4ebe705059485b2ae50e4b30726a46284bb68f"
+    },
+    {
+      "original": "Paper/checkpoints/baseline-before-rewrite.pdf",
+      "current": "archive/checkpoints/full-paper/baseline-before-rewrite.pdf",
+      "sha256": "4d4d547c8e118eaa1f86a1de1e2f7547189a521843f95f61acde8119de91c647"
+    },
+    {
+      "original": "Paper/checkpoints/before-econometrica-formatting.pdf",
+      "current": "archive/checkpoints/full-paper/before-econometrica-formatting.pdf",
+      "sha256": "64e44857decb324f8a55730526cbe9fa141e19fdd191b2af2d94557808680dc5"
+    },
+    {
+      "original": "Paper/checkpoints/before-terminology-cleanup.pdf",
+      "current": "archive/checkpoints/full-paper/before-terminology-cleanup.pdf",
+      "sha256": "fe5f58e4c652735d4ca00e4da12290a86176f0731782f1c52ee7634ff381be1d"
+    },
+    {
+      "original": "Paper/checkpoints/econometrica-table-formatting.pdf",
+      "current": "archive/checkpoints/full-paper/econometrica-table-formatting.pdf",
+      "sha256": "16fd1a629b50bfb477020e61caf8a55082bc63b0aa2fc96ddce191401ff6abde"
+    },
+    {
+      "original": "Paper/checkpoints/terminology-cleanup-complete.pdf",
+      "current": "archive/checkpoints/full-paper/terminology-cleanup-complete.pdf",
+      "sha256": "8a3bcf3c82fecea3174ba1dc1f0dd710b606d0b61234f4c715ecbc29f511d7ab"
+    },
+    {
+      "original": "Paper/meanScatter.png",
+      "current": "archive/figures/meanScatter.png",
+      "sha256": "64702bbe1b52d6fac6476d57342c2ea131e000e34c7219826a3d0a0300173287"
+    },
+    {
+      "original": "README.md",
+      "current": "archive/docs/repository-readme-before-cleanup.md",
+      "sha256": "dff4187bdba8d83052ec22592dee2d99ab42093589a4ddf4ad399549e1d94164"
+    },
+    {
+      "original": "ShortPaper/README.md",
+      "current": "ShortPaper/archive/readme-before-cleanup.md",
+      "sha256": "3c0bc8226c6bcdf23fac89659bd9e03e550bd1a891c6e249d593b425f6704d8d"
+    },
+    {
+      "original": "ShortPaper/checkpoints/before-live-preview.json",
+      "current": "ShortPaper/archive/checkpoints/before-live-preview.json",
+      "sha256": "f853d721faa9ca262b5680dfbfb30a9e3ff5e7c1c50f70dd020fc66c07b719c1"
+    },
+    {
+      "original": "ShortPaper/checkpoints/before-live-preview.pdf",
+      "current": "ShortPaper/archive/checkpoints/before-live-preview.pdf",
+      "sha256": "a738b7100312b043c04bfb11fc1906b75594cd7f5054e3c5ba3a2c20d0b59221"
+    },
+    {
+      "original": "ShortPaper/checkpoints/before-short-version.json",
+      "current": "ShortPaper/archive/checkpoints/before-short-version.json",
+      "sha256": "c3ee8f9346202cd7639590dd70e841844147113647717fbd4ec6eabc8e095e5b"
+    },
+    {
+      "original": "ShortPaper/checkpoints/before-whitespace.json",
+      "current": "ShortPaper/archive/checkpoints/before-whitespace.json",
+      "sha256": "cf379d99372f4287569ac78b396cc232ec59564a15df40dd8800eca99ad82d66"
+    },
+    {
+      "original": "ShortPaper/checkpoints/before-whitespace.pdf",
+      "current": "ShortPaper/archive/checkpoints/before-whitespace.pdf",
+      "sha256": "72cb894a6d59553c82b7c707109111adc533d113aab0c6c95e58a84e7da34be9"
+    },
+    {
+      "original": "ShortPaper/checkpoints/first-pass-main-12-pages.pdf",
+      "current": "ShortPaper/archive/checkpoints/first-pass-main-12-pages.pdf",
+      "sha256": "ad7b442ea3db3761d50a0bdfe04b6c8617673be7d715d006c120cdaa34c1d538"
+    },
+    {
+      "original": "ShortPaper/checkpoints/first-pass-validation.json",
+      "current": "ShortPaper/archive/checkpoints/first-pass-validation.json",
+      "sha256": "06d876cef6d4d5576fdd704466cf888f72c9cde7f52333c5ff206a7ca461fc9a"
+    },
+    {
+      "original": "ShortPaper/checkpoints/first-pass-with-supplement-15-pages.pdf",
+      "current": "ShortPaper/archive/checkpoints/first-pass-with-supplement-15-pages.pdf",
+      "sha256": "2fa555c28c22d146b611cf22fc1cc6ce9a8301e4a8cb346bc381ba8796a1620d"
+    },
+    {
+      "original": "ShortPaper/checkpoints/full-before-short-version.pdf",
+      "current": "ShortPaper/archive/checkpoints/full-before-short-version.pdf",
+      "sha256": "f8a6e18fb3ddc3f582ace136ab0d82271b75ce46a1e37774a3f679aee5d6a0d5"
+    },
+    {
+      "original": "ShortPaper/checkpoints/live-preview-validation.json",
+      "current": "ShortPaper/archive/checkpoints/live-preview-validation.json",
+      "sha256": "918e73e7013db5ebda6aa734968543519325e42dbae82ce047371805539e7630"
+    },
+    {
+      "original": "ShortPaper/checkpoints/ten-page-main.pdf",
+      "current": "ShortPaper/archive/checkpoints/ten-page-main.pdf",
+      "sha256": "0e49ee97175bbe4a37583cf2e7b31390f750129cdb3845e6e33c8b1a1744a980"
+    },
+    {
+      "original": "ShortPaper/checkpoints/ten-page-validation.json",
+      "current": "ShortPaper/archive/checkpoints/ten-page-validation.json",
+      "sha256": "1a7092f59fc1e751990f9d16947fce14f655760a1943decc825906ac9410457a"
+    },
+    {
+      "original": "ShortPaper/checkpoints/ten-page-with-supplement.pdf",
+      "current": "ShortPaper/archive/checkpoints/ten-page-with-supplement.pdf",
+      "sha256": "e10c57e6d1f9d7364f98a3972610ba212fb0faa7c6533e2a3a14e3531982355b"
+    },
+    {
+      "original": "Web Scraping - Cost Plus.ipynb",
+      "current": "archive/code/Web Scraping - Cost Plus.ipynb",
+      "sha256": "9fadc10b61aa32cd41ae9ac7ffd90f92a1f970c8c36bd5f981a9c0bc6e70240f"
+    },
+    {
+      "original": "docs/checkpoints/before-econometrica-formatting.md",
+      "current": "archive/docs/checkpoints/before-econometrica-formatting.md",
+      "sha256": "bfaede0094b388bd497220595ec4763bde54cb89c25c85194bc38720499a5d74"
+    },
+    {
+      "original": "docs/checkpoints/before-terminology-cleanup.md",
+      "current": "archive/docs/checkpoints/before-terminology-cleanup.md",
+      "sha256": "3bfef833589b0ffe7d036890c4276245a1129b5d6afc3c4176295fe9414ccdd0"
+    },
+    {
+      "original": "docs/checkpoints/econometrica-table-formatting.md",
+      "current": "archive/docs/checkpoints/econometrica-table-formatting.md",
+      "sha256": "a597659a628a31e92dbd4d9939b1743daad76520f514bfe6c4ca2c77d6d7f22d"
+    },
+    {
+      "original": "docs/checkpoints/terminology-cleanup-complete.md",
+      "current": "archive/docs/checkpoints/terminology-cleanup-complete.md",
+      "sha256": "65bd3934c203bc5fe318c01f74f98e767bff2d36508f26d0ed5d2efccb0ce37f"
+    },
+    {
+      "original": "docs/consistency-review.md",
+      "current": "archive/docs/consistency-review.md",
+      "sha256": "538dce91f31d834c0a98c38027f15e105faa60d9fc30bf6ec41c1e3cdea37106"
+    },
+    {
+      "original": "docs/literature-notes.md",
+      "current": "archive/docs/literature-notes.md",
+      "sha256": "cdd41b1f88677ddc921ebfa4a16126a6a5bf511f4737457df920f9ec1e7db0ae"
+    },
+    {
+      "original": "docs/manual-revisions.md",
+      "current": "archive/docs/manual-revisions.md",
+      "sha256": "0987514970556df285d4952928f8e8cb712aae4b0fbf2a3c8a7bca7ee7bb4552"
+    },
+    {
+      "original": "docs/numerical-updates.json",
+      "current": "archive/docs/numerical-updates.json",
+      "sha256": "a22698222383e166f1cf90c6583c7bf793401987a7331527ca950ea9641f8214"
+    },
+    {
+      "original": "docs/revision-status.md",
+      "current": "archive/docs/revision-status.md",
+      "sha256": "8957f46c8ad048f0bf4a5b4edf888b93ba53d19171695cb9169b47f04146194d"
+    },
+    {
+      "original": "docs/rimi-feedback.md",
+      "current": "archive/docs/rimi-feedback.md",
+      "sha256": "6a61c4b09dbb9f28e2715f96116d4347ed9f9d8dc90bbcf3ba2b3c5eb6e5ca19"
+    },
+    {
+      "original": "docs/table-style-preview/README.md",
+      "current": "archive/docs/table-style-preview/README.md",
+      "sha256": "6622629fd8c5a30127c490f9692a50667b7dcb7ef102dd9aa2c3b937d665e329"
+    },
+    {
+      "original": "docs/table-style-preview/preview.pdf",
+      "current": "archive/docs/table-style-preview/preview.pdf",
+      "sha256": "6c28d0c2d2dc916431201f778098e2db652c3e4a5862f31524b7b63987e08b07"
+    },
+    {
+      "original": "docs/table-style-preview/preview.png",
+      "current": "archive/docs/table-style-preview/preview.png",
+      "sha256": "b5b6755f110adb5645e43e38cec312029097eb4faabef1f76d19ceca0dcf581c"
+    },
+    {
+      "original": "docs/table-style-preview/preview.tex",
+      "current": "archive/docs/table-style-preview/preview.tex",
+      "sha256": "ee0526576eb9dabef21a65e72af4036c1ad0c2836e7d433a36ea3402cc530827"
+    },
+    {
+      "original": "docs/yunus-feedback.md",
+      "current": "archive/docs/yunus-feedback.md",
+      "sha256": "a7659e92f1e01ed53836de22c92c118e285d4249c7cd5424b39b3b80aebf0a31"
+    }
+  ]
+}

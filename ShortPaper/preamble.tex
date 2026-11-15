@@ -1,0 +1,33 @@
+% !TEX root = main.tex
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{tabularray}
+\usepackage[colorlinks]{hyperref}
+\usepackage{placeins}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\renewcommand{\tablename}{TABLE}
+\makeatletter
+\let\thesis@originalmakecaption\@makecaption
+\long\def\@makecaption#1#2{%
+  \def\thesis@tabletype{table}%
+  \ifx\@captype\thesis@tabletype
+    \vskip\abovecaptionskip
+    \begingroup
+      \centering
+      \setstretch{1}%
+      {\small #1\par}%
+      \vskip4pt
+      {\footnotesize #2\par}%
+    \endgroup
+    \vskip9pt
+  \else
+    \thesis@originalmakecaption{#1}{#2}%
+  \fi
+}
+\makeatother
+\doublespace 
+

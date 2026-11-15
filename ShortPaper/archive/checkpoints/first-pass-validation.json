@@ -1,0 +1,105 @@
+{
+  "main_page_limit": 10,
+  "main_page_limit_met": false,
+  "main_pages": 12,
+  "main_pages_identical_render": true,
+  "main_pages_identical_text": true,
+  "pages": [
+    {
+      "opening_lines": "Competition and Generic Drugs | Evidence on Pharmaceutical Costs and Competition from Public Data",
+      "page": 1,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "billion after rebates (MACPAC, 2024). This paper examines how reported manufacturer | counts are associated with Medicaid spending per dosage unit.",
+      "page": 2,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "2 Data Overview | 2.1 Medicaid - Spending By Drug",
+      "page": 3,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "meets two other conditions. First, if there are fewer than 30 records associated with the | drug from the initial data source, then it is flagged as an outlier. Second, average spending",
+      "page": 4,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "The first order condition is | p\u2032(y)y + p(y) = c\u2032",
+      "page": 5,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "Figure 1: The monopoly chooses the price on the demand curve which correponds to the | quantity at the intersection of MR = MC (LibreTexts).",
+      "page": 6,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "400 | Mean spending per dosage unit ($)",
+      "page": 7,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "3.2.1 Regression Analysis | For our regression specification, the outcomes are average spending per dosage unit and",
+      "page": 8,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "TABLE 1 | MANUFACTURER COUNTS AND LOG SPENDING PER DOSAGE UNIT",
+      "page": 9,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "TABLE 2 | MANUFACTURER COUNTS AND LOG SPENDING PER PRESCRIPTION CLAIM",
+      "page": 10,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "manufacturer is associated with a 12.2% decrease in average spend per dosage unit, holding | the included controls constant. Additionally, the coe\ufb00icient on log prescription claims is -",
+      "page": 11,
+      "same_render": true,
+      "same_text": true
+    },
+    {
+      "opening_lines": "fordability. If the observed relationship reflects competitive pressure, reducing obstacles | to manufacturer entry could help contain spending on existing medicines. This possibility",
+      "page": 12,
+      "same_render": true,
+      "same_text": true
+    }
+  ],
+  "supplemented_pages": 15,
+  "status": "first pass complete; author reviewing 12-page draft before further cuts",
+  "checkpoint_tag": "short-version-first-pass",
+  "new_manuscript_prose": false,
+  "body_exactly_original_minus_recorded_deletions_and_path_changes": true,
+  "preamble_unchanged": true,
+  "figures_and_tables_byte_identical_to_sources": true,
+  "retained_numerical_results_unchanged": true,
+  "all_manuscript_file_dependencies_inside_short_folder": true,
+  "undefined_references": [],
+  "duplicate_labels": [],
+  "latex_warnings": [],
+  "existing_tracked_files_unchanged_since_start": true,
+  "independent_read_only_audit": "passed",
+  "pdf_checkpoints": [
+    {
+      "path": "checkpoints/first-pass-main-12-pages.pdf",
+      "sha256": "ad7b442ea3db3761d50a0bdfe04b6c8617673be7d715d006c120cdaa34c1d538"
+    },
+    {
+      "path": "checkpoints/first-pass-with-supplement-15-pages.pdf",
+      "sha256": "2fa555c28c22d146b611cf22fc1cc6ce9a8301e4a8cb346bc381ba8796a1620d"
+    }
+  ]
+}

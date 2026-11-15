@@ -1,0 +1,442 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{tabularray}
+\usepackage[colorlinks]{hyperref}
+\usepackage{placeins}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\renewcommand{\tablename}{TABLE}
+\makeatletter
+\let\thesis@originalmakecaption\@makecaption
+\long\def\@makecaption#1#2{%
+  \def\thesis@tabletype{table}%
+  \ifx\@captype\thesis@tabletype
+    \vskip\abovecaptionskip
+    \begingroup
+      \centering
+      \setstretch{1}%
+      {\small #1\par}%
+      \vskip4pt
+      {\footnotesize #2\par}%
+    \endgroup
+    \vskip9pt
+  \else
+    \thesis@originalmakecaption{#1}{#2}%
+  \fi
+}
+\makeatother
+\doublespace 
+
+\begin{document}
+
+\begin{center}
+    \Large
+    \textbf{Competition and Generic Drugs}
+        
+    \vspace{0.4cm}
+    \large
+    Evidence on Pharmaceutical Costs and Competition from Public Data Sources
+        
+       
+    \vspace{0.9cm}
+    \textbf{Abstract}
+    
+\end{center}
+
+Pharmaceutical competition is central to debates about drug affordability and public spending. Building on research linking pharmaceutical competition and prices, I construct a panel from public Medicaid spending records for 2017--2021 to examine the association between reported drug manufacturer counts and spending per drug dosage unit. Across drug groups, one additional manufacturer is associated with 12.2\% lower spending per dosage unit and 8.7\% lower spending per claim, controlling for year fixed effects and prescription claim volume. Because manufacturers select which markets to enter, these estimates describe associations rather than causal effects of manufacturer entry.
+
+\section{Introduction}
+According to Rajkumar (2020), global spending on prescription drugs was expected to reach approximately \$1.3 trillion in 2020, with the United States accounting for \$350 billion. Rajkumar (2020) discusses the relationship between limited competition and high drug prices, while Kesselheim et al. (2016) emphasize the role of market exclusivity. Additionally, an FDA report by Conrad and Lutter (2019) reports median reductions in average manufacturer prices relative to pre-entry brand prices of 54\% with two generic manufacturers and 79\% with four.
+
+For publicly financed programs such as Medicaid, drug spending has implications for both government budgets and access to treatment. In fiscal year 2021, Medicaid spent approximately \$80.6 billion on outpatient prescription drugs before manufacturer rebates and \$38.1 billion after rebates (MACPAC, 2024). This paper examines how reported manufacturer counts are associated with Medicaid spending per dosage unit.
+
+Pharmaceutical policy faces a tension between encouraging innovation and maintaining affordable access to medicines. Developing new drugs involves substantial upfront costs and a risk of failure. One rationale for temporary market exclusivity is that the prospect of future profits encourages firms to undertake these investments. Generic competition, in turn, can lower the prices of existing medicines (Caves, Whinston, and Hurwitz, 1991).
+
+\begingroup
+\emergencystretch=1em
+The literature also examines other determinants of pharmaceutical prices. Janssen Daalen et al. (2021) review studies of the determinants of drug prices. They find that retail drug prices vary substantially within and across countries and that the factors examined do not fully explain this variation. Determinants associated with lower retail prices include a higher market share of generics, central government purchasing, and price regulation. Determinants associated with higher retail prices include a higher market share of originator drugs and the presence of drug markups. They also identify particularly limited evidence on net drug prices, after discounts and rebates.
+\par
+\endgroup
+
+An established literature examines generic entry and pharmaceutical pricing. Caves, Whinston, and Hurwitz (1991) examine prices and market shares following patent expiration and generic entry. Reiffen and Ward (2005) find lower generic prices in markets with more competitors and emphasize the role of expected market size in entry decisions. Grabowski and Vernon (1992) examine pricing strategies for branded and generic drugs following generic entry, including the role of brand loyalty.
+
+Building on this literature, I construct a panel from public Medicaid spending records for 2017--2021 to examine the association between reported manufacturer counts and drug spending. I focus on spending per dosage unit, with spending per claim as a secondary outcome. Because manufacturers select which markets to enter, the estimates describe associations across drug groups rather than causal effects of manufacturer entry. Data from Mark Cuban's Cost Plus Drugs and NADAC provide supplementary descriptive evidence on pharmaceutical pricing. The Cost Plus analysis is presented in \hyperref[app:costplus]{Appendix~\ref*{app:costplus}}.
+
+\section{Data Overview}
+\subsection{Medicaid - Spending By Drug}
+The first data source that I will discuss is Medicaid - Spending by Drug. This data contains Medicaid spending by drug from 2017 to 2021, along with other covariates. It represents national-level drug spending for Medicaid covered outpatient drugs, which are paid for by state Medicaid agencies. The spending measures include dispensing fees and are not reduced by manufacturer rebates (CMS, 2022). Over-the-counter drugs in the Medicaid State Drug Utilization data are not included, and drugs with fewer than 11 claims in the most recent year are also not included. The source contains 16,146 records, including records for individual manufacturers and records aggregating all manufacturers within a drug group. Each record contains annual information for 2017--2021. Reshaping these annual fields produces 80,730 rows, one for each record and year, including rows with missing annual values. After applying the sample restrictions described below, the analysis includes 12,740 observations across 3,244 drug groups.
+
+In addition to the 16,146 total observations, each observation has a total of 36 covariates.
+Four of the covariates are the brand name of the drug, the generic equivalent of that drug, the number of manufacturers for the drug, and the name of the manufacturer of the drug: these covariates are time-invariant during this period. In the analysis, I define drug groups by brand name and generic name. 30 of the covariates can be divided into 6 distinct spending/financial/counting covariates for each year in 2017-2021, inclusive. After transforming the data, the panel contains 11 covariates, including the year. For the analyses in this paper, the data is filtered to consider only the entries where the statistics are calculated by aggregating all of the manufacturers for a particular drug, the outlier flag is 0, and all the other statistics are greater than 0. The 11 covariates are described in \autoref{table:table6}; summary statistics are given in \autoref{summary:medicaid-all}, and \autoref{summary:medicaid-filtered} for the filtered data.
+
+The outlier flag is an indicator covariate which represents if the drug is an outlier or not. A drug is labeled an outlier by the standard definition using the IQR, in addition to if it meets two other conditions. First, if there are fewer than 30 records associated with the drug from the initial data source, then it is flagged as an outlier. Second, average spending per dosage unit is calculated with and without outlier records. If these calculated amounts differ by 10 percent and \$1, then it is flagged as an outlier. The data used in this paper only includes observations for which the outlier flag is 0 i.e. the observations are not outliers.
+
+The last two covariates are percent change in average total spending per dosage unit from 2020-2021, and the annual growth rate in average total spending per dosage unit throughout 2017-2021, calculated using the compound annual growth rate. These are not used in the analyses. 
+
+\subsection{Cost Plus Drugs}
+The second data source that I will discuss is the data from Mark Cuban’s Cost Plus Drugs. To obtain the data, I web scraped the website page (legally) containing a list of all medications, using Selenium and BeautifulSoup packages in Python. The covariates are summarized by the following tables: 
+
+This data has 442 observations. The six covariates reported here are the medication name, brand name, dosage form, reported retail price, Cost Plus price, and estimated manufacturing cost. Cost Plus sells only generic medication, so the medication name is the name for the generic. The retail price is the brand name price as reported by Cost Plus Drugs. According the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." Therefore, some of the interpretation of this retail price must be taken with a grain of salt, but I choose to give the benefit of the doubt in this paper. 
+
+The Cost Plus price is the price that Cost Plus is selling the medication for: it is calculated by factoring in manufacturing/labor costs in addition to a 15 percent markup. In particular, the Cost Plus price can be decomposed as 
+
+\[
+\mathrm{Cost\ Plus\ price}
+= 1.15(\mathrm{Estimated\ manufacturing\ cost}) + 3
+\]
+
+where 3 is the pharmacy labor cost. Tax and shipping costs are not included. The covariates are described in \autoref{table:table9}.
+
+\subsection{NADAC}
+The third data source is the NADAC data, which stands for the National Average Drug Acquisition Cost. This data contains 1,298,197 observations with 12 covariates. For the sake of avoiding the difficulties of interpreting the data during and soon after the COVID-19 pandemic, I specifically choose to use the NADAC data from 2019. Two of the covariates uniquely identify the drug: these are the National Drug Code description, which includes the drug name, strength, and dosage form; and the NDC, which is an 11 digit code. The covariates are summarized in \autoref{table:table11}, and summary statistics in \autoref{summary:nadac}.
+
+\section{Competition and Costs}
+The literature discussed above highlights the role of competition in pharmaceutical pricing. In this section, I outline the relevant economic theory and examine the association between reported manufacturer counts and Medicaid spending per dosage unit and per claim.
+\subsection{Theoretical Background}
+I first give a brief background on the relevant microeconomic theory \footnote{Sourced from Prof. Cecile Gaubert's notes from ECON 101A, Fall 2021.} Let $y = D(p)$ be the demand curve which is a function of price $p$. In the case of a monopoly, the firm can choose $p$, in which case the quantity $y$ is determined by the demand. Alternatively, the quantity $y$ can be set by the firm, and so the price is determined as $p(y) = D^{-1}(y)$. The monopoly firm solves the maximization problem\footnote{Note that the profit function must be concave at the fixed point.}
+
+\begin{equation}
+\begin{array}{rrclcl}
+\displaystyle \max_{y} & p(y)y - c(y).\\
+\end{array}
+\end{equation}
+
+The first order condition is $$ p'(y)y + p(y) = c'_y(y)$$ where the $p'(y)y + p(y)$ is the marginal revenue, and $c'_y(y)$ is the marginal cost. In other words, the maximizing $y$ is at the intersection of the marginal revenue and marginal cost. 
+
+Note that the marginal revenue curve is significantly different than the marginal revenue in perfect competition, as marginal revenue is now a function of the quantity produced. In the case of perfect competition (and cases with more than one firm in general), an individual firm cannot totally control the market price: the market price is determined in part by strategic interactions with other competing firms. As the number of firms goes to infinity, the market price cannot be manipulated at all by any single firm: every firm is a price taker, and so the marginal revenue is a constant i.e. the market price. However, a monopoly can set the market price by manipulating the quantity produced, and so has the freedom to choose the price such that its own economic profit is positive and maximized above all else, manifesting in high prices.
+
+One thing to note is that the marginal revenue curve lies below the demand curve. Also, marginal revenue is a function of the quantity: in perfect competition, the price is given and is treated as a constant. The monopoly chooses the quantity which is at the intersection of the marginal revenue and marginal cost curve, but since the marginal revenue curve lies below the demand curve, the monopoly charges a price which is higher than the price in perfect competition, where the price in perfect competition is given by the intersection of marginal cost (the supply curve in perfect competition) and demand. This comparison suggests that greater competition can place downward pressure on prices, providing a theoretical motivation for examining the relationship between manufacturer counts and Medicaid drug spending.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{Screenshot (98).png}
+    \caption{The monopoly chooses the price on the demand curve which correponds to the quantity at the intersection of MR = MC (LibreTexts).}
+\end{figure}
+
+\subsection{Empirical Analysis}
+Using the filtered Medicaid data, I examine associations between the reported number of manufacturers and spending per dosage unit and per claim. For each outcome, I estimate regressions with year fixed effects, with and without log prescription claims.
+
+We can first look at some preliminary results. If we group the data by the number of total manufacturers and average the spending per dosage unit, we can see an interesting relationship: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{../analysis/output/figures/medicaid_mean_spending.pdf}
+    \caption{Scatterplot of the mean average spending per dosage unit of drugs (y-axis), grouped by number of manufacturers (x-axis).}
+\end{figure}
+
+The plot shows that mean spending per dosage unit is substantially lower for drugs with two or three manufacturers than for drugs with one manufacturer. Mean spending remains comparatively low at higher manufacturer counts, although it does not fall consistently as the count increases. These descriptive comparisons across drug groups provide suggestive evidence of a negative association between manufacturer counts and drug spending, but may reflect factors other than manufacturer counts.
+
+\newpage
+
+\subsubsection{Regression Analysis}
+
+For our regression specification, the outcomes are average spending per dosage unit and average spending per claim. For each outcome, I estimate
+
+\[
+Y_{it}=\alpha+\beta M_i+\gamma\log C_{it}+\lambda_t+u_{it},
+\]
+where $i$ denotes a drug group defined by brand name and generic name, $t$ denotes year, $Y_{it}$ is the natural logarithm of the spending outcome, $M_i$ is the reported manufacturer count, and $C_{it}$ is the number of prescription claims. Drugs with larger markets based on the number of prescription claims may attract more manufacturers and have different spending patterns. I include log prescription claims to adjust for differences in utilization across drug groups.
+
+I estimate each model by unweighted pooled ordinary least squares, with and without the log-claims term. Year fixed effects $\lambda_t$ account for changes common to all drug groups, with 2017 as the reference year. Standard errors are clustered by drug group. The reported manufacturer count does not vary over time within a drug group in these data, so drug-group fixed effects would therefore absorb the manufacturer-count covariate, preventing separate estimation of $\beta$. The manufacturer-count coefficient is estimated from differences across drug groups, conditional on the included controls.
+
+\input{../analysis/output/tables/medicaid_unit.tex}
+\FloatBarrier
+
+% Redundant total-spending table removed; associated prose awaits manual revision. 
+\FloatBarrier
+
+\input{../analysis/output/tables/medicaid_claim.tex}
+\FloatBarrier
+
+The regressions in column (1) of each table have a negative sign on the manufacturer-count coefficient, which is what we expect based on economic theory. In particular, an increase in one manufacturer is associated with a 16.9\% decrease in the average spend per dosage unit and a 15.6\% decrease in the average spend per claim, controlling for year effects.
+
+As seen in the regression tables, adding the natural logarithm of total claims reduces the magnitude of the manufacturer-count coefficients and increases $R^2$ for both outcomes.
+
+In regression (2) for average spend per dosage unit (\autoref{table:table1}), adding log prescription claims increases $R^2$ from 0.110 to 0.127, and the adjusted $R^2$ is 0.127. Regression (2) indicates a negative association between the number of manufacturers and average spend per dosage unit. The coefficient on the number of manufacturers is smaller in magnitude after adding log prescription claims, but remains statistically significant at the 1\% level using standard errors clustered by drug group. The coefficient indicates that one additional manufacturer is associated with a 12.2\% decrease in average spend per dosage unit, holding the included controls constant. Additionally, the coefficient on log prescription claims is -0.173, indicating that a 1\% increase in total claims is associated with approximately a 0.173\% decrease in average spend per dosage unit, holding the other included covariates constant. 
+
+Looking at regression (2) for average cost per claim (\autoref{table:table3}), we can see that adding log prescription claims increases $R^2$ from 0.147 to 0.203, and the adjusted $R^2$ is 0.202. One additional manufacturer is associated with an 8.7\% decrease in average spend per claim, holding the included controls constant. The manufacturer-count coefficient is statistically significant at the 1\% level. The coefficient on log prescription claims is -0.245, indicating that a 1\% increase in total claims is associated with approximately a 0.245\% decrease in average spend per claim, holding the other included covariates constant. This is a similar result to \autoref{table:table1}.
+
+In summary, manufacturer counts are negatively associated with both measures of Medicaid drug spending, consistent with the economic theory and generic-entry literature discussed above. Manufacturers choose which drug markets to enter, and these decisions may depend on characteristics that also affect spending. The estimates therefore describe conditional associations across drug groups rather than causal effects of additional manufacturers. 
+
+\section{Brand to Generic}
+This final section will investigate differences between the NADAC of brand name drugs and their generic counterparts through a qualitative approach. I first separate the NADAC data into drugs with no generic counterpart, and the drugs where the rate is classified as generic in the NADAC. I then plot a density histogram of the natural logarithm of the NADAC Per Unit for both groups:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{Screenshot (90).png}
+    \caption{Histograms of log(NADAC Per Unit) of strictly brand name and generic drugs.}
+    \label{fig:nadac-distributions}
+\end{figure}
+\FloatBarrier
+
+Note that the brand name drugs distribution lies farther to the right along the x-axis, which indicates that brand name drugs are priced significantly higher on average compared to generics. The brand name density is also concentrated higher at a significantly higher NADAC per unit for brand name drugs: this tells us that brand name drugs are very consistently priced at a specific high “price range”. Additionally, we can also see that where most of the generic NADAC per unit values are, the brand name drugs are sparse in that same area. The lines drawn over the histograms are kernel density estimations (KDEs) of the respective distributions. Also note the fat tails of the brand name distribution, which indicates significantly high variance compared to the relatively symmetric and approximately normal distribution of the generic NADAC.
+
+Now we consider brand name drugs which have had a corresponding generic introduced at some point. In total, there are 1286 of these drugs after accounting for duplicates. 
+
+\begin{table}[!htbp]
+\centering
+\caption{\MakeUppercase{Summary Statistics - Brand Name with Generic}}
+\label{summary:nadac-paired}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrrrr@{}}
+\toprule
+Covariate & $N$ & Mean & Std. dev. & Min. & Max. \\
+\midrule
+NADAC per unit & 1,286 & 16.173 & 41.481 & 0.005 & 471.559 \\
+Generic NADAC per unit & 1,286 & 4.514 & 19.310 & 0.003 & 330.858 \\
+NADAC gap & 1,286 & $-$11.659 & 28.786 & $-$324.811 & 2.277 \\
+Proportional gap & 1,286 & $-$0.696 & 0.292 & $-$0.999 & 1.679 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+\FloatBarrier
+
+The NADAC gap is calculated by subtracting the brand-name NADAC per unit from the corresponding generic NADAC per unit. The proportional gap is calculated by dividing the NADAC gap by the brand-name NADAC per unit. One thing we can immediately notice is that, for most drugs in this comparison, the generic has a lower NADAC per unit than its brand-name counterpart. However, we can also see that there are some drugs for which the generic has a higher NADAC per unit than the brand-name counterpart.
+
+\begin{table}[!htbp]
+\centering
+\caption{\MakeUppercase{Summary Statistics - Generic is More Expensive}}
+\label{summary:nadac-positive}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrrrr@{}}
+\toprule
+Covariate & $N$ & Mean & Std. dev. & Min. & Max. \\
+\midrule
+NADAC per unit & 16 & 2.018 & 2.150 & 0.081 & 7.245 \\
+Generic NADAC per unit & 16 & 2.493 & 2.257 & 0.116 & 7.686 \\
+NADAC gap & 16 & 0.474 & 0.656 & $-$0.027 & 2.277 \\
+Proportional gap & 16 & 0.457 & 0.452 & 0.057 & 1.679 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+\FloatBarrier
+
+For the drugs where the generic ends up more expensive, it is on average 45\% more expensive. However, since there are only 16 drugs, an increase in price in the generic is the exception rather than the rule. 
+
+We can look at the distribution of the percent change:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{Screenshot (88).png}
+    \caption{Density histogram of the percent change in NADAC}
+    \label{fig:nadac-gap}
+\end{figure}
+
+We can see that, for a substantial proportion of drugs in this comparison, the generic NADAC per unit is approximately 90\% lower than the brand-name NADAC per unit.
+
+In summary, the NADAC per unit of generic drugs tend to be significantly lower than those which are strictly brand name drugs. Additionally, the NADAC per unit for strictly brand name drugs has very high variance, while the NADAC per unit for generic drugs has relatively smaller variance. In a substantial proportion of the paired comparisons, generic NADAC per unit is at least 80\% lower than brand-name NADAC per unit, although some generics have higher acquisition costs. These comparisons describe acquisition-cost gaps in the 2019 data rather than changes following generic entry.
+
+\section{Conclusion}
+The Medicaid regressions show a negative association between manufacturer counts and average spending per dosage unit and per claim. Controlling for year fixed effects and log prescription claims, one additional manufacturer is associated with 12.2\% lower spending per dosage unit and 8.7\% lower spending per claim. These findings are consistent with the economic theory and generic-entry literature discussed above, but do not establish the causal effect of manufacturer entry.
+
+The 2019 NADAC comparisons show that generic drugs generally have lower acquisition costs than brand-name drugs. This pattern is also present among drugs with a recorded generic counterpart. These gaps point to potential savings in acquiring medicines where suitable generic alternatives are available, although the comparisons do not measure savings for patients or Medicaid. The supplementary Cost Plus analysis in \hyperref[app:costplus]{Appendix~\ref*{app:costplus}} offers a complementary perspective on pharmaceutical pricing. Estimated manufacturing costs are associated with reported retail prices, but provide only a partial account of the price differences across drugs, as things such as demand and characteristics of competing products can also contribute to variation in retail prices.
+
+The Medicaid findings point to competition as a potential means of improving drug affordability. If the observed relationship reflects competitive pressure, reducing obstacles to manufacturer entry could help contain spending on existing medicines. This possibility connects the results to the broader challenge of preserving incentives for pharmaceutical innovation while maintaining affordable access to treatment. For a publicly financed program, understanding this relationship is important for the cost of providing drug coverage. By constructing a panel from public Medicaid records, this paper contributes evidence on the relationship between market structure and Medicaid spending for drugs. Further research into why some drug markets attract more manufacturers than others could help establish when policies that encourage entry of manufacturers lead to lower spending. Understanding this could also help clarify how market characteristics shape entry decisions and inform research designs aimed at identifying the causal effect of entry on spending. Causal estimates would provide a stronger basis for evaluating policies that encourage competition.
+
+\clearpage
+\input{references}
+
+\clearpage
+\appendix
+\section[Manufacturing Costs: Mark Cuban's Cost Plus Drugs]{Manufacturing Costs:\\Mark Cuban's Cost Plus Drugs}
+\label{app:costplus}
+I will first investigate the relationship between manufacturing costs and pricing by looking at the Cost Plus data. 
+
+I begin by attempting to isolate an estimate of the manufacturing cost from the Cost Plus price. As alluded to earlier, this is given by
+
+\[
+\mathrm{Estimated\ manufacturing\ cost}
+= \frac{\mathrm{Cost\ Plus\ price} - 3}{1.15}.
+\]
+
+Mulcahy and Kareddy (2022) also provide a brief outline of a general supply chain model for brand-name drugs at retail pharmacies:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Screenshot (95).png}
+    \caption{Mulcahy \& Kareddy (2022)}
+    \label{figure:figure1}
+\end{figure}
+
+The manufacturing-cost measure is inferred from the Cost Plus pricing rule; it is not a direct measurement of the costs shown in \autoref{figure:figure1}.
+
+One place to start with regards to looking at the relationship between manufacturing costs and pricing is to look at the extent of a linear relationship between the manufacturing costs and the retail price given in the data. We can first start by looking at a scatterplot of the data: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{../analysis/output/figures/costplus_levels.pdf}
+    \caption{Estimated manufacturing cost and reported retail price in the saved Cost Plus data.}
+\end{figure}
+
+The highly right skewed nature of both of the measures suggests that taking the natural logarithm of both of the measures may better reveal a linear relationship\footnote{Almost all of the measures in this paper have this relationship, so similar plots for other measures are omitted for brevity.}:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{../analysis/output/figures/costplus_retail_log.pdf}
+    \caption{Log reported retail price plotted against log estimated manufacturing cost.}
+\end{figure}
+
+Running an OLS regression on the measures above, we get
+
+\input{../analysis/output/tables/costplus_retail.tex}
+
+The Cost Plus results suggest that manufacturing costs help explain retail-price differences, but provide an incomplete account of pricing. The coefficient of 0.721 indicates that a 1\% higher estimated manufacturing cost is associated with approximately 0.72\% higher reported retail price. The regression accounts for 48.3\% of the variation in log retail prices, leaving substantial differences unexplained by this cost measure. Manufacturing costs are inferred from the Cost Plus pricing rule and may not represent the production costs underlying the reported retail prices. Measurement error and differences across products could therefore contribute to the observed pattern. These results cannot distinguish the contribution of these alternative explanations or establish how prices respond when production costs change.
+
+\section{Data Overview Tables}
+
+\begin{table}[H]
+\centering
+\caption{\MakeUppercase{Description of the covariates in the Medicaid data.}}
+\label{table:table6}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Brand name & The brand name of the drug, if there is a brand name (trademarked name). Otherwise, the generic name is listed. \tabularnewline \addlinespace[3pt]
+
+Generic name & The name of the chemical compound which makes up the drug. \tabularnewline \addlinespace[3pt]
+
+Number of manufacturers & The total number of manufacturers for each drug. \tabularnewline \addlinespace[3pt]
+
+Manufacturer name & Name of the manufacturer of the drug. \tabularnewline \addlinespace[3pt]
+
+Year & Year of the particular observation. \tabularnewline \addlinespace[3pt]
+
+Total spending & Total Medicaid spending for the corresponding drug and year. \tabularnewline \addlinespace[3pt]
+
+Dosage units & Total dosage units of the drug which are dispensed in the corresponding year. The dosage unit refers to the lowest dispensable amount for the corresponding drug. \tabularnewline \addlinespace[3pt]
+
+Prescription claims & The total number of prescription fills for the drug, consisting of original prescriptions and refills. \tabularnewline \addlinespace[3pt]
+
+Spending per dosage unit & This is the Medicaid spending divided by the total number of dosage units. This is weighted by the proportion of total claims with respect to different forms of the drug, such as different dosage strengths, forms, etc.\tabularnewline \addlinespace[3pt]
+
+Spending per claim & Total Medicaid spending divided by the total number of prescription claims for the corresponding drug and year. \tabularnewline \addlinespace[3pt]
+
+Outlier flag & An indicator covariate which equals 1 if the drug's statistics are affected by some form of outlier circumstances. Further details can be found below. \tabularnewline
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+
+\input{../analysis/output/tables/medicaid_all.tex}
+
+\input{../analysis/output/tables/medicaid_filtered.tex}
+
+\begin{table}
+\centering
+\caption{\MakeUppercase{Description of the covariates in the Cost Plus Drugs data.}}
+\label{table:table9}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Medication & The generic name of the corresponding drug. Also notes the brand name counterpart. \tabularnewline \addlinespace[3pt]
+
+Brand name & The brand (trademarked) name of the corresponding drug. \tabularnewline \addlinespace[3pt]
+
+Dosage form & The dosage form of the drug when purchased from the website. \tabularnewline \addlinespace[3pt]
+
+Reported retail price & The brand name price as reported by Cost Plus Drugs. According to the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." \tabularnewline \addlinespace[3pt]
+
+Cost Plus price & The sale price of the medication when purchasing from Cost Plus. \tabularnewline \addlinespace[3pt]
+
+Estimated manufacturing cost & Estimate of the manufacturing costs of the drug. The calculation is described in \autoref{app:costplus}. \tabularnewline \addlinespace[3pt]
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+
+\input{../analysis/output/tables/costplus_summary.tex}
+
+\begin{table}
+\centering
+\caption{\MakeUppercase{Description of the covariates in the NADAC data.}}
+\label{table:table11}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Drug description & Includes the name, strength, and dosage form of the particular drug. \tabularnewline \addlinespace[3pt]
+
+NDC & 11 digit code which uniquely identifies the drug. Specifically, it is the NDC package code. \tabularnewline \addlinespace[3pt]
+
+NADAC per unit & National Average Drug Acquistion Cost per unit. \tabularnewline \addlinespace[3pt]
+
+Effective date & The effective date of the NADAC entry for the drug. \tabularnewline \addlinespace[3pt]
+
+Pricing unit & The unit which the price is calculated with. “EA” stands for discrete units, such as pills. “ML” stands for milliliters, and “GM” stands for grams. \tabularnewline \addlinespace[3pt]
+
+Pharmacy type & The source of pharmacy survey data used for the NADAC. The only entry is "C/I", which stands for chain and independent pharmacies. This column does not give new information, since all entries are the same. \tabularnewline \addlinespace[3pt]
+
+Over-the-counter indicator & Indicates whether the drug is sold over-the-counter or not. "Y" means yes, "N" means no. \tabularnewline \addlinespace[3pt]
+
+Explanation code & Number from 1-10 which indicates how the NADAC was calculated. None are particularly problematic for this investigation, so I will omit the descriptions for brevity. \tabularnewline \addlinespace[3pt]
+
+Rate-setting classification & Indicates whether the drug is considered brand (‘B’) or generic (‘G’) for the NADAC rate calculation process. Two other indicators specify further circumstances for brand name drugs: they are not problematic for this investigation. \tabularnewline \addlinespace[3pt]
+
+Generic NADAC per unit & NADAC for the corresponding generic drug. The entry is NaN if there is no generic. \tabularnewline \addlinespace[3pt]
+
+Generic NADAC effective date & The effective date of when the Corresponding Generic Drug NADAC Per Unit is assigned to a drug. This date may not correspond to the NADAC effective date for the generic drug. \tabularnewline
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{\MakeUppercase{Summary Statistics (NADAC)}}
+\label{summary:nadac}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrrrr@{}}
+\toprule
+Covariate & $N$ & Mean & Std. dev. & Min. & Max. \\
+\midrule
+NADAC per unit & 1,298,197 & 10.529 & 240.682 & 0.001 & 21,513.920 \\
+Generic NADAC per unit & 50,251 & 4.502 & 20.375 & 0.003 & 372.074 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
+
+
+
+\end{document}

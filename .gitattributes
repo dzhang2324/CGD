@@ -1,0 +1,5 @@
+# Keep original input and archival file bytes intact across checkouts.
+/data/raw/** -text
+/data/reference/** -text
+/archive/** -text
+/ShortPaper/archive/** -text

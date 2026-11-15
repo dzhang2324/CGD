@@ -65,9 +65,9 @@ current estimates. Its existing wording is acceptable; do not reopen it
 for minor stylistic or repetition edits. The PDF rebuilt successfully and
 the Cost Plus appendix link resolves to Appendix A on page 16.
 
-The current PDF has 23 pages, with References on page 16 and Appendix A
-starting on page 17. Pages 1--15 precede the references, but page 1 includes
-the title and abstract and page 15 is only partly filled. Check the author's
+The current PDF has 24 pages, with References on page 17 and Appendix A
+starting on page 18. Pages 1--16 precede the references, but page 1 includes
+the title and abstract and the final main-text page is only partly filled. Check the author's
 15-page main-text requirement separately from the references and appendices.
 If additional depth is needed, prioritize useful explanation of Medicaid
 sample construction, measurement, and the existing results.
@@ -86,7 +86,8 @@ Updated November 15, 2026. Follow the author's manual Find → Replace → expla
   - [x] Add concise, explicit dependent-variable headers to all four regression tables.
   - [x] Verify the author's added definition that Medicaid spending includes dispensing fees and is not reduced by manufacturer rebates.
   - [x] Include `Paper/references.tex` after the conclusion. The list covers the retained citations and credited course-note/figure sources; the author's insertion is verified.
-  - [ ] Finish the table/covariate presentation pass. At the author's request, first show a published Econometrica example and a separate preview. `docs/table-style-preview/preview.pdf` illustrates the existing Medicaid estimates and a short covariate dictionary, using Brückner and Ciccone (2011), Tables I--III, as a reference. No manuscript or generated-table formatting has been changed in this preview step.
+  - [x] Apply the approved table format after securing the checkpoint. Tag `before-econometrica-formatting` at `1ae3c08` preserves the exact manuscript, references, generated tables, and saved PDF before formatting. The approved Econometrica-style layout now applies to regression, summary, and covariate-description tables; readable labels replace raw codes inside tables. Captions and rules are consistent, definitions and values are unchanged, and the PDF has been visually checked.
+  - [ ] Replace raw covariate codes remaining in narrative prose through the manual Find/Replace workflow. The formatting pass deliberately preserves the narrative.
 
 The shorter writing sample, manufacturer bins, event study, and additional analyses remain deferred. Medicaid-centered ordering of the overall conclusion would support Yunus's focus request, but is our suggested implementation rather than a specific instruction from him.
 
@@ -106,6 +107,7 @@ The shorter writing sample, manufacturer bins, event study, and additional analy
 - Sixteen numerical references were updated in commit `0f62365`, without changing manuscript wording; the PDF was rebuilt. The two claims-volume statements and their percentage units have since been corrected manually and checked.
 - All four regression tables identify the dependent variable above the numbered columns: Log spending per unit, Log spending per claim, Log retail price, and Log markup. Notes specify natural logarithms and clarify the weighted per-unit measure. The PDF was rebuilt and all four headers were visually checked; the existing numerical outputs and table results are unchanged.
 - The author removed the Cost Plus markup-regression calculation, table, and discussion from the appendix. Historical code and outputs remain preserved. The author has substituted the generated, visually checked retail-only log scatterplot, `analysis/output/figures/costplus_retail_log.pdf`, for the two-panel figure; the saved source is verified and the PDF rebuilt. The retained retail-regression table note no longer describes the removed markup outcome. A fresh pipeline run passed its audit; all existing outputs except that table note were unchanged, and only the new figure was added.
+- The author approved the Econometrica-style preview and required a checkpoint first. The checkpoint was committed and the clean worktree, tagged source hashes, and saved PDF were verified before table editing began. After formatting, all non-table analysis artifacts are byte-identical to that checkpoint, including numerical results and figures. Nine tests passed. Narrative text, equations, dictionary definitions, NADAC values, and internal references are unchanged. The full PDF compiles with no unresolved-reference or table-overflow warnings; the existing long Cost Plus appendix heading still produces a horizontal overflow warning.
 
 ## Main results
 

@@ -9,6 +9,26 @@
 \usepackage{placeins}
 \usepackage{dcolumn}
 \usepackage{booktabs}
+\renewcommand{\tablename}{TABLE}
+\makeatletter
+\let\thesis@originalmakecaption\@makecaption
+\long\def\@makecaption#1#2{%
+  \def\thesis@tabletype{table}%
+  \ifx\@captype\thesis@tabletype
+    \vskip\abovecaptionskip
+    \begingroup
+      \centering
+      \setstretch{1}%
+      {\small #1\par}%
+      \vskip4pt
+      {\footnotesize #2\par}%
+    \endgroup
+    \vskip9pt
+  \else
+    \thesis@originalmakecaption{#1}{#2}%
+  \fi
+}
+\makeatother
 \doublespace 
 
 \begin{document}
@@ -154,45 +174,51 @@ Note that the brand name drugs distribution lies farther to the right along the 
 
 Now we consider brand name drugs which have had a corresponding generic introduced at some point. In total, there are 1286 of these drugs after accounting for duplicates. 
 
-\begin{table}[!htbp] \centering 
-  \caption{Summary Statistics - Brand Name with Generic} 
-  \label{summary:nadac-paired} 
+\begin{table}[!htbp]
+\centering
+\caption{\MakeUppercase{Summary Statistics - Brand Name with Generic}}
+\label{summary:nadac-paired}
 \begin{singlespace}
+\begin{minipage}{0.95\linewidth}
 \small
-\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex]  
-NADAC per unit & 1,286 & 16.173 & 41.481 & 0.005 & 471.559 \\ 
-Corresponding generic NADAC per unit & 1,286 & 4.514 & 19.310 & 0.003 & 330.858 \\ 
-nadac\_diff & 1,286 & $-$11.659 & 28.786 & $-$324.811 & 2.277 \\ 
-nadac\_percent\_change & 1,286 & $-$0.696 & 0.292 & $-$0.999 & 1.679 \\ 
-\hline \\[-1.8ex] 
-\end{tabular}
-\end{singlespace} 
-\end{table} 
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrrrr@{}}
+\toprule
+Covariate & $N$ & Mean & Std. dev. & Min. & Max. \\
+\midrule
+NADAC per unit & 1,286 & 16.173 & 41.481 & 0.005 & 471.559 \\
+Generic NADAC per unit & 1,286 & 4.514 & 19.310 & 0.003 & 330.858 \\
+NADAC gap & 1,286 & $-$11.659 & 28.786 & $-$324.811 & 2.277 \\
+Proportional gap & 1,286 & $-$0.696 & 0.292 & $-$0.999 & 1.679 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
 \FloatBarrier
 
 The nadac\_diff is calculated by taking the difference between the corresponding generic NADAC per unit and the regular NADAC per unit. nadac\_percent\_change is calculated by taking nadac\_diff and dividing it by the corresponding NADAC per unit. One thing we can immediately notice is that, for most drugs in this comparison, the generic has a lower NADAC per unit than its brand-name counterpart. However, we can also see that there are some drugs for which the generic has a higher NADAC per unit than the brand-name counterpart.
 
-\begin{table}[!htbp] \centering 
-  \caption{Summary Statistics - Generic is More Expensive} 
-  \label{summary:nadac-positive} 
+\begin{table}[!htbp]
+\centering
+\caption{\MakeUppercase{Summary Statistics - Generic is More Expensive}}
+\label{summary:nadac-positive}
 \begin{singlespace}
+\begin{minipage}{0.95\linewidth}
 \small
-\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex]  
-NADAC per unit & 16 & 2.018 & 2.150 & 0.081 & 7.245 \\ 
-Corresponding generic NADAC per unit & 16 & 2.493 & 2.257 & 0.116 & 7.686 \\ 
-nadac\_diff & 16 & 0.474 & 0.656 & $-$0.027 & 2.277 \\ 
-nadac\_percent\_change & 16 & 0.457 & 0.452 & 0.057 & 1.679 \\ 
-\hline \\[-1.8ex] 
-\end{tabular}
-\end{singlespace} 
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrrrr@{}}
+\toprule
+Covariate & $N$ & Mean & Std. dev. & Min. & Max. \\
+\midrule
+NADAC per unit & 16 & 2.018 & 2.150 & 0.081 & 7.245 \\
+Generic NADAC per unit & 16 & 2.493 & 2.257 & 0.116 & 7.686 \\
+NADAC gap & 16 & 0.474 & 0.656 & $-$0.027 & 2.277 \\
+Proportional gap & 16 & 0.457 & 0.452 & 0.057 & 1.679 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
 \end{table}
 \FloatBarrier
 
@@ -268,40 +294,43 @@ The Cost Plus results suggest that manufacturing costs help explain retail-price
 
 \begin{table}[H]
 \centering
-\begin{singlespace}
-\small
-\begin{tabularx}{\linewidth}{@{}p{0.34\linewidth}X@{}}
-
-\multicolumn{1}{c}{\textit{{Features}}} & \multicolumn{1}{c}{\textit{{Description}}} \tabularnewline 
-
-\hline
-
-Brnd\_\allowbreak{}Name & The brand name of the drug, if there is a brand name (trademarked name). Otherwise, the generic name is listed. \tabularnewline \hline
-
-Gnrc\_\allowbreak{}Name & The name of the chemical compound which makes up the drug. \tabularnewline \hline
-
-Tot\_\allowbreak{}Mftr & The total number of manufacturers for each drug. \tabularnewline \hline
-
-Mftr\_\allowbreak{}Name & Name of the manufacturer of the drug. \tabularnewline \hline
-
-Year & Year of the particular observation. \tabularnewline \hline
-
-Tot\_\allowbreak{}Spndng & Total Medicaid spending for the corresponding drug and year. \tabularnewline \hline
-
-Tot\_\allowbreak{}Dsg\_\allowbreak{}Unts & Total dosage units of the drug which are dispensed in the corresponding year. The dosage unit refers to the lowest dispensable amount for the corresponding drug. \tabularnewline \hline
-
-Tot\_\allowbreak{}Clms & The total number of prescription fills for the drug, consisting of original prescriptions and refills. \tabularnewline \hline
-
-Avg\_\allowbreak{}Spnd\_\allowbreak{}Per\_\allowbreak{}Dsg\_\allowbreak{}Unt\_\allowbreak{}Wghtd & This is the Medicaid spending divided by the total number of dosage units. This is weighted by the proportion of total claims with respect to different forms of the drug, such as different dosage strengths, forms, etc.\tabularnewline \hline
-
-Avg\_\allowbreak{}Spnd\_\allowbreak{}Per\_\allowbreak{}Clm & Total Medicaid spending divided by the total number of prescription claims for the corresponding drug and year. \tabularnewline \hline
-
-Outlier\_\allowbreak{}Flag & An indicator variable which equals 1 if the drug's statistics are affected by some form of outlier circumstances. Further details can be found below. \tabularnewline \hline
-
-\end{tabularx}
-\end{singlespace}
-\caption{Description of the features in the Medicaid data.}
+\caption{\MakeUppercase{Description of the covariates in the Medicaid data.}}
 \label{table:table6}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Brand name & The brand name of the drug, if there is a brand name (trademarked name). Otherwise, the generic name is listed. \tabularnewline \addlinespace[3pt]
+
+Generic name & The name of the chemical compound which makes up the drug. \tabularnewline \addlinespace[3pt]
+
+Number of manufacturers & The total number of manufacturers for each drug. \tabularnewline \addlinespace[3pt]
+
+Manufacturer name & Name of the manufacturer of the drug. \tabularnewline \addlinespace[3pt]
+
+Year & Year of the particular observation. \tabularnewline \addlinespace[3pt]
+
+Total spending & Total Medicaid spending for the corresponding drug and year. \tabularnewline \addlinespace[3pt]
+
+Dosage units & Total dosage units of the drug which are dispensed in the corresponding year. The dosage unit refers to the lowest dispensable amount for the corresponding drug. \tabularnewline \addlinespace[3pt]
+
+Prescription claims & The total number of prescription fills for the drug, consisting of original prescriptions and refills. \tabularnewline \addlinespace[3pt]
+
+Spending per dosage unit & This is the Medicaid spending divided by the total number of dosage units. This is weighted by the proportion of total claims with respect to different forms of the drug, such as different dosage strengths, forms, etc.\tabularnewline \addlinespace[3pt]
+
+Spending per claim & Total Medicaid spending divided by the total number of prescription claims for the corresponding drug and year. \tabularnewline \addlinespace[3pt]
+
+Outlier flag & An indicator variable which equals 1 if the drug's statistics are affected by some form of outlier circumstances. Further details can be found below. \tabularnewline
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
 \end{table}
 
 \input{../analysis/output/tables/medicaid_all.tex}
@@ -310,91 +339,99 @@ Outlier\_\allowbreak{}Flag & An indicator variable which equals 1 if the drug's 
 
 \begin{table}
 \centering
-\begin{singlespace}
-\small
-\begin{tabularx}{\linewidth}{@{}p{0.34\linewidth}X@{}}
-
-\multicolumn{1}{c}{\textit{{Features}}} & \multicolumn{1}{c}{\textit{{Description}}} \tabularnewline 
-
-\hline
-
-medication & The generic name of the corresponding drug. Also notes the brand name counterpart. \tabularnewline \hline
-
-brand\_\allowbreak{}name & The brand (trademarked) name of the corresponding drug. \tabularnewline \hline
-
-form & The dosage form of the drug when purchased from the website. \tabularnewline \hline
-
-retail\_\allowbreak{}price & The brand name price as reported by Cost Plus Drugs. According to the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." \tabularnewline \hline
-
-CP\_\allowbreak{}price & The sale price of the medication when purchasing from Cost Plus. \tabularnewline \hline
-
-manuf\_\allowbreak{}cost & Estimate of the manufacturing costs of the drug. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \hline
-
-markup & Percentage markup from the CP\_price to the retail\_price. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \hline
-
-\end{tabularx}
-\end{singlespace}
-\caption{Description of the features in the Cost Plus Drugs data.}
+\caption{\MakeUppercase{Description of the covariates in the Cost Plus Drugs data.}}
 \label{table:table9}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Medication & The generic name of the corresponding drug. Also notes the brand name counterpart. \tabularnewline \addlinespace[3pt]
+
+Brand name & The brand (trademarked) name of the corresponding drug. \tabularnewline \addlinespace[3pt]
+
+Dosage form & The dosage form of the drug when purchased from the website. \tabularnewline \addlinespace[3pt]
+
+Reported retail price & The brand name price as reported by Cost Plus Drugs. According to the website, this is calculated as "an average of retail prices across other pharmacies that is sourced from third-party data. This information is published at the time we add the medication so may not reflect current market prices." \tabularnewline \addlinespace[3pt]
+
+Cost Plus price & The sale price of the medication when purchasing from Cost Plus. \tabularnewline \addlinespace[3pt]
+
+Estimated manufacturing cost & Estimate of the manufacturing costs of the drug. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline \addlinespace[3pt]
+
+Markup & Percentage markup from the CP\_price to the retail\_price. Method of calculation is discussed in the Manufacturing Costs and Pricing section. \tabularnewline
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
 \end{table}
 
 \input{../analysis/output/tables/costplus_summary.tex}
 
 \begin{table}
 \centering
-\begin{singlespace}
-\small
-\begin{tabularx}{\linewidth}{@{}p{0.34\linewidth}X@{}}
-
-\multicolumn{1}{c}{\textit{{Features}}} & \multicolumn{1}{c}{\textit{{Description}}} \tabularnewline 
-
-\hline
-
-NDC Description & Includes the name, strength, and dosage form of the particular drug. \tabularnewline \hline
-
-NDC & 11 digit code which uniquely identifies the drug. Specifically, it is the NDC package code. \tabularnewline \hline
-
-NADAC Per Unit & National Average Drug Acquistion Cost per unit. \tabularnewline \hline
-
-Effective Date & The effective date of the NADAC entry for the drug. \tabularnewline \hline
-
-Pricing Unit & The unit which the price is calculated with. “EA” stands for discrete units, such as pills. “ML” stands for milliliters, and “GM” stands for grams. \tabularnewline \hline
-
-Pharmacy Type Indicator & The source of pharmacy survey data used for the NADAC. The only entry is "C/I", which stands for chain and independent pharmacies. This column does not give new information, since all entries are the same. \tabularnewline \hline
-
-OTC & Indicates whether the drug is sold over-the-counter or not. "Y" means yes, "N" means no. \tabularnewline \hline
-
-Explanation Code & Number from 1-10 which indicates how the NADAC was calculated. None are particularly problematic for this investigation, so I will omit the descriptions for brevity. \tabularnewline \hline
-
-Classification for Rate Setting & Indicates whether the drug is considered brand (‘B’) or generic (‘G’) for the NADAC rate calculation process. Two other indicators specify further circumstances for brand name drugs: they are not problematic for this investigation. \tabularnewline \hline
-
-Corresponding Generic Drug NADAC Per Unit & NADAC for the corresponding generic drug. The entry is NaN if there is no generic. \tabularnewline \hline
-
-Corresponding Generic Drug Effective Date & The effective date of when the Corresponding Generic Drug NADAC Per Unit is assigned to a drug. This date may not correspond to the NADAC effective date for the generic drug. \tabularnewline \hline
-
-\end{tabularx}
-\end{singlespace}
-\caption{Description of the features in the NADAC data.}
+\caption{\MakeUppercase{Description of the covariates in the NADAC data.}}
 \label{table:table11}
+\begin{singlespace}
+\begin{minipage}{0.95\linewidth}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.31\linewidth}X@{}}
+
+\toprule
+Covariate & Definition \tabularnewline
+\midrule
+
+Drug description & Includes the name, strength, and dosage form of the particular drug. \tabularnewline \addlinespace[3pt]
+
+NDC & 11 digit code which uniquely identifies the drug. Specifically, it is the NDC package code. \tabularnewline \addlinespace[3pt]
+
+NADAC per unit & National Average Drug Acquistion Cost per unit. \tabularnewline \addlinespace[3pt]
+
+Effective date & The effective date of the NADAC entry for the drug. \tabularnewline \addlinespace[3pt]
+
+Pricing unit & The unit which the price is calculated with. “EA” stands for discrete units, such as pills. “ML” stands for milliliters, and “GM” stands for grams. \tabularnewline \addlinespace[3pt]
+
+Pharmacy type & The source of pharmacy survey data used for the NADAC. The only entry is "C/I", which stands for chain and independent pharmacies. This column does not give new information, since all entries are the same. \tabularnewline \addlinespace[3pt]
+
+Over-the-counter indicator & Indicates whether the drug is sold over-the-counter or not. "Y" means yes, "N" means no. \tabularnewline \addlinespace[3pt]
+
+Explanation code & Number from 1-10 which indicates how the NADAC was calculated. None are particularly problematic for this investigation, so I will omit the descriptions for brevity. \tabularnewline \addlinespace[3pt]
+
+Rate-setting classification & Indicates whether the drug is considered brand (‘B’) or generic (‘G’) for the NADAC rate calculation process. Two other indicators specify further circumstances for brand name drugs: they are not problematic for this investigation. \tabularnewline \addlinespace[3pt]
+
+Generic NADAC per unit & NADAC for the corresponding generic drug. The entry is NaN if there is no generic. \tabularnewline \addlinespace[3pt]
+
+Generic NADAC effective date & The effective date of when the Corresponding Generic Drug NADAC Per Unit is assigned to a drug. This date may not correspond to the NADAC effective date for the generic drug. \tabularnewline
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
 \end{table}
 
-\begin{table}[!htbp] \centering 
-\addtolength{\tabcolsep}{-2pt}
-  \caption{Summary Statistics (NADAC)} 
-  \label{summary:nadac} 
+\begin{table}[!htbp]
+\centering
+\caption{\MakeUppercase{Summary Statistics (NADAC)}}
+\label{summary:nadac}
 \begin{singlespace}
+\begin{minipage}{0.95\linewidth}
 \small
-\begin{tabular}{@{\extracolsep{3pt}}lccccc}
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex] 
-NADAC per unit & 1,298,197 & 10.529 & 240.682 & 0.001 & 21,513.920 \\ 
-Corresponding generic NADAC per unit & 50,251 & 4.502 & 20.375 & 0.003 & 372.074 \\ 
-\hline \\[-1.8ex] 
-\end{tabular}
-\end{singlespace} 
-\end{table} 
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrrrr@{}}
+\toprule
+Covariate & $N$ & Mean & Std. dev. & Min. & Max. \\
+\midrule
+NADAC per unit & 1,298,197 & 10.529 & 240.682 & 0.001 & 21,513.920 \\
+Generic NADAC per unit & 50,251 & 4.502 & 20.375 & 0.003 & 372.074 \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\end{singlespace}
+\end{table}
 
 
 

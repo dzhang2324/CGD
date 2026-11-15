@@ -91,11 +91,17 @@ All three steps were verified in the saved manuscript on November 15,
 
 > Tables and variable names can be cleaned up by copying the presentation style from an Econometrica paper.
 
-Partly addressed: generated tables use numbered columns, standard errors
-beneath estimates, clear dependent-variable headings, and control/clustering
-notes. Remaining presentation review should address raw variable names in
-the narrative and consistent, readable terminology. A specific Econometrica
-example has not yet been selected or checked.
+The author approved a preview modeled on Brückner and Ciccone (2011),
+Tables I--III, after seeing the published example and a mock-up using the
+current Medicaid estimates. The required checkpoint was secured first:
+`before-econometrica-formatting` at `1ae3c08`.
+
+The approved table format is implemented: numbered columns, outcome headings,
+standard errors beneath estimates, consistent horizontal rules and captions,
+and readable covariate labels in the regression, summary, and dictionary
+tables. Values, definitions, and narrative text are unchanged. The remaining
+presentation task is replacing raw codes in the narrative through the
+author's manual Find/Replace workflow.
 
 ## Identification and claims
 

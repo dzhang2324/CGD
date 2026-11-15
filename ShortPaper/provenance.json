@@ -86,6 +86,7 @@
     "original_title_and_layout": true,
     "original_two_regression_tables": true
   },
-  "page_count_status": "10 main pages; 13 with references and Medicaid appendices; reached by layout-only changes.",
-  "layout_checkpoint_tag": "short-ten-pages"
+  "page_count_status": "10 main pages; 13 with references and Medicaid appendices; Figure 1 anchored within theory on page 5 and Figure 2 after its introduction on page 6; reached by layout-only changes.",
+  "layout_checkpoint_tag": "short-ten-pages",
+  "figure_placement_checkpoint_tag": "short-figures-anchored"
 }
